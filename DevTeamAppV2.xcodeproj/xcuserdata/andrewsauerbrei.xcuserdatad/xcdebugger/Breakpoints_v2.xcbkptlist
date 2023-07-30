@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8B60F03B-E192-46F5-988C-63E2C8B13800"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "211798ED-4BB0-4942-B996-272579E0B831"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "loginUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "211798ED-4BB0-4942-B996-272579E0B831 - c93c4994cf20a8c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.ViewController.loginUser() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "211798ED-4BB0-4942-B996-272579E0B831 - c93c4994cf20a8c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.ViewController.loginUser() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "672">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

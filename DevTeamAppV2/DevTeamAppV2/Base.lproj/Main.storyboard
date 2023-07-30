@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Sj-dX-IgY">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Idw-ja-fuz">
+            <objects>
+                <viewController id="8Sj-dX-IgY" customClass="ViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4z3-jg-Y9j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RQH-tK-SFX" userLabel="Vertical Stack View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEc-Ch-1fy">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="841.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="166" translatesAutoresizingMaskIntoConstraints="NO" id="hHk-0E-YEl">
+                                                <rect key="frame" x="58" y="283" width="298" height="68"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b9C-Nr-Xoe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="68"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SkM-1C-A26">
+                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgI-Zr-7bh">
+                                                                <rect key="frame" x="0.0" y="34" width="94" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js2-Iq-xR2">
+                                                        <rect key="frame" x="260" y="0.0" width="38" height="68"/>
+                                                        <state key="normal" title="Login"/>
+                                                        <connections>
+                                                            <action selector="loginUser" destination="8Sj-dX-IgY" eventType="touchUpInside" id="xdK-OM-U9g"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0O-YG-aHK">
+                                                <rect key="frame" x="153.5" y="387" width="107" height="68"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="68" id="VF5-B3-Wif"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Create Account"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="G0O-YG-aHK" firstAttribute="centerY" secondItem="jEc-Ch-1fy" secondAttribute="centerY" id="5vV-9A-RGM"/>
+                                            <constraint firstItem="G0O-YG-aHK" firstAttribute="centerX" secondItem="hHk-0E-YEl" secondAttribute="centerX" id="LXi-O3-QZb"/>
+                                            <constraint firstItem="G0O-YG-aHK" firstAttribute="centerX" secondItem="jEc-Ch-1fy" secondAttribute="centerX" id="Nxl-FL-crp"/>
+                                            <constraint firstItem="G0O-YG-aHK" firstAttribute="top" secondItem="hHk-0E-YEl" secondAttribute="bottom" constant="36" id="vja-Mr-3zN"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zqJ-s5-h0N">
+                                        <rect key="frame" x="0.0" y="841.5" width="414" height="54.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eKf-o8-3QS" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="54.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                                <connections>
+                                                    <action selector="teamButtonPressed" destination="8Sj-dX-IgY" eventType="touchUpInside" id="tTf-rb-KYf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDw-fF-UsY">
+                                                <rect key="frame" x="70.5" y="0.0" width="105.5" height="54.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                                <connections>
+                                                    <action selector="upcomingVideoButtonPressed" destination="8Sj-dX-IgY" eventType="touchUpInside" id="nxX-Io-fQB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAb-bJ-RyJ">
+                                                <rect key="frame" x="176" y="0.0" width="71" height="54.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                                <connections>
+                                                    <action selector="addVideoButtonPressed" destination="8Sj-dX-IgY" eventType="touchUpInside" id="kRg-08-Fvw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdb-vW-FFS">
+                                                <rect key="frame" x="247" y="0.0" width="84" height="54.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                                <connections>
+                                                    <action selector="videoReviewButtonPressed" destination="8Sj-dX-IgY" eventType="touchUpInside" id="5aE-Gb-PfF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQr-P4-P8Z">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="54.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                                <connections>
+                                                    <action selector="videoLibraryButtonPressed" destination="8Sj-dX-IgY" eventType="touchUpInside" id="bJu-S3-89g"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="htc-Ju-UpL"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RQH-tK-SFX" firstAttribute="top" secondItem="4z3-jg-Y9j" secondAttribute="top" id="0ZY-30-G74"/>
+                            <constraint firstItem="RQH-tK-SFX" firstAttribute="bottom" secondItem="4z3-jg-Y9j" secondAttribute="bottom" id="GPo-SO-DfS"/>
+                            <constraint firstItem="RQH-tK-SFX" firstAttribute="trailing" secondItem="4z3-jg-Y9j" secondAttribute="trailing" id="Hdx-fy-E0J"/>
+                            <constraint firstItem="RQH-tK-SFX" firstAttribute="leading" secondItem="4z3-jg-Y9j" secondAttribute="leading" id="fyk-lu-Bio"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordField" destination="vgI-Zr-7bh" id="2P0-OZ-9kU"/>
+                        <outlet property="usernameField" destination="SkM-1C-A26" id="ze3-8q-yPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5TF-Qr-dGy" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--Team View Controller-->
+        <scene sceneID="cLB-Dh-yVL">
+            <objects>
+                <viewController storyboardIdentifier="teamView" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="fAs-Rm-Tdg" customClass="TeamViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pw5-S4-foY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="734" translatesAutoresizingMaskIntoConstraints="NO" id="j1r-7Q-dqs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jMD-Bv-aZZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNs-s8-uqE">
+                                        <rect key="frame" x="0.0" y="821.5" width="414" height="74.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8gt-Tv-8qH" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="74.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Vl-ke-aKs">
+                                                <rect key="frame" x="83" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuY-2A-enK">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkX-nP-Spc">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-55-AMQ">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g9p-Kq-lVm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="j1r-7Q-dqs" firstAttribute="top" secondItem="pw5-S4-foY" secondAttribute="top" id="Cbg-uK-yIC"/>
+                            <constraint firstAttribute="trailing" secondItem="j1r-7Q-dqs" secondAttribute="trailing" id="Yuu-aO-jvC"/>
+                            <constraint firstItem="j1r-7Q-dqs" firstAttribute="leading" secondItem="pw5-S4-foY" secondAttribute="leading" id="aZH-ef-pYY"/>
+                            <constraint firstAttribute="bottom" secondItem="j1r-7Q-dqs" secondAttribute="bottom" id="m3u-fu-Wa8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhY-Vu-xCE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934.78260869565224" y="137.94642857142856"/>
+        </scene>
+        <!--Upcoming Video View Controller-->
+        <scene sceneID="Ec2-ZT-agY">
+            <objects>
+                <viewController storyboardIdentifier="upcomingVideoView" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="RYk-yy-rQE" customClass="UpcomingVideoViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0dx-MW-9vq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="734" translatesAutoresizingMaskIntoConstraints="NO" id="Lm5-tZ-F8M">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gmX-8S-jK0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XqU-tr-PUI">
+                                        <rect key="frame" x="0.0" y="821.5" width="414" height="74.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Y2r-j9-mKc" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="74.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meD-PW-hf7">
+                                                <rect key="frame" x="83" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZf-WI-ym2">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbr-yt-baq">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apq-CP-0tQ">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gZY-jO-woq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Lm5-tZ-F8M" secondAttribute="trailing" id="EMb-1d-Lgd"/>
+                            <constraint firstAttribute="bottom" secondItem="Lm5-tZ-F8M" secondAttribute="bottom" id="G2x-Mb-OdF"/>
+                            <constraint firstItem="Lm5-tZ-F8M" firstAttribute="top" secondItem="0dx-MW-9vq" secondAttribute="top" id="gAv-WG-9xM"/>
+                            <constraint firstItem="Lm5-tZ-F8M" firstAttribute="leading" secondItem="0dx-MW-9vq" secondAttribute="leading" id="n2I-dd-kO5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mqm-BZ-ps6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1781" y="138"/>
+        </scene>
+        <!--Add Video View Controller-->
+        <scene sceneID="MeH-cl-fmo">
+            <objects>
+                <viewController storyboardIdentifier="addVideoView" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="i0c-4W-Qa8" customClass="AddVideoViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XD0-e7-Cjx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="734" translatesAutoresizingMaskIntoConstraints="NO" id="bky-iW-Hxr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l42-uK-4sd">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOB-3y-MKs">
+                                        <rect key="frame" x="0.0" y="821.5" width="414" height="74.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="2qY-Yp-Bi6" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="74.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-cY-oKm">
+                                                <rect key="frame" x="83" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAc-2r-mDz">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djj-vx-awB">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrw-SD-3Zr">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ul2-WT-isl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="bky-iW-Hxr" secondAttribute="bottom" id="Aq0-QH-ufb"/>
+                            <constraint firstItem="bky-iW-Hxr" firstAttribute="top" secondItem="XD0-e7-Cjx" secondAttribute="top" id="XdJ-LP-nJu"/>
+                            <constraint firstAttribute="trailing" secondItem="bky-iW-Hxr" secondAttribute="trailing" id="gL0-tG-Z0P"/>
+                            <constraint firstItem="bky-iW-Hxr" firstAttribute="leading" secondItem="XD0-e7-Cjx" secondAttribute="leading" id="jLt-P5-seY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CHW-jL-YOg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2645" y="138"/>
+        </scene>
+        <!--Video Review View Controller-->
+        <scene sceneID="lVS-7s-dxm">
+            <objects>
+                <viewController storyboardIdentifier="videoReviewView" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="y2L-GI-skr" customClass="VideoReviewViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="43f-dB-gSg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="734" translatesAutoresizingMaskIntoConstraints="NO" id="tpd-w8-V2T">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vVj-RV-ziH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm9-ia-x4y">
+                                        <rect key="frame" x="0.0" y="821.5" width="414" height="74.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="lvj-eP-3d1" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="74.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSY-45-HND">
+                                                <rect key="frame" x="83" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpJ-ym-wNr">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ng1-K2-jRD">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fC3-ai-ZMm">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VrT-CZ-qao"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tpd-w8-V2T" secondAttribute="trailing" id="0mf-dn-SGU"/>
+                            <constraint firstAttribute="bottom" secondItem="tpd-w8-V2T" secondAttribute="bottom" id="B7a-lT-z8b"/>
+                            <constraint firstItem="tpd-w8-V2T" firstAttribute="leading" secondItem="43f-dB-gSg" secondAttribute="leading" id="f9E-oe-BKF"/>
+                            <constraint firstItem="tpd-w8-V2T" firstAttribute="top" secondItem="43f-dB-gSg" secondAttribute="top" id="vbe-oo-r9c"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="957-9F-Bf4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3516" y="138"/>
+        </scene>
+        <!--Video Library View Controller-->
+        <scene sceneID="hse-Z2-pmN">
+            <objects>
+                <viewController storyboardIdentifier="videoLibraryView" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="d8q-5I-lHt" customClass="VideoLibraryViewController" customModule="DevTeamAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H8d-sO-0oM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="734" translatesAutoresizingMaskIntoConstraints="NO" id="wbY-DD-qk2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-Y1-XzS">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnf-hb-EgK">
+                                        <rect key="frame" x="0.0" y="821.5" width="414" height="74.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="DzO-k6-CLh" userLabel="Team View Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="74.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Team View"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytD-Sc-KcV">
+                                                <rect key="frame" x="83" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Upcoming Videos"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5r-vm-pua">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="New Video"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHd-XN-s4a">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Review"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBd-Xl-GU3">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="74.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Video Library"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nr4-gY-OXR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wbY-DD-qk2" secondAttribute="trailing" id="BrH-sK-sff"/>
+                            <constraint firstItem="wbY-DD-qk2" firstAttribute="leading" secondItem="H8d-sO-0oM" secondAttribute="leading" id="cfF-dl-jXo"/>
+                            <constraint firstItem="wbY-DD-qk2" firstAttribute="top" secondItem="H8d-sO-0oM" secondAttribute="top" id="lHK-J0-TuR"/>
+                            <constraint firstAttribute="bottom" secondItem="wbY-DD-qk2" secondAttribute="bottom" id="zdf-18-9b2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Go-a3-7Q5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4329" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
