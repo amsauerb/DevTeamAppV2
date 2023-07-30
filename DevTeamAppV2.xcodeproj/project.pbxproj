@@ -7,22 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8642969F2A71CF560009C217 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8642969E2A71CF560009C217 /* Model.swift */; };
+		864296A12A71CF8B0009C217 /* Environment.json in Resources */ = {isa = PBXBuildFile; fileRef = 864296A02A71CF8B0009C217 /* Environment.json */; };
+		864296A32A71CF9D0009C217 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296A22A71CF9D0009C217 /* Environment.swift */; };
+		864296AE2A71EA060009C217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864296AA2A71EA060009C217 /* Main.storyboard */; };
+		864296AF2A71EA060009C217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864296AC2A71EA060009C217 /* LaunchScreen.storyboard */; };
+		864296B12A756AF00009C217 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B02A756AF00009C217 /* TeamViewController.swift */; };
+		864296B32A75DCC00009C217 /* UpcomingVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B22A75DCC00009C217 /* UpcomingVideoViewController.swift */; };
+		864296B52A75DCD10009C217 /* AddVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B42A75DCD10009C217 /* AddVideoViewController.swift */; };
+		864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */; };
+		864296B92A75DCF00009C217 /* VideoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */; };
 		86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4A2A71CECD001D13FA /* AppDelegate.swift */; };
 		86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */; };
 		86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4E2A71CECD001D13FA /* ViewController.swift */; };
-		86ACED522A71CECD001D13FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86ACED502A71CECD001D13FA /* Main.storyboard */; };
 		86ACED542A71CECF001D13FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ACED532A71CECF001D13FA /* Assets.xcassets */; };
-		86ACED572A71CECF001D13FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86ACED552A71CECF001D13FA /* LaunchScreen.storyboard */; };
+		86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = 86ACED5F2A71CF0F001D13FA /* PostgresClientKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8642969E2A71CF560009C217 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		864296A02A71CF8B0009C217 /* Environment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Environment.json; sourceTree = "<group>"; };
+		864296A22A71CF9D0009C217 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		864296AB2A71EA060009C217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DevTeamAppV2/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		864296AD2A71EA060009C217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DevTeamAppV2/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		864296B02A756AF00009C217 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		864296B22A75DCC00009C217 /* UpcomingVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingVideoViewController.swift; sourceTree = "<group>"; };
+		864296B42A75DCD10009C217 /* AddVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoViewController.swift; sourceTree = "<group>"; };
+		864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoReviewViewController.swift; sourceTree = "<group>"; };
+		864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryViewController.swift; sourceTree = "<group>"; };
 		86ACED472A71CECD001D13FA /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		86ACED512A71CECD001D13FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86ACED532A71CECF001D13FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		86ACED562A71CECF001D13FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86ACED582A71CECF001D13FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,13 +74,21 @@
 		86ACED492A71CECD001D13FA /* DevTeamAppV2 */ = {
 			isa = PBXGroup;
 			children = (
+				864296A02A71CF8B0009C217 /* Environment.json */,
+				86ACED582A71CECF001D13FA /* Info.plist */,
+				864296A22A71CF9D0009C217 /* Environment.swift */,
 				86ACED4A2A71CECD001D13FA /* AppDelegate.swift */,
+				8642969E2A71CF560009C217 /* Model.swift */,
 				86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */,
 				86ACED4E2A71CECD001D13FA /* ViewController.swift */,
-				86ACED502A71CECD001D13FA /* Main.storyboard */,
+				864296B02A756AF00009C217 /* TeamViewController.swift */,
+				864296B22A75DCC00009C217 /* UpcomingVideoViewController.swift */,
+				864296B42A75DCD10009C217 /* AddVideoViewController.swift */,
+				864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */,
+				864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */,
 				86ACED532A71CECF001D13FA /* Assets.xcassets */,
-				86ACED552A71CECF001D13FA /* LaunchScreen.storyboard */,
-				86ACED582A71CECF001D13FA /* Info.plist */,
+				864296AC2A71EA060009C217 /* LaunchScreen.storyboard */,
+				864296AA2A71EA060009C217 /* Main.storyboard */,
 			);
 			path = DevTeamAppV2;
 			sourceTree = "<group>";
@@ -83,6 +109,9 @@
 			dependencies = (
 			);
 			name = DevTeamAppV2;
+			packageProductDependencies = (
+				86ACED5F2A71CF0F001D13FA /* PostgresClientKit */,
+			);
 			productName = DevTeamAppV2;
 			productReference = 86ACED472A71CECD001D13FA /* DevTeamAppV2.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +140,9 @@
 				Base,
 			);
 			mainGroup = 86ACED3E2A71CECD001D13FA;
+			packageReferences = (
+				86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+			);
 			productRefGroup = 86ACED482A71CECD001D13FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +157,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86ACED572A71CECF001D13FA /* LaunchScreen.storyboard in Resources */,
+				864296AE2A71EA060009C217 /* Main.storyboard in Resources */,
+				864296AF2A71EA060009C217 /* LaunchScreen.storyboard in Resources */,
+				864296A12A71CF8B0009C217 /* Environment.json in Resources */,
 				86ACED542A71CECF001D13FA /* Assets.xcassets in Resources */,
-				86ACED522A71CECD001D13FA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,26 +172,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */,
+				864296B12A756AF00009C217 /* TeamViewController.swift in Sources */,
+				864296B32A75DCC00009C217 /* UpcomingVideoViewController.swift in Sources */,
 				86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */,
+				864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */,
 				86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */,
+				864296B92A75DCF00009C217 /* VideoLibraryViewController.swift in Sources */,
+				8642969F2A71CF560009C217 /* Model.swift in Sources */,
+				864296B52A75DCD10009C217 /* AddVideoViewController.swift in Sources */,
+				864296A32A71CF9D0009C217 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		86ACED502A71CECD001D13FA /* Main.storyboard */ = {
+		864296AA2A71EA060009C217 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86ACED512A71CECD001D13FA /* Base */,
+				864296AB2A71EA060009C217 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		86ACED552A71CECF001D13FA /* LaunchScreen.storyboard */ = {
+		864296AC2A71EA060009C217 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86ACED562A71CECF001D13FA /* Base */,
+				864296AD2A71EA060009C217 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -358,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86ACED5F2A71CF0F001D13FA /* PostgresClientKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */;
+			productName = PostgresClientKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86ACED3F2A71CECD001D13FA /* Project object */;
 }
