@@ -18,10 +18,14 @@ class ViewController: UIViewController {
     
     @IBOutlet var passwordField: UITextField!
     
+    @IBOutlet var errorView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameField.text = ""
         passwordField.text = ""
+        errorView.text = ""
+        errorView.isEditable = false
     }
 
     // Called when the "Login" button is tapped.
@@ -39,14 +43,32 @@ class ViewController: UIViewController {
             do {
                 self.userInformation = try result.get()
                 Postgres.logger.fine("Length of user list: " + String(self.userInformation.count))
+                if self.userInformation.count < 1 {
+                    self.errorView.text = "That username does not exist."
+                }
+                
+                if username == self.userInformation.first?.username && password != self.userInformation.first?.password {
+                    Postgres.logger.fine("Password is incorrect")
+                    self.errorView.text = "That password is incorrect for the given username."
+                }
                 if username == self.userInformation.first?.username && password == self.userInformation.first?.password {
                     Postgres.logger.fine("Login Successful")
+                    self.errorView.text = "Login successful"
+                    
+                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "dashboardView") as? DashboardViewController
+                    else {
+                        print("Button pressed failed")
+                        return
+                    }
+                    self.present(vc, animated:true)
+                    
                 } else {
                     Postgres.logger.fine("Login Failed")
+                    self.errorView.text = "Login failed for unknown reason"
                 }
             } catch {
                 // Better error handling goes here...
-                Postgres.logger.severe("Error getting user information: \(String(describing: error))")
+                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
     }
@@ -73,8 +95,8 @@ class ViewController: UIViewController {
 //        return cell
 //    }
     
-    @IBAction func teamButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "teamView") as? TeamViewController
+    @IBAction func createAccountButtonPressed() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "createAccountView") as? CreateAccountViewController
         else {
             print("Button pressed failed")
             return
@@ -82,35 +104,8 @@ class ViewController: UIViewController {
         present(vc, animated:true)
     }
     
-    @IBAction func upcomingVideoButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "upcomingVideoView") as? UpcomingVideoViewController
-        else {
-            print("Button pressed failed")
-            return
-        }
-        present(vc, animated:true)
-    }
-    
-    @IBAction func addVideoButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "addVideoView") as? AddVideoViewController
-        else {
-            print("Button pressed failed")
-            return
-        }
-        present(vc, animated:true)
-    }
-    
-    @IBAction func videoReviewButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "videoReviewView") as? VideoReviewViewController
-        else {
-            print("Button pressed failed")
-            return
-        }
-        present(vc, animated:true)
-    }
-    
-    @IBAction func videoLibraryButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "videoLibraryView") as? VideoLibraryViewController
+    @IBAction func forgotPasswordButtonPressed() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController
         else {
             print("Button pressed failed")
             return

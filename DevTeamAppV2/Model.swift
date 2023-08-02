@@ -10,6 +10,7 @@ import PostgresClientKit
 
 class Model {
     
+//    static let sharedInstance = Model(environment: Environment, user: String, password: String)
     //
     // MARK: Model and connection lifecycle
     //
@@ -84,6 +85,95 @@ class Model {
                 defer { statement.close() }
                 
                 let cursor = try statement.execute(parameterValues: [ username ])
+                defer { cursor.close() }
+                
+                var userInformation = [User]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let username = try columns[1].string()
+                    let password = try columns[2].string()
+                    let name = try columns[3].string()
+                    let team = try columns[4].string()
+                    let role = try columns[5].string()
+                    
+                    let user = User(id: id,
+                                          username: username,
+                                          password: password,
+                                          name: name,
+                                          team: team,
+                                          role: role)
+                    
+                    userInformation.append(user)
+                }
+                
+                return userInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func createUser(_ username: String, password: String, name: String, completion: @escaping (Result<[User], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[User], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "INSERT INTO public.user (username, password, name) VALUES ($1, $2, $3) RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ username, password, name ])
+                defer { cursor.close() }
+                
+                var userInformation = [User]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let username = try columns[1].string()
+                    let password = try columns[2].string()
+                    let name = try columns[3].string()
+                    let team = try columns[4].string()
+                    let role = try columns[5].string()
+                    
+                    let user = User(id: id,
+                                          username: username,
+                                          password: password,
+                                          name: name,
+                                          team: team,
+                                          role: role)
+                    
+                    userInformation.append(user)
+                }
+                
+                return userInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func updateUserPassword(_ username:String, password:String, completion: @escaping (Result<[User], Error>) -> Void) {
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[User], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "UPDATE public.user SET password = $2 WHERE username = $1 RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ username, password])
                 defer { cursor.close() }
                 
                 var userInformation = [User]()
