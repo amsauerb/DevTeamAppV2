@@ -205,4 +205,205 @@ class Model {
             }
         }
     }
+    
+    struct Video {
+        let id: Int
+        let title: String
+        let filmdate: PostgresDate
+        let budgetcomplete: Bool
+        let prepredoc: String
+        let directorsnotesdoc: String
+        let productionnotesdoc: String
+        let shotlistdoc: String
+        let constructionnotesdoc: String
+        let leadproducer: String
+        let leaddirector: String
+        let needsaddressing: Bool
+        let currentstage: String
+        let thumbnail: String
+    }
+    
+    func videoInformation(_ title: String,
+                               completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "SELECT * FROM public.video WHERE title = $1;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ title ])
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func videoListByDirectorProducer(_ producer: String, director: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "SELECT * FROM public.video WHERE leadproducer = $1 AND leaddirector = $2;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ producer, director ])
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func createVideo(_ title: String, filmdate: PostgresDate, budgetcomplete: Bool, prepredoc: String, directorsnotesdoc: String, productionnotesdoc: String, shotlistdoc: String, constructionnotesdoc: String, leadproducer: String, leaddirector: String, thumbnail: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "INSERT INTO public.video (title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, ARRAY [$11]) RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail ])
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
 }
