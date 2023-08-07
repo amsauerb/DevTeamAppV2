@@ -64,6 +64,7 @@ class Model {
         let name: String
         let team: String
         let role: String
+        let email: String
     }
     
     /// Gets the user record for the specified username
@@ -80,7 +81,7 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "SELECT id, username, password, name, team, role FROM public.user WHERE username = $1;"
+                let text = "SELECT * FROM public.user WHERE username = $1;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
@@ -97,13 +98,15 @@ class Model {
                     let name = try columns[3].string()
                     let team = try columns[4].string()
                     let role = try columns[5].string()
+                    let email = try columns[6].string()
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           team: team,
-                                          role: role)
+                                          role: role,
+                                          email: email)
                     
                     userInformation.append(user)
                 }
@@ -142,13 +145,15 @@ class Model {
                     let name = try columns[3].string()
                     let team = try columns[4].string()
                     let role = try columns[5].string()
+                    let email = try columns[6].string()
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           team: team,
-                                          role: role)
+                                          role: role,
+                                          email: email)
                     
                     userInformation.append(user)
                 }
@@ -186,13 +191,15 @@ class Model {
                     let name = try columns[3].string()
                     let team = try columns[4].string()
                     let role = try columns[5].string()
+                    let email = try columns[6].string()
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           team: team,
-                                          role: role)
+                                          role: role,
+                                          email: email)
                     
                     userInformation.append(user)
                 }
@@ -221,6 +228,7 @@ class Model {
         let needsaddressing: Bool
         let currentstage: String
         let thumbnail: String
+        let productiontype: String
     }
     
     func videoInformation(_ title: String,
@@ -257,6 +265,7 @@ class Model {
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
                     let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
                                           title: title,
@@ -271,7 +280,8 @@ class Model {
                                           leaddirector: leaddirector,
                                       needsaddressing: needsaddressing,
                                       currentstage: currentstage,
-                                      thumbnail: thumbnail)
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
                     
                     videoInformation.append(video)
                 }
@@ -318,6 +328,7 @@ class Model {
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
                     let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
                                           title: title,
@@ -332,7 +343,8 @@ class Model {
                                           leaddirector: leaddirector,
                                       needsaddressing: needsaddressing,
                                       currentstage: currentstage,
-                                      thumbnail: thumbnail)
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
                     
                     videoInformation.append(video)
                 }
@@ -346,7 +358,7 @@ class Model {
         }
     }
     
-    func createVideo(_ title: String, filmdate: PostgresDate, budgetcomplete: Bool, prepredoc: String, directorsnotesdoc: String, productionnotesdoc: String, shotlistdoc: String, constructionnotesdoc: String, leadproducer: String, leaddirector: String, thumbnail: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+    func videoListByProducer(_ producer: String, completion: @escaping (Result<[Video], Error>) -> Void) {
         
         connectionPool.withConnection { connectionResult in
             
@@ -354,11 +366,11 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "INSERT INTO public.video (title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, ARRAY [$11]) RETURNING *;"
+                let text = "SELECT * FROM public.video WHERE leadproducer = $1;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
-                let cursor = try statement.execute(parameterValues: [ title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail ])
+                let cursor = try statement.execute(parameterValues: [ producer ])
                 defer { cursor.close() }
                 
                 var videoInformation = [Video]()
@@ -379,6 +391,7 @@ class Model {
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
                     let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
                                           title: title,
@@ -393,7 +406,197 @@ class Model {
                                           leaddirector: leaddirector,
                                       needsaddressing: needsaddressing,
                                       currentstage: currentstage,
-                                      thumbnail: thumbnail)
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func videoListByDirector(_ director: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "SELECT * FROM public.video WHERE leaddirector = $1;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ director ])
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func getAllVideos(completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "SELECT * FROM public.video;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute()
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
+                    
+                    videoInformation.append(video)
+                }
+                
+                return videoInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func createVideo(_ title: String, filmdate: PostgresDate, budgetcomplete: Bool, prepredoc: String, directorsnotesdoc: String, productionnotesdoc: String, shotlistdoc: String, constructionnotesdoc: String, leadproducer: String, leaddirector: String, thumbnail: String, productiontype: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[Video], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "INSERT INTO public.video (title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail, productiontype) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, ARRAY [$11], $12) RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ title, filmdate, budgetcomplete, prepredoc, directorsnotesdoc, productionnotesdoc, shotlistdoc, constructionnotesdoc, leadproducer, leaddirector, thumbnail, productiontype ])
+                defer { cursor.close() }
+                
+                var videoInformation = [Video]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try columns[13].string()
+                    let productiontype = try columns[14].string()
+                    
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
                     
                     videoInformation.append(video)
                 }

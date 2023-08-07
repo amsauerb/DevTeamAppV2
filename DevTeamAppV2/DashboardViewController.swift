@@ -10,10 +10,15 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
-    var Model: Model!
+    let model = DatabaseManager.shared.connectToDatabase()
+    let currentUser = CurrentUser.shared
+    
+    @IBOutlet var welcomeField: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        welcomeField.text = "Welcome " + currentUser.getCurrentUserName() + "!"
         
         view.backgroundColor = .link
     }

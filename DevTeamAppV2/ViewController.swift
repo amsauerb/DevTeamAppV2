@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     // Injected by SceneDelegate.
     var model: Model!
     
+    let currentUser = CurrentUser.shared
+    
+    let defaultPassword = "password"
+    
     // The text field for the city name.
     @IBOutlet var usernameField: UITextField!
     
@@ -55,6 +59,18 @@ class ViewController: UIViewController {
                     Postgres.logger.fine("Login Successful")
                     self.errorView.text = "Login successful"
                     
+                    self.currentUser.name = self.userInformation.first?.name
+                    
+                    if password == self.defaultPassword {
+                        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController
+                        else {
+                            print("Button pressed failed")
+                            return
+                        }
+                        
+                        self.present(vc, animated:true)
+                    }
+                    
                     guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "dashboardView") as? DashboardViewController
                     else {
                         print("Button pressed failed")
@@ -79,30 +95,6 @@ class ViewController: UIViewController {
     //
 
     var userInformation = [Model.User]()
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") ??
-//            UITableViewCell(style: .subtitle, reuseIdentifier: "UserCell")
-//
-//        let user = userInformation[indexPath.row]
-//        let text = String(describing: user.name)
-//        let detailText = "On Team: \(user.team) with role \(user.role)"
-//
-//        cell.textLabel?.text = text
-//        cell.detailTextLabel?.text = detailText
-//
-//        return cell
-//    }
-    
-    @IBAction func createAccountButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "createAccountView") as? CreateAccountViewController
-        else {
-            print("Button pressed failed")
-            return
-        }
-        present(vc, animated:true)
-    }
     
     @IBAction func forgotPasswordButtonPressed() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController

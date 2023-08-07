@@ -14,8 +14,8 @@
             filePath = "DevTeamAppV2/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "loginUser()"
             landmarkType = "7">
             <Locations>
@@ -467,8 +467,8 @@
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "userInformation(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -557,15 +557,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BE2149B8-7444-49F2-A70C-84FC9E478EF5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "createVideo(_:filmdate:budgetcomplete:prepredoc:directorsnotesdoc:productionnotesdoc:shotlistdoc:constructionnotesdoc:leadproducer:leaddirector:thumbnail:completion:)"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
+            landmarkName = "createVideo(_:filmdate:budgetcomplete:prepredoc:directorsnotesdoc:productionnotesdoc:shotlistdoc:constructionnotesdoc:leadproducer:leaddirector:thumbnail:productiontype:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -598,6 +598,21 @@
                   endingLineNumber = "366"
                   offsetFromSymbolStart = "1408">
                </Location>
+               <Location
+                  uuid = "BE2149B8-7444-49F2-A70C-84FC9E478EF5 - 6fdd371f4898945c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () throws -&gt; Swift.Array&lt;DevTeamAppV2.Model.Video&gt; in closure #1 (Swift.Result&lt;PostgresClientKit.Connection, Swift.Error&gt;) -&gt; () in DevTeamAppV2.Model.createVideo(_: Swift.String, filmdate: PostgresClientKit.PostgresDate, budgetcomplete: Swift.Bool, prepredoc: Swift.String, directorsnotesdoc: Swift.String, productionnotesdoc: Swift.String, shotlistdoc: Swift.String, constructionnotesdoc: Swift.String, leadproducer: Swift.String, leaddirector: Swift.String, thumbnail: Swift.String, productiontype: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/Model.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "371"
+                  endingLineNumber = "371"
+                  offsetFromSymbolStart = "1504">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -611,9 +626,9 @@
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
-            landmarkName = "createVideo(_:filmdate:budgetcomplete:prepredoc:directorsnotesdoc:productionnotesdoc:shotlistdoc:constructionnotesdoc:leadproducer:leaddirector:thumbnail:completion:)"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
+            landmarkName = "createVideo(_:filmdate:budgetcomplete:prepredoc:directorsnotesdoc:productionnotesdoc:shotlistdoc:constructionnotesdoc:leadproducer:leaddirector:thumbnail:productiontype:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

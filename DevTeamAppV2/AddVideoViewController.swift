@@ -76,7 +76,22 @@ class AddVideoViewController: UIViewController {
         let thumbnail = thumbnailField.image?.jpegData(compressionQuality: 1)
         let thumbnailstring = thumbnail?.base64EncodedString() ?? ""
         
-        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring) { result in
+        let date = Date()
+        let diffInDays = Calendar.current.dateComponents([.day], from: date, to: filmdateField.date).day ?? 90
+        
+        var videoProductionType = ""
+        
+        if diffInDays > 30 {
+            videoProductionType = "Sixty"
+        } else if diffInDays > 60 {
+            videoProductionType = "Ninety"
+        } else {
+            videoProductionType = "Thirty"
+        }
+        
+        let productiontype = videoProductionType
+        
+        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring, productiontype: productiontype) { result in
             do {
                 self.videoInformation = try result.get()
                 Postgres.logger.fine("Length of video list: " + String(self.videoInformation.count))
