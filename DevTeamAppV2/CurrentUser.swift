@@ -12,9 +12,13 @@ class CurrentUser {
     
     private init(){}
     
-    var name: String?
+    private var name: String?
+    
+    func setCurrentUserName(name: String) {
+        self.name = name
+    }
     
     func getCurrentUserName() -> String {
-        return name ?? " "
+        return self.name ?? " "
     }
 }

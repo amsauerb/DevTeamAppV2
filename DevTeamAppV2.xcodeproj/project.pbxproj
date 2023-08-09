@@ -28,6 +28,7 @@
 		86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4E2A71CECD001D13FA /* ViewController.swift */; };
 		86ACED542A71CECF001D13FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ACED532A71CECF001D13FA /* Assets.xcassets */; };
 		86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = 86ACED5F2A71CF0F001D13FA /* PostgresClientKit */; };
+		86E692482A813F780057BE47 /* SelectedVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E692472A813F780057BE47 /* SelectedVideo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86ACED532A71CECF001D13FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86ACED582A71CECF001D13FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86E692472A813F780057BE47 /* SelectedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +98,8 @@
 				864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */,
 				864296BA2A7731A10009C217 /* CreateAccountViewController.swift */,
 				864296BC2A7731B50009C217 /* DashboardViewController.swift */,
-				864296B02A756AF00009C217 /* TeamViewController.swift */,
 				864296B22A75DCC00009C217 /* UpcomingVideoViewController.swift */,
+				864296B02A756AF00009C217 /* TeamViewController.swift */,
 				864296B42A75DCD10009C217 /* AddVideoViewController.swift */,
 				864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */,
 				864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */,
@@ -107,6 +109,7 @@
 				864296AA2A71EA060009C217 /* Main.storyboard */,
 				864296BE2A796B030009C217 /* DatabaseManager.swift */,
 				8633C8532A7F1EE600E2652A /* CurrentUser.swift */,
+				86E692472A813F780057BE47 /* SelectedVideo.swift */,
 			);
 			path = DevTeamAppV2;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */,
 				86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */,
 				8633C8562A7F249800E2652A /* VideoMasterDocViewController.swift in Sources */,
+				86E692482A813F780057BE47 /* SelectedVideo.swift in Sources */,
 				864296C12A79EB7F0009C217 /* ForgotPasswordViewController.swift in Sources */,
 				864296BD2A7731B50009C217 /* DashboardViewController.swift in Sources */,
 				8633C8542A7F1EE600E2652A /* CurrentUser.swift in Sources */,

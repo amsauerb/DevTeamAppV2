@@ -21,12 +21,13 @@ class AddVideoViewController: UIViewController {
     @IBOutlet var productionnotesField: UITextField!
     @IBOutlet var shotlistField: UITextField!
     @IBOutlet var constructionnotesField: UITextField!
-    @IBOutlet var leadproducerField: UITextField!
-    @IBOutlet var leaddirectorField: UITextField!
     @IBOutlet var thumbnailField: UIImageView!
     
     @IBOutlet var createVideoButton: UIButton!
     @IBOutlet var errorView: UITextView!
+    
+    @IBOutlet var directorMenu: UIButton!
+    @IBOutlet var producerMenu: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,37 @@ class AddVideoViewController: UIViewController {
         errorView.isUserInteractionEnabled = false
         
         view.backgroundColor = .link
+        
+        setDirectorButton()
+        setProducerButton()
+    }
+    
+    func setDirectorButton() {
+        let optionClosure = {(action: UIAction) in
+            print(action.title)}
+        
+        directorMenu.menu = UIMenu(children: [
+            UIAction(title : "Dustin", state: .on, handler: optionClosure),
+            UIAction(title : "Will", handler: optionClosure),
+            UIAction(title : "Mike", handler: optionClosure),
+            UIAction(title : "Rachel", handler: optionClosure),
+                UIAction(title: "Locoya", handler: optionClosure)])
+        
+        directorMenu.showsMenuAsPrimaryAction = true
+        directorMenu.changesSelectionAsPrimaryAction = true
+    }
+    
+    func setProducerButton() {
+        let optionClosure = {(action: UIAction) in
+            print(action.title)}
+        
+        producerMenu.menu = UIMenu(children: [
+            UIAction(title : "Kyle", state: .on, handler: optionClosure),
+            UIAction(title : "Drew", handler: optionClosure),
+            UIAction(title : "Sean", handler: optionClosure)])
+        
+        producerMenu.showsMenuAsPrimaryAction = true
+        producerMenu.changesSelectionAsPrimaryAction = true
     }
     
     @IBAction func requiredFieldsFilled() {
@@ -67,8 +99,8 @@ class AddVideoViewController: UIViewController {
         let productionnotesdoc = productionnotesField.text?.trimmingCharacters(in: [" "]) ?? ""
         let shotlistdoc = shotlistField.text?.trimmingCharacters(in: [" "]) ?? ""
         let directorsnotesdoc = directorsnotesField.text?.trimmingCharacters(in: [" "]) ?? ""
-        let leadproducer = leadproducerField.text?.trimmingCharacters(in: [" "]) ?? ""
-        let leaddirector = leaddirectorField.text?.trimmingCharacters(in: [" "]) ?? ""
+        let leadproducer = producerMenu.menu?.selectedElements.first?.title ?? ""
+        let leaddirector = directorMenu.menu?.selectedElements.first?.title ?? ""
         
         let budgetcomplete = budgetCompleteField.isOn
         

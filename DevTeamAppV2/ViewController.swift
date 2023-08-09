@@ -59,7 +59,7 @@ class ViewController: UIViewController {
                     Postgres.logger.fine("Login Successful")
                     self.errorView.text = "Login successful"
                     
-                    self.currentUser.name = self.userInformation.first?.name
+                    self.currentUser.setCurrentUserName(name: self.userInformation.first?.name ?? " ")
                     
                     if password == self.defaultPassword {
                         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController

@@ -515,8 +515,8 @@
             filePath = "DevTeamAppV2/AddVideoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "createVideoButtonPressed()"
             landmarkType = "7">
             <Locations>
@@ -642,8 +642,8 @@
             filePath = "DevTeamAppV2/AddVideoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "createVideoButtonPressed()"
             landmarkType = "7">
             <Locations>
@@ -683,62 +683,286 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "592DB65C-2A33-4D5B-84D7-24BD3740F46A"
+            uuid = "C75D1620-F656-4B9A-9DB3-AE2F2A69A00D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DevTeamAppV2/TeamViewController.swift"
+            filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "showButtonPressed()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "592DB65C-2A33-4D5B-84D7-24BD3740F46A - ad752988cfbfe86"
+                  uuid = "C75D1620-F656-4B9A-9DB3-AE2F2A69A00D - b7009af997b5de95"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DevTeamAppV2.TeamViewController.showButtonPressed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.VideoMasterDocViewController.viewDidLoad() -&gt; ()"
                   moduleName = "DevTeamAppV2"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TeamViewController.swift"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "1708">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "4140">
                </Location>
                <Location
-                  uuid = "592DB65C-2A33-4D5B-84D7-24BD3740F46A - 75b4caa2d0e8aa9f"
+                  uuid = "C75D1620-F656-4B9A-9DB3-AE2F2A69A00D - b7009af997b5de95"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TeamViewController.showButtonPressed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.VideoMasterDocViewController.viewDidLoad() -&gt; ()"
                   moduleName = "DevTeamAppV2"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TeamViewController.swift"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "176">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "4944">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "190C1F71-799A-4B0F-9713-86B8854D6D6A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE5E5A80-CBB2-4923-8825-DA3E3A925043"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEBD6BA7-981D-40D0-B643-D36826B27182"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CEBD6BA7-981D-40D0-B643-D36826B27182 - b7009af997b5d782"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.VideoMasterDocViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "27696">
                </Location>
                <Location
-                  uuid = "592DB65C-2A33-4D5B-84D7-24BD3740F46A - ad752988cfbfcf4"
+                  uuid = "CEBD6BA7-981D-40D0-B643-D36826B27182 - b7009af997b5d782"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DevTeamAppV2.TeamViewController.showButtonPressed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.VideoMasterDocViewController.viewDidLoad() -&gt; ()"
                   moduleName = "DevTeamAppV2"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TeamViewController.swift"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "96">
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "27732">
+               </Location>
+               <Location
+                  uuid = "CEBD6BA7-981D-40D0-B643-D36826B27182 - b7009af997b5d782"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Video&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.VideoMasterDocViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "26204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F9B9A82-49B0-450A-8937-F0D8D18AA51E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "showButtonPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED3EA9A6-5E08-46D4-9399-3F9B0D792621"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED3EA9A6-5E08-46D4-9399-3F9B0D792621 - e08a7952690e74f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.UpcomingVideoViewController.numberOfSections(in: __C.UITableView) -&gt; Swift.Int"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/UpcomingVideoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "ED3EA9A6-5E08-46D4-9399-3F9B0D792621 - e08a7952690e74da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.UpcomingVideoViewController.numberOfSections(in: __C.UITableView) -&gt; Swift.Int"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/UpcomingVideoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FCBB4B4C-9E73-4181-871C-3B8BAD9034BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47F71DD4-3ADF-4840-B2D7-5ECF3A0ACDED"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDA36122-B49A-497F-B96D-4DA8FB18F141"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DDA36122-B49A-497F-B96D-4DA8FB18F141 - 765ac3f97ecbef1e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.UpcomingVideoViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/UpcomingVideoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "DDA36122-B49A-497F-B96D-4DA8FB18F141 - f11f36372b18495a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DevTeamAppV2.Model.Video) -&gt; Swift.Bool in DevTeamAppV2.UpcomingVideoViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/UpcomingVideoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "132">
                </Location>
             </Locations>
          </BreakpointContent>

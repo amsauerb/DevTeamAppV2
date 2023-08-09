@@ -227,7 +227,7 @@ class Model {
         let leaddirector: String
         let needsaddressing: Bool
         let currentstage: String
-        let thumbnail: String
+        let thumbnail: [String]
         let productiontype: String
     }
     
@@ -264,7 +264,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -327,7 +327,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -390,7 +390,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -453,7 +453,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -516,7 +516,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -579,7 +579,7 @@ class Model {
                     let leaddirector = try columns[10].string()
                     let needsaddressing = try columns[11].bool()
                     let currentstage = try columns[12].string()
-                    let thumbnail = try columns[13].string()
+                    let thumbnail = try [columns[13].string()]
                     let productiontype = try columns[14].string()
                     
                     let video = Video(id: id,
@@ -604,6 +604,69 @@ class Model {
                 return videoInformation
             }
             
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func updateVideoFromMasterDocs(_ title: String, budgetcomplete: Bool, currentstage: String, completion: @escaping (Result<[Video], Error>) -> Void) {
+
+        connectionPool.withConnection { connectionResult in
+
+            let result = Result<[Video], Error> {
+
+                let connection = try connectionResult.get()
+
+                let text = "UPDATE public.video SET budgetcomplete = $2, currentstage = $3 WHERE title = $1 RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+
+                let cursor = try statement.execute(parameterValues: [ title, budgetcomplete, currentstage ])
+                defer { cursor.close() }
+
+                var videoInformation = [Video]()
+
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let title = try columns[1].string()
+                    let filmdate = try columns[2].date()
+                    let budgetcomplete = try columns[3].bool()
+                    let prepredoc = try columns[4].string()
+                    let directorsnotesdoc = try columns[5].string()
+                    let productionnotesdoc = try columns[6].string()
+                    let shotlistdoc = try columns[7].string()
+                    let constructionnotesdoc = try columns[8].string()
+                    let leadproducer = try columns[9].string()
+                    let leaddirector = try columns[10].string()
+                    let needsaddressing = try columns[11].bool()
+                    let currentstage = try columns[12].string()
+                    let thumbnail = try [columns[13].string()]
+                    let productiontype = try columns[14].string()
+
+                    let video = Video(id: id,
+                                          title: title,
+                                          filmdate: filmdate,
+                                      budgetcomplete: budgetcomplete,
+                                      prepredoc: prepredoc,
+                                      directorsnotesdoc: directorsnotesdoc,
+                                      productionnotesdoc: productionnotesdoc,
+                                      shotlistdoc: shotlistdoc,
+                                      constructionnotesdoc: constructionnotesdoc,
+                                      leadproducer: leadproducer,
+                                          leaddirector: leaddirector,
+                                      needsaddressing: needsaddressing,
+                                      currentstage: currentstage,
+                                      thumbnail: thumbnail,
+                                      productiontype: productiontype)
+
+                    videoInformation.append(video)
+                }
+
+                return videoInformation
+            }
+
             DispatchQueue.main.async { // call the completion handler in the main thread
                 completion(result)
             }
