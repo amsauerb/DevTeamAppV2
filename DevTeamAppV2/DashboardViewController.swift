@@ -52,7 +52,7 @@ class DashboardViewController: UIViewController {
                 let prodVideoSubset = self.videoInformation.filter {$0.currentstage != "Polish" || $0.currentstage != "Filmed"}
                 
                 self.postVideoOneTitleField.text = postVideoSubset.first?.title ?? ""
-                self.postVideoOneDateField.date = postVideoSubset.first?.filmdate.date(in: TimeZone.current) ?? Date()
+                self.postVideoOneDateField.date = postVideoSubset.first?.postdate.date(in: TimeZone.current) ?? Date()
                 
                 var dataString = postVideoSubset.first?.thumbnail.first ?? ""
                 var sliceOne = String(dataString.dropFirst())
@@ -63,7 +63,7 @@ class DashboardViewController: UIViewController {
                 }
                 
                 self.postVideoTwoTitleField.text = postVideoSubset[1].title
-                self.postVideoTwoDateField.date = postVideoSubset[1].filmdate.date(in: TimeZone.current)
+                self.postVideoTwoDateField.date = postVideoSubset[1].postdate.date(in: TimeZone.current)
                 
                 dataString = postVideoSubset[1].thumbnail.first ?? ""
                 sliceOne = String(dataString.dropFirst())

@@ -105,6 +105,9 @@ class AddVideoViewController: UIViewController {
         let budgetcomplete = budgetCompleteField.isOn
         
         let filmdate = PostgresDate(date: filmdateField.date, in: TimeZone.current)
+        let post = Calendar.current.date(byAdding: .day, value: 30, to: filmdateField.date)
+        let postdate = PostgresDate(date: post ?? filmdateField.date, in: TimeZone.current)
+        
         let thumbnail = thumbnailField.image?.jpegData(compressionQuality: 1)
         let thumbnailstring = thumbnail?.base64EncodedString() ?? ""
         
@@ -123,7 +126,7 @@ class AddVideoViewController: UIViewController {
         
         let productiontype = videoProductionType
         
-        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring, productiontype: productiontype) { result in
+        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring, productiontype: productiontype, postdate: postdate) { result in
             do {
                 self.videoInformation = try result.get()
                 Postgres.logger.fine("Length of video list: " + String(self.videoInformation.count))
