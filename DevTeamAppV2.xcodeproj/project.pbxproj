@@ -70,7 +70,6 @@
 		86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerViewController.swift; sourceTree = "<group>"; };
 		86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTaskCollectionCell.swift; sourceTree = "<group>"; };
 		86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkString.swift; sourceTree = "<group>"; };
-		86B9CEBB2AAA797000CEDFAC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		86E692472A813F780057BE47 /* SelectedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +132,6 @@
 				86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */,
 				86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */,
 				86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */,
-				86B9CEBB2AAA797000CEDFAC /* Objc-Bridge-Header.h */,
 				866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */,
 				866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */,
 			);
