@@ -7,6 +7,9 @@
 
 import PostgresClientKit
 import UIKit
+import AppCenter
+import AppCenterCrashes
+
 
 class ViewController: UIViewController {
     
@@ -31,6 +34,10 @@ class ViewController: UIViewController {
         passwordField.text = ""
         errorView.text = ""
         errorView.isEditable = false
+        
+        AppCenter.start(withAppSecret: "ef64b400-cb63-42db-9065-30f3414d9e65", services:[
+            Crashes.self
+          ])
     }
 
     // Called when the "Login" button is tapped.

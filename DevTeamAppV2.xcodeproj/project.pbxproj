@@ -27,6 +27,9 @@
 		866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */; };
 		867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867953612A96BCCC005EDC1B /* CustomVideoCell.swift */; };
 		86A474C02A98120800DB4402 /* CutomVideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */; };
+		86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */; };
+		86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF22AB3F27D003992D2 /* AppCenterCrashes */; };
+		86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF42AB3F27D003992D2 /* AppCenterDistribute */; };
 		86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4A2A71CECD001D13FA /* AppDelegate.swift */; };
 		86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */; };
 		86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4E2A71CECD001D13FA /* ViewController.swift */; };
@@ -60,7 +63,7 @@
 		866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		867953612A96BCCC005EDC1B /* CustomVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoCell.swift; sourceTree = "<group>"; };
 		86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomVideoCollectionCell.swift; sourceTree = "<group>"; };
-		86ACED472A71CECD001D13FA /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */,
+				86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */,
+				86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */,
 				86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,16 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				86ACED492A71CECD001D13FA /* DevTeamAppV2 */,
-				86ACED482A71CECD001D13FA /* Products */,
+				86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */,
 			);
-			sourceTree = "<group>";
-		};
-		86ACED482A71CECD001D13FA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				86ACED472A71CECD001D13FA /* DevTeamAppV2.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		86ACED492A71CECD001D13FA /* DevTeamAppV2 */ = {
@@ -156,9 +154,12 @@
 			name = DevTeamAppV2;
 			packageProductDependencies = (
 				86ACED5F2A71CF0F001D13FA /* PostgresClientKit */,
+				86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */,
+				86A83BF22AB3F27D003992D2 /* AppCenterCrashes */,
+				86A83BF42AB3F27D003992D2 /* AppCenterDistribute */,
 			);
 			productName = DevTeamAppV2;
-			productReference = 86ACED472A71CECD001D13FA /* DevTeamAppV2.app */;
+			productReference = 86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -187,8 +188,9 @@
 			mainGroup = 86ACED3E2A71CECD001D13FA;
 			packageReferences = (
 				86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+				86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
-			productRefGroup = 86ACED482A71CECD001D13FA /* Products */;
+			productRefGroup = 86ACED3E2A71CECD001D13FA;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -466,6 +468,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit";
@@ -477,6 +487,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		86A83BF22AB3F27D003992D2 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		86A83BF42AB3F27D003992D2 /* AppCenterDistribute */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterDistribute;
+		};
 		86ACED5F2A71CF0F001D13FA /* PostgresClientKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */;
