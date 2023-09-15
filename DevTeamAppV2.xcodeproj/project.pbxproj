@@ -23,11 +23,19 @@
 		864296BD2A7731B50009C217 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BC2A7731B50009C217 /* DashboardViewController.swift */; };
 		864296BF2A796B030009C217 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BE2A796B030009C217 /* DatabaseManager.swift */; };
 		864296C12A79EB7F0009C217 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */; };
+		866F3D5A2AB0CB1C00D0F1BB /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */; };
+		866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */; };
+		867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867953612A96BCCC005EDC1B /* CustomVideoCell.swift */; };
+		86A474C02A98120800DB4402 /* CutomVideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */; };
 		86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4A2A71CECD001D13FA /* AppDelegate.swift */; };
 		86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */; };
 		86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4E2A71CECD001D13FA /* ViewController.swift */; };
 		86ACED542A71CECF001D13FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ACED532A71CECF001D13FA /* Assets.xcassets */; };
 		86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = 86ACED5F2A71CF0F001D13FA /* PostgresClientKit */; };
+		86B186082AA79AAC002208C0 /* VideoManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */; };
+		86B1860A2AA79ABB002208C0 /* TaskManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */; };
+		86B69F162AA183D00049CB5D /* CustomTaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */; };
+		86B9CEBA2AAA49ED00CEDFAC /* HyperlinkString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */; };
 		86E692482A813F780057BE47 /* SelectedVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E692472A813F780057BE47 /* SelectedVideo.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,12 +56,21 @@
 		864296BC2A7731B50009C217 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		864296BE2A796B030009C217 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		867953612A96BCCC005EDC1B /* CustomVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoCell.swift; sourceTree = "<group>"; };
+		86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomVideoCollectionCell.swift; sourceTree = "<group>"; };
 		86ACED472A71CECD001D13FA /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86ACED532A71CECF001D13FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86ACED582A71CECF001D13FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManagerViewController.swift; sourceTree = "<group>"; };
+		86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerViewController.swift; sourceTree = "<group>"; };
+		86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTaskCollectionCell.swift; sourceTree = "<group>"; };
+		86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkString.swift; sourceTree = "<group>"; };
+		86B9CEBB2AAA797000CEDFAC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		86E692472A813F780057BE47 /* SelectedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +127,15 @@
 				864296BE2A796B030009C217 /* DatabaseManager.swift */,
 				8633C8532A7F1EE600E2652A /* CurrentUser.swift */,
 				86E692472A813F780057BE47 /* SelectedVideo.swift */,
+				867953612A96BCCC005EDC1B /* CustomVideoCell.swift */,
+				86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */,
+				86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */,
+				86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */,
+				86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */,
+				86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */,
+				86B9CEBB2AAA797000CEDFAC /* Objc-Bridge-Header.h */,
+				866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */,
+				866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */,
 			);
 			path = DevTeamAppV2;
 			sourceTree = "<group>";
@@ -197,13 +223,21 @@
 				864296BF2A796B030009C217 /* DatabaseManager.swift in Sources */,
 				864296B32A75DCC00009C217 /* UpcomingVideoViewController.swift in Sources */,
 				864296BB2A7731A10009C217 /* CreateAccountViewController.swift in Sources */,
+				866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */,
 				86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */,
+				86B186082AA79AAC002208C0 /* VideoManagerViewController.swift in Sources */,
+				866F3D5A2AB0CB1C00D0F1BB /* CalendarCell.swift in Sources */,
 				864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */,
+				86B69F162AA183D00049CB5D /* CustomTaskCollectionCell.swift in Sources */,
+				86B9CEBA2AAA49ED00CEDFAC /* HyperlinkString.swift in Sources */,
 				86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */,
+				86A474C02A98120800DB4402 /* CutomVideoCollectionCell.swift in Sources */,
 				8633C8562A7F249800E2652A /* VideoMasterDocViewController.swift in Sources */,
 				86E692482A813F780057BE47 /* SelectedVideo.swift in Sources */,
+				86B1860A2AA79ABB002208C0 /* TaskManagerViewController.swift in Sources */,
 				864296C12A79EB7F0009C217 /* ForgotPasswordViewController.swift in Sources */,
 				864296BD2A7731B50009C217 /* DashboardViewController.swift in Sources */,
+				867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */,
 				8633C8542A7F1EE600E2652A /* CurrentUser.swift in Sources */,
 				864296B92A75DCF00009C217 /* VideoLibraryViewController.swift in Sources */,
 				8642969F2A71CF560009C217 /* Model.swift in Sources */,
@@ -330,6 +364,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -341,6 +376,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -353,6 +389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HBY5456X59;
@@ -370,6 +407,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -381,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HBY5456X59;
@@ -398,6 +437,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

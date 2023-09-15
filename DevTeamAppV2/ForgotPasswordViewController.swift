@@ -24,6 +24,7 @@ class ForgotPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         usernameField.text = ""
         passwordField.text = ""
@@ -91,7 +92,12 @@ class ForgotPasswordViewController: UIViewController {
                 } else if password == self.userInformation.first?.password {
                     self.errorView.text = "Password updated successfully"
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.dismiss(animated: true, completion: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                            
+                        // This is to get the SceneDelegate object from your view controller
+                        // then call the change root view controller function to change to main tab bar
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                     }
                 } else {
                     self.errorView.text = "Password update failed"

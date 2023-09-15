@@ -12,6 +12,7 @@ import PostgresClientKit
 struct Environment: Codable {
     
     let host: String
+    let hostTwo: String
     let port: Int
     let ssl: Bool
     let database: String

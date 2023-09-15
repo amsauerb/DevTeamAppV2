@@ -14,11 +14,21 @@ class CurrentUser {
     
     private var name: String?
     
+    private var role: String?
+    
     func setCurrentUserName(name: String) {
         self.name = name
     }
     
     func getCurrentUserName() -> String {
-        return self.name ?? " "
+        return self.name ?? ""
+    }
+    
+    func setCurrentUserRole(role: String) {
+        self.role = role
+    }
+    
+    func getCurrentUserRole() -> String {
+        return self.role ?? ""
     }
 }

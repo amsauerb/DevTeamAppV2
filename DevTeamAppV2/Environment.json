@@ -1,6 +1,8 @@
 {
-    "host": "0.0.0.0",
-    "port": 5432,
+    "host": "192.168.1.198",
+    "hostTwo": "71.69.148.108",
+    "port": 8080,
     "ssl": false,
-    "database": "devteamapp"
+    "database": "BeastDevApp",
 }
+

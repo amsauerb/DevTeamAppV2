@@ -14,7 +14,7 @@ class DatabaseManager {
     
     func connectToDatabase() -> Model
     {
-        let model = Model(environment: Environment.current, user: "postgres", password: "test123")
+        let model = Model(environment: Environment.current, user: "devAppUser", password: "password")
         return model
     }
 }

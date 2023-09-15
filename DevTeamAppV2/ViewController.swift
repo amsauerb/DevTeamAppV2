@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // Injected by SceneDelegate.
-    var model: Model!
+    let model = DatabaseManager.shared.connectToDatabase()
     
     let currentUser = CurrentUser.shared
     
@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         usernameField.text = ""
         passwordField.text = ""
         errorView.text = ""
@@ -35,6 +36,7 @@ class ViewController: UIViewController {
     // Called when the "Login" button is tapped.
     @IBAction func loginUser() {
         view.endEditing(true)
+        self.errorView.text = ""
         let username = usernameField.text?.trimmingCharacters(in: [" "]) ?? ""
         let password = passwordField.text?.trimmingCharacters(in: [" "]) ?? ""
         
@@ -50,16 +52,12 @@ class ViewController: UIViewController {
                 if self.userInformation.count < 1 {
                     self.errorView.text = "That username does not exist."
                 }
-                
-                if username == self.userInformation.first?.username && password != self.userInformation.first?.password {
-                    Postgres.logger.fine("Password is incorrect")
-                    self.errorView.text = "That password is incorrect for the given username."
-                }
                 if username == self.userInformation.first?.username && password == self.userInformation.first?.password {
                     Postgres.logger.fine("Login Successful")
                     self.errorView.text = "Login successful"
                     
                     self.currentUser.setCurrentUserName(name: self.userInformation.first?.name ?? " ")
+                    self.currentUser.setCurrentUserRole(role: self.userInformation.first?.role ?? " ")
                     
                     if password == self.defaultPassword {
                         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController
@@ -68,19 +66,19 @@ class ViewController: UIViewController {
                             return
                         }
                         
-                        self.present(vc, animated:true)
+                        self.present(vc, animated: true)
+                    } else {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                            
+                        // This is to get the SceneDelegate object from your view controller
+                        // then call the change root view controller function to change to main tab bar
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                     }
-                    
-                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "dashboardView") as? DashboardViewController
-                    else {
-                        print("Button pressed failed")
-                        return
-                    }
-                    self.present(vc, animated:true)
                     
                 } else {
                     Postgres.logger.fine("Login Failed")
-                    self.errorView.text = "Login failed for unknown reason"
+                    self.errorView.text = "Password is Incorrect"
                 }
             } catch {
                 // Better error handling goes here...
@@ -103,5 +101,17 @@ class ViewController: UIViewController {
             return
         }
         present(vc, animated:true)
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

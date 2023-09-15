@@ -29,17 +29,33 @@ class AddVideoViewController: UIViewController {
     @IBOutlet var directorMenu: UIButton!
     @IBOutlet var producerMenu: UIButton!
     
+    @IBOutlet var startDateField: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         createVideoButton.isUserInteractionEnabled = false
         errorView.text = ""
         errorView.isUserInteractionEnabled = false
         
-        view.backgroundColor = .link
-        
         setDirectorButton()
         setProducerButton()
+        
+        titleField.text = ""
+        filmdateField.date = Date()
+        startDateField.date = Date()
+        budgetCompleteField.isOn = false
+        prepreField.text = ""
+        directorsnotesField.text = ""
+        productionnotesField.text = ""
+        shotlistField.text = ""
+        constructionnotesField.text = ""
+        thumbnailField.image = UIImage()
     }
     
     func setDirectorButton() {
@@ -47,11 +63,9 @@ class AddVideoViewController: UIViewController {
             print(action.title)}
         
         directorMenu.menu = UIMenu(children: [
-            UIAction(title : "Dustin", state: .on, handler: optionClosure),
-            UIAction(title : "Will", handler: optionClosure),
-            UIAction(title : "Mike", handler: optionClosure),
-            UIAction(title : "Rachel", handler: optionClosure),
-                UIAction(title: "Locoya", handler: optionClosure)])
+            UIAction(title : "Kyle", state: .on, handler: optionClosure),
+            UIAction(title : "Drew", handler: optionClosure),
+            UIAction(title : "Sean", handler: optionClosure)])
         
         directorMenu.showsMenuAsPrimaryAction = true
         directorMenu.changesSelectionAsPrimaryAction = true
@@ -62,9 +76,11 @@ class AddVideoViewController: UIViewController {
             print(action.title)}
         
         producerMenu.menu = UIMenu(children: [
-            UIAction(title : "Kyle", state: .on, handler: optionClosure),
-            UIAction(title : "Drew", handler: optionClosure),
-            UIAction(title : "Sean", handler: optionClosure)])
+            UIAction(title : "Dustin", state: .on, handler: optionClosure),
+            UIAction(title : "Will", handler: optionClosure),
+            UIAction(title : "Mike", handler: optionClosure),
+            UIAction(title : "Rachel", handler: optionClosure),
+                UIAction(title: "Locoya", handler: optionClosure)])
         
         producerMenu.showsMenuAsPrimaryAction = true
         producerMenu.changesSelectionAsPrimaryAction = true
@@ -87,10 +103,6 @@ class AddVideoViewController: UIViewController {
         present(vc, animated:true)
     }
     
-    @IBAction func cancelButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func createVideoButtonPressed() {
         view.endEditing(true)
         let title = titleField.text?.trimmingCharacters(in: [" "]) ?? ""
@@ -111,8 +123,8 @@ class AddVideoViewController: UIViewController {
         let thumbnail = thumbnailField.image?.jpegData(compressionQuality: 1)
         let thumbnailstring = thumbnail?.base64EncodedString() ?? ""
         
-        let date = Date()
-        let diffInDays = Calendar.current.dateComponents([.day], from: date, to: filmdateField.date).day ?? 90
+//        let date = Date()
+        let diffInDays = Calendar.current.dateComponents([.day], from: filmdateField.date, to: startDateField.date).day ?? 90
         
         var videoProductionType = ""
         
@@ -124,9 +136,22 @@ class AddVideoViewController: UIViewController {
             videoProductionType = "Thirty"
         }
         
+        let macroDeadline = Calendar.current.date(byAdding: .day, value: -30, to: filmdateField.date)
+        let microDeadline = Calendar.current.date(byAdding: .day, value: -14, to: filmdateField.date)
+        
+        var frameworkDeadline = Date()
+        
+        if videoProductionType == "Thirty" {
+            frameworkDeadline = Calendar.current.date(byAdding: .day, value: -30, to: filmdateField.date)!
+        } else if videoProductionType == "Sixty" {
+            frameworkDeadline = Calendar.current.date(byAdding: .day, value: -53, to: filmdateField.date)!
+        } else {
+            frameworkDeadline = Calendar.current.date(byAdding: .day, value: -76, to: filmdateField.date)!
+        }
+        
         let productiontype = videoProductionType
         
-        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring, productiontype: productiontype, postdate: postdate) { result in
+        model.createVideo(title, filmdate: filmdate, budgetcomplete: budgetcomplete, prepredoc: prepredoc, directorsnotesdoc: directorsnotesdoc, productionnotesdoc: productionnotesdoc, shotlistdoc: shotlistdoc, constructionnotesdoc: constructionnotesdoc, leadproducer: leadproducer, leaddirector: leaddirector, thumbnail: thumbnailstring, productiontype: productiontype, postdate: postdate, startdate: startDateField.date.postgresDate(in: TimeZone.current), frameworkdate: frameworkDeadline.postgresDate(in: TimeZone.current), macrodate: (macroDeadline?.postgresDate(in: TimeZone.current))!, microdate: (microDeadline?.postgresDate(in: TimeZone.current))!) { result in
             do {
                 self.videoInformation = try result.get()
                 Postgres.logger.fine("Length of video list: " + String(self.videoInformation.count))
@@ -134,9 +159,6 @@ class AddVideoViewController: UIViewController {
                     self.errorView.text = "The video wasn't created correctly"
                 } else if title == self.videoInformation.first?.title {
                     self.errorView.text = "The video was created successfully"
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.dismiss(animated: true, completion: nil)
-                    }
                 } else {
                     Postgres.logger.fine("Video Creation Failed")
                 }
