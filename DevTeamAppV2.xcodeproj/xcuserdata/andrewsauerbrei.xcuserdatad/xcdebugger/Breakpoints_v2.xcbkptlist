@@ -912,6 +912,21 @@
                   endingLineNumber = "140"
                   offsetFromSymbolStart = "48">
                </Location>
+               <Location
+                  uuid = "670CE11D-DF7D-4D32-B888-CDE1225415C1 - 1125f75c70599e80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.VideoMasterDocViewController.setDirectorButton(Swift.String) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "92">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
