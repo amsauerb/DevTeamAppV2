@@ -62,8 +62,8 @@
 		866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		867953612A96BCCC005EDC1B /* CustomVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoCell.swift; sourceTree = "<group>"; };
+		86A419F02AB9F1F900232403 /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomVideoCollectionCell.swift; sourceTree = "<group>"; };
-		86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				86ACED492A71CECD001D13FA /* DevTeamAppV2 */,
-				86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */,
+				86A419F02AB9F1F900232403 /* DevTeamAppV2.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,7 +161,7 @@
 				86A83BF42AB3F27D003992D2 /* AppCenterDistribute */,
 			);
 			productName = DevTeamAppV2;
-			productReference = 86A83BEE2AB3F1F9003992D2 /* DevTeamAppV2.app */;
+			productReference = 86A419F02AB9F1F900232403 /* DevTeamAppV2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -392,7 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
@@ -411,10 +411,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amsauerb.DevApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevAppAppCenterAdHoc;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevTeamAppDevelopment;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,7 +428,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DevTeamAppV2/DevTeamAppV2Release.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
@@ -447,10 +447,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amsauerb.DevApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevAppAppCenterAdHoc;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevTeamAppDevelopment;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
