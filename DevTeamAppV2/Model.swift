@@ -126,6 +126,52 @@ class Model {
         }
     }
     
+    func userByID(_ id: Int,
+                               completion: @escaping (Result<[User], Error>) -> Void) {
+        
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[User], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "SELECT * FROM public.user WHERE id = $1;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ id ])
+                defer { cursor.close() }
+                
+                var userInformation = [User]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let username = try columns[1].string()
+                    let password = try columns[2].string()
+                    let name = try columns[3].string()
+                    let role = try columns[4].string()
+                    let email = try columns[5].string()
+                    
+                    let user = User(id: id,
+                                          username: username,
+                                          password: password,
+                                          name: name,
+                                          role: role,
+                                          email: email)
+                    
+                    userInformation.append(user)
+                }
+                
+                return userInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
     func getAllUsers(completion: @escaping (Result<[User], Error>) -> Void) {
         connectionPool.withConnection { connectionResult in
             
@@ -1160,7 +1206,7 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "SELECT FROM public.task WHERE tid = $1 RETURNING *;"
+                let text = "SELECT * FROM public.task WHERE tid = $1;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
@@ -1280,7 +1326,7 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "UPDATE public.task SET title = $2, description = $3, deadline = $4 WHERE id = $1 RETURNING *;"
+                let text = "UPDATE public.task SET title = $2, description = $3, deadline = $4 WHERE tid = $1 RETURNING *;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
@@ -1354,22 +1400,22 @@ class Model {
     }
     
     struct UserTask {
-        let uid: Int
+        let id: Int
         let tid: Int
     }
     
-    func addUserTask(_ tid: Int, uid: Int, completion: @escaping (Result<[UserTask], Error>) -> Void) {
+    func addUserTask(_ tid: Int, id: Int, completion: @escaping (Result<[UserTask], Error>) -> Void) {
         connectionPool.withConnection { connectionResult in
             
             let result = Result<[UserTask], Error> {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "INSERT INTO public.usertask (uid, tid) VALUES ($1, $2) RETURNING *;"
+                let text = "INSERT INTO public.user_task (tid, id) VALUES ($1, $2) RETURNING *;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
-                let cursor = try statement.execute(parameterValues: [ tid, uid ])
+                let cursor = try statement.execute(parameterValues: [ tid, id ])
                 defer { cursor.close() }
                 
                 var usertaskInformation = [UserTask]()
@@ -1377,9 +1423,9 @@ class Model {
                 for row in cursor {
                     let columns = try row.get().columns
                     let tid = try columns[0].int()
-                    let uid = try columns[1].int()
+                    let id = try columns[1].int()
 
-                    let usertask = UserTask(uid: uid,
+                    let usertask = UserTask(id: id,
                                             tid: tid)
 
                     usertaskInformation.append(usertask)
@@ -1394,28 +1440,28 @@ class Model {
         }
     }
     
-    func getAllTasksForUID(_ uid: Int, completion: @escaping (Result<[UserTask], Error>) -> Void) {
+    func getAllTasksForUID(_ id: Int, completion: @escaping (Result<[UserTask], Error>) -> Void) {
         connectionPool.withConnection { connectionResult in
             
             let result = Result<[UserTask], Error> {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "SELECT * FROM public.usertask WHERE uid = $1;"
+                let text = "SELECT * FROM public.user_task WHERE id = $1;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
-                let cursor = try statement.execute(parameterValues: [ uid ])
+                let cursor = try statement.execute(parameterValues: [ id ])
                 defer { cursor.close() }
                 
                 var usertaskInformation = [UserTask]()
 
                 for row in cursor {
                     let columns = try row.get().columns
-                    let uid = try columns[0].int()
+                    let id = try columns[0].int()
                     let tid = try columns[1].int()
 
-                    let usertask = UserTask(uid: uid,
+                    let usertask = UserTask(id: id,
                                     tid: tid)
 
                     usertaskInformation.append(usertask)
@@ -1437,7 +1483,7 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "SELECT * FROM public.usertask WHERE tid = $1;"
+                let text = "SELECT * FROM public.user_task WHERE tid = $1;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
@@ -1448,11 +1494,47 @@ class Model {
 
                 for row in cursor {
                     let columns = try row.get().columns
-                    let uid = try columns[0].int()
+                    let id = try columns[0].int()
                     let tid = try columns[1].int()
 
-                    let usertask = UserTask(uid: uid,
+                    let usertask = UserTask(id: id,
                                     tid: tid)
+
+                    usertaskInformation.append(usertask)
+                }
+                
+                return usertaskInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func deleteUserTask(_ tid: Int, id: Int, completion: @escaping (Result<[UserTask], Error>) -> Void) {
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[UserTask], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "DELETE FROM public.user_task WHERE tid = $1 AND id = $2 RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ tid, id ])
+                defer { cursor.close() }
+                
+                var usertaskInformation = [UserTask]()
+
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let tid = try columns[0].int()
+                    let id = try columns[1].int()
+
+                    let usertask = UserTask(id: id,
+                                            tid: tid)
 
                     usertaskInformation.append(usertask)
                 }

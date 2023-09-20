@@ -638,8 +638,8 @@
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "794"
-            endingLineNumber = "794"
+            startingLineNumber = "840"
+            endingLineNumber = "840"
             landmarkName = "createVideo(_:filmdate:budgetcomplete:prepredoc:directorsnotesdoc:productionnotesdoc:shotlistdoc:constructionnotesdoc:leadproducer:leaddirector:thumbnail:productiontype:postdate:startdate:frameworkdate:macrodate:microdate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1194,8 +1194,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1238,8 +1238,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1254,8 +1254,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1398,8 +1398,8 @@
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
+            startingLineNumber = "919"
+            endingLineNumber = "919"
             landmarkName = "updateVideoDates(_:filmdate:postdate:frameworkdate:macrodate:microdate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1477,10 +1477,566 @@
             filePath = "DevTeamAppV2/Model.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "727"
-            endingLineNumber = "727"
+            startingLineNumber = "773"
+            endingLineNumber = "773"
             landmarkName = "getAllVideos(completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C40F4502-1924-478E-A4BA-193DE6FC930C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "getUserInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01E44244-29BA-44F6-AE76-A82589AD78B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "getUserInfo()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "01E44244-29BA-44F6-AE76-A82589AD78B1 - 86c80f11b5a260c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.getUserInfo() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "01E44244-29BA-44F6-AE76-A82589AD78B1 - 589c6a59a14306f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.User&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.getUserInfo() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B54A2581-38DF-4BDA-B382-9815A3C5B4A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/VideoManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "displayVideoInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7F678C0-CB49-4F5D-8919-9AFA473777B2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "createUserTasks(tid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A7F678C0-CB49-4F5D-8919-9AFA473777B2 - 8248c48e78d89498"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "368">
+               </Location>
+               <Location
+                  uuid = "A7F678C0-CB49-4F5D-8919-9AFA473777B2 - 8248c48e78d894b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78C35C2B-8452-4B05-A92C-E27C8C04968E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "createUserTasks(tid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "78C35C2B-8452-4B05-A92C-E27C8C04968E - 8d57c64a27feb5af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.UserTask&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "78C35C2B-8452-4B05-A92C-E27C8C04968E - 8d57c64a27feb5af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.UserTask&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "78C35C2B-8452-4B05-A92C-E27C8C04968E - 8d57c64a27feb588"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.UserTask&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "78C35C2B-8452-4B05-A92C-E27C8C04968E - 8d57c64a27feb588"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.UserTask&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1448C205-58D8-40F3-BEC3-35921C1F98D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/Model.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1408"
+            endingLineNumber = "1408"
+            landmarkName = "addUserTask(_:id:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1448C205-58D8-40F3-BEC3-35921C1F98D0 - 289e413217b58520"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.createUserTasks(tid: Swift.Int) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/Model.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1408"
+                  endingLineNumber = "1408"
+                  offsetFromSymbolStart = "808">
+               </Location>
+               <Location
+                  uuid = "1448C205-58D8-40F3-BEC3-35921C1F98D0 - f6a10154d724b81f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.updateTask() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/Model.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1408"
+                  endingLineNumber = "1408"
+                  offsetFromSymbolStart = "1708">
+               </Location>
+               <Location
+                  uuid = "1448C205-58D8-40F3-BEC3-35921C1F98D0 - e7eb18b709eeb703"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;PostgresClientKit.Connection, Swift.Error&gt;) -&gt; () in DevTeamAppV2.Model.addUserTask(_: Swift.Int, id: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.UserTask&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/Model.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1410"
+                  endingLineNumber = "1410"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F6279B0-5376-4025-A459-24D791664E95"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/Model.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1412"
+            endingLineNumber = "1412"
+            landmarkName = "addUserTask(_:id:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "546D9133-562E-46BE-B9CD-68BC61DD5AE9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "displayTaskInfo()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "546D9133-562E-46BE-B9CD-68BC61DD5AE9 - a674a34a00d91814"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.displayTaskInfo() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "546D9133-562E-46BE-B9CD-68BC61DD5AE9 - 4ff3c4cb4c21619c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Swift.Array&lt;DevTeamAppV2.Model.Task&gt;, Swift.Error&gt;) -&gt; () in DevTeamAppV2.TaskManagerViewController.displayTaskInfo() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "546D9133-562E-46BE-B9CD-68BC61DD5AE9 - a674a34a00d91814"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.displayTaskInfo() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E8A04FF-4D29-468F-90D8-BAC8B33F1B37"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "displayTaskInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF15A51B-0339-4227-B98C-E6444AF97837"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "displayTaskInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C1FBC33-67DE-448E-A7BF-2EB158AB40B8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/Model.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1484"
+            endingLineNumber = "1484"
+            landmarkName = "getAllUsersForTID(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9276CF47-40F0-4802-845F-285BCB61E383"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "updateTask()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94DDD5D3-1108-498F-8D6D-F55D10730805"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/DashboardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "finishTask(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94DDD5D3-1108-498F-8D6D-F55D10730805 - 1618e2b1702612d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.DashboardViewController.finishTask(sender: __C.UISwitch) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "94DDD5D3-1108-498F-8D6D-F55D10730805 - 1618e2b170261294"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.DashboardViewController.finishTask(sender: __C.UISwitch) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E0AB3EFB-9B5D-4900-BA2F-DDF6B96FE7A2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "closeView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E0AB3EFB-9B5D-4900-BA2F-DDF6B96FE7A2 - 19d840c2e6f4051d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in DevTeamAppV2.TaskManagerViewController.closeView() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "338"
+                  endingLineNumber = "338"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "E0AB3EFB-9B5D-4900-BA2F-DDF6B96FE7A2 - c7b5440a7b602315"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc DevTeamAppV2.TaskManagerViewController.closeView() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "338"
+                  endingLineNumber = "338"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A0235A2-6BD0-4ACD-8664-8FD045CB25AF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevTeamAppV2/TaskManagerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "closeView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A0235A2-6BD0-4ACD-8664-8FD045CB25AF - 6d56a211f15f22e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.closeView() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "337"
+                  endingLineNumber = "337"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "2A0235A2-6BD0-4ACD-8664-8FD045CB25AF - 6d56a211f15f2ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.TaskManagerViewController.closeView() -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/TaskManagerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "335"
+                  endingLineNumber = "335"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

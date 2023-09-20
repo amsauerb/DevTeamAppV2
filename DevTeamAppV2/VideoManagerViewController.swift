@@ -164,6 +164,10 @@ class VideoManagerViewController: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.filmDateField.date = Date()
                         self.postDateField.date = Date()
+                        self.startDateField.date = Date()
+                        self.frameworkDateField.date = Date()
+                        self.macroDateField.date = Date()
+                        self.microDateField.date = Date()
                         self.errorLabel.text = ""
                         self.setVideoMenu()
                     }

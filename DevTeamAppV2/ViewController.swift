@@ -65,6 +65,7 @@ class ViewController: UIViewController {
                     
                     self.currentUser.setCurrentUserName(name: self.userInformation.first?.name ?? " ")
                     self.currentUser.setCurrentUserRole(role: self.userInformation.first?.role ?? " ")
+                    self.currentUser.setCurrentUserID(id: self.userInformation.first?.id ?? 0)
                     
                     if password == self.defaultPassword {
                         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController

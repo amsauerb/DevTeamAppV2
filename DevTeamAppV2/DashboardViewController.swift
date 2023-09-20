@@ -8,7 +8,7 @@
 import PostgresClientKit
 import UIKit
 
-class DashboardViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class DashboardViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, TaskManagerDelegate {
     
     let model = DatabaseManager.shared.connectToDatabase()
     let currentUser = CurrentUser.shared
@@ -16,6 +16,9 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var postVideoSubset = [Model.Video]()
     var prodVideoSubset = [Model.Video]()
+    
+    var tasksForUser = [Model.UserTask]()
+    var taskInformation = [Model.Task]()
     
     @IBOutlet var welcomeField: UILabel!
     
@@ -26,6 +29,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet var userButton: UIButton!
     @IBOutlet var taskButton: UIButton!
     @IBOutlet var videoButton: UIButton!
+    @IBOutlet var manageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
             userButton.isHidden = true
             taskButton.isHidden = true
             videoButton.isHidden = true
+            manageLabel.isHidden = true
         }
     }
     
@@ -64,10 +69,31 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                 
                 self.collectionViewProd.reloadData()
                 self.collectionViewPost.reloadData()
-                self.collectionViewTasks.reloadData()
                 
             } catch {
                 Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+            }
+        }
+        
+        model.getAllTasksForUID(currentUser.getCurrentUserID()) { result in
+            do {
+                self.tasksForUser = try result.get()
+                
+                self.collectionViewTasks.reloadData()
+            } catch {
+                Postgres.logger.severe("Error getting task list: \(String(describing: error))")
+            }
+        }
+    }
+    
+    func reloadTasksAfterManagerClose() {
+        model.getAllTasksForUID(currentUser.getCurrentUserID()) { result in
+            do {
+                self.tasksForUser = try result.get()
+                
+                self.collectionViewTasks.reloadData()
+            } catch {
+                Postgres.logger.severe("Error getting task list: \(String(describing: error))")
             }
         }
     }
@@ -96,16 +122,21 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
             print("Button pressed failed")
             return
         }
+        
+        vc.del = self
         present(vc, animated:true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionViewProd {
-            return prodVideoSubset.count
+            let result = (prodVideoSubset.count != 0) ? prodVideoSubset.count : 1
+            return result
         } else if collectionView == collectionViewTasks {
-            return 3
+            let result = (tasksForUser.count != 0) ? tasksForUser.count : 1
+            return result
         }
-        return postVideoSubset.count
+        let result = (postVideoSubset.count != 0) ? postVideoSubset.count : 1
+        return result
     }
     
     @objc func updatePostDate(sender: UIDatePicker) {
@@ -124,53 +155,120 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
+    @objc func finishTask(sender: UISwitch) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        let tid = tasksForUser[path.row].tid
+        model.deleteTask(tid) { result in
+            do {
+                self.taskInformation = try result.get()
+                if self.taskInformation.first!.tid == tid {
+                    Postgres.logger.fine("Task finished")
+                    
+                    self.model.getAllTasksForUID(self.currentUser.getCurrentUserID()) { result in
+                        do {
+                            self.tasksForUser = try result.get()
+                            
+                            self.collectionViewTasks.reloadData()
+                        } catch {
+                            Postgres.logger.severe("Error getting task list: \(String(describing: error))")
+                        }
+                    }
+                    
+                    self.collectionViewTasks.reloadData()
+                }
+            } catch {
+                Postgres.logger.severe("Error in database communication: \(String(describing: error))")
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == collectionViewPost {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionCell", for: indexPath) as! CutomVideoCollectionCell
             
-            let video = postVideoSubset[indexPath.row]
-            
-            let dataString = video.thumbnail.first ?? ""
-            let sliceOne = String(dataString.dropFirst())
-            let sliceTwo = String(sliceOne.dropLast())
-            let thumbnailData = Data(base64Encoded: sliceTwo)
-            if let thumbnailData = thumbnailData {
-                cell.videoCellImage.image = UIImage(data: thumbnailData)
+            if postVideoSubset.count > 0 {
+                let video = postVideoSubset[indexPath.row]
+                
+                let dataString = video.thumbnail.first ?? ""
+                let sliceOne = String(dataString.dropFirst())
+                let sliceTwo = String(sliceOne.dropLast())
+                let thumbnailData = Data(base64Encoded: sliceTwo)
+                if let thumbnailData = thumbnailData {
+                    cell.videoCellImage.image = UIImage(data: thumbnailData)
+                }
+                
+                cell.videoCellTitle.text = video.title
+                cell.videoCellDate.date = video.postdate.date(in: TimeZone.current)
+                cell.videoCellDate.tag = indexPath.row
+                cell.videoCellDate.addTarget(self,
+                                             action: #selector(updatePostDate),
+                                             for: .valueChanged)
+                cell.videoCellDate.isHidden = false
+                cell.videoCellImage.isHidden = false
+            } else {
+                cell.videoCellTitle.text = "No Videos To Post"
+                cell.videoCellDate.isHidden = true
+                cell.videoCellImage.isHidden = true
             }
-            
-            cell.videoCellTitle.text = video.title
-            cell.videoCellDate.date = video.postdate.date(in: TimeZone.current)
-            cell.videoCellDate.tag = indexPath.row
-            cell.videoCellDate.addTarget(self,
-                                         action: #selector(updatePostDate),
-                                         for: .valueChanged)
             
             return cell
         } else if collectionView == collectionViewTasks {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaskCollectionCell", for: indexPath) as! CustomTaskCollectionCell
             
-            cell.taskDeadlineDate.date = Date()
-            cell.taskInfo.text = "Testing the limits of how far this text will go."
-            cell.videoTitle.text = "Example title"
-            cell.taskFinishedSwitch.isOn = false
+            if tasksForUser.count > 0 {
+                let tid = tasksForUser[indexPath.row].tid
+                model.taskInformation(tid) { result in
+                    do {
+                        self.taskInformation = try result.get()
+                        
+                        cell.taskDeadlineDate.date = self.taskInformation.first!.deadline.date(in: TimeZone.current)
+                        cell.taskInfo.text = self.taskInformation.first!.description
+                        cell.videoTitle.text = self.taskInformation.first!.title
+                        cell.taskFinishedSwitch.isOn = false
+                        cell.taskFinishedSwitch.tag = indexPath.row
+                        cell.taskFinishedSwitch.addTarget(self, action: #selector(self.finishTask), for: .valueChanged)
+                        
+                        cell.taskDeadlineDate.isHidden = false
+                        cell.taskInfo.isHidden = false
+                        cell.taskFinishedSwitch.isHidden = false
+                    } catch {
+                        Postgres.logger.severe("Error in database communication: \(String(describing: error))")
+                    }
+                }
+            } else {
+                cell.videoTitle.text = "All Tasks Completed"
+                cell.taskDeadlineDate.isHidden = true
+                cell.taskInfo.isHidden = true
+                cell.taskFinishedSwitch.isHidden = true
+            }
             
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionCell", for: indexPath) as! CutomVideoCollectionCell
             
-            let video = prodVideoSubset[indexPath.row]
-            
-            let dataString = video.thumbnail.first ?? ""
-            let sliceOne = String(dataString.dropFirst())
-            let sliceTwo = String(sliceOne.dropLast())
-            let thumbnailData = Data(base64Encoded: sliceTwo)
-            if let thumbnailData = thumbnailData {
-                cell.videoCellImage.image = UIImage(data: thumbnailData)
+            if prodVideoSubset.count > 0 {
+                let video = prodVideoSubset[indexPath.row]
+                
+                let dataString = video.thumbnail.first ?? ""
+                let sliceOne = String(dataString.dropFirst())
+                let sliceTwo = String(sliceOne.dropLast())
+                let thumbnailData = Data(base64Encoded: sliceTwo)
+                if let thumbnailData = thumbnailData {
+                    cell.videoCellImage.image = UIImage(data: thumbnailData)
+                }
+                
+                cell.videoCellTitle.text = video.title
+                cell.videoCellDate.date = video.filmdate.date(in: TimeZone.current)
+                
+                cell.videoCellDate.isHidden = false
+                cell.videoCellImage.isHidden = false
+            } else {
+                cell.videoCellTitle.text = "No Videos in Production"
+                
+                cell.videoCellDate.isHidden = true
+                cell.videoCellImage.isHidden = true
             }
-            
-            cell.videoCellTitle.text = video.title
-            cell.videoCellDate.date = video.filmdate.date(in: TimeZone.current)
             
             return cell
         }

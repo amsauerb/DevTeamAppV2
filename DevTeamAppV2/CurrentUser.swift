@@ -16,6 +16,8 @@ class CurrentUser {
     
     private var role: String?
     
+    private var id: Int?
+    
     func setCurrentUserName(name: String) {
         self.name = name
     }
@@ -30,5 +32,13 @@ class CurrentUser {
     
     func getCurrentUserRole() -> String {
         return self.role ?? ""
+    }
+    
+    func setCurrentUserID(id: Int) {
+        self.id = id
+    }
+    
+    func getCurrentUserID() -> Int {
+        return self.id ?? 0
     }
 }
