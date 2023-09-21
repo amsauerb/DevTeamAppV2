@@ -9,7 +9,7 @@ import PostgresClientKit
 import UIKit
 import Foundation
 
-class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, VideoMasterDelegate {
     
     
     let model = DatabaseManager.shared.connectToDatabase()
@@ -165,6 +165,83 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
         
         producerMenu.showsMenuAsPrimaryAction = true
         producerMenu.changesSelectionAsPrimaryAction = true
+    }
+    
+    func reloadVideos() {
+        let director = directorMenu.menu?.selectedElements.first?.title ?? ""
+        let producer = producerMenu.menu?.selectedElements.first?.title ?? ""
+        
+        
+        if director == "All" && producer == "All" {
+            model.getAllVideos() { result in
+                do {
+                    self.videoInformation = try result.get()
+                    if self.videoInformation.count > 0 {
+                        self.errorView.text = "All Videos"
+                        self.tableVideoView.reloadData()
+                        
+                        self.setCellsView()
+                        self.setMonthView()
+                    } else {
+                        self.errorView.text = "No videos found"
+                    }
+                } catch {
+                    Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+                }
+            }
+        } else if director == "All" {
+            model.videoListByProducer(producer) { result in
+                do {
+                    self.videoInformation = try result.get()
+                    if self.videoInformation.count > 0 {
+                        self.errorView.text = "Videos for: " + producer
+                        self.tableVideoView.reloadData()
+                        
+                        self.setCellsView()
+                        self.setMonthView()
+                    } else {
+                        self.errorView.text = "No videos found"
+                    }
+                } catch {
+                    Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+                }
+            }
+        } else if producer == "All" {
+            model.videoListByDirector(director) { result in
+                do {
+                    self.videoInformation = try result.get()
+                    if self.videoInformation.count > 0 {
+                        self.errorView.text = "Videos for: " + director
+                        self.tableVideoView.reloadData()
+                        
+                        self.setCellsView()
+                        self.setMonthView()
+                    } else {
+                        self.errorView.text = "No videos found"
+                    }
+                } catch {
+                    Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+                }
+            }
+        } else {
+            model.videoListByDirectorProducer(producer, director: director) { result in
+                do {
+                    self.videoInformation = try result.get()
+                    if self.videoInformation.count > 0 {
+                        self.errorView.text = "Videos for: " + director + " and " + producer
+                    } else {
+                        self.errorView.text = "No videos found"
+                    }
+                    self.videoInformation = self.videoInformation.sorted(by: {$0.filmdate.date(in: TimeZone.current).compare($1.filmdate.date(in: TimeZone.current)) == .orderedAscending})
+                    self.tableVideoView.reloadData()
+                    
+                    self.setCellsView()
+                    self.setMonthView()
+                } catch {
+                    Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+                }
+            }
+        }
     }
     
     @IBAction func showButtonPressed() {
@@ -374,6 +451,7 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
             print("Button pressed failed")
             return
         }
+        vc.del = self
         present(vc, animated:true)
     }
     

@@ -654,8 +654,8 @@
             filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -702,8 +702,8 @@
             filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -718,8 +718,8 @@
             filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,8 +734,8 @@
             filePath = "DevTeamAppV2/UpcomingVideoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "showButtonPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -862,8 +862,8 @@
             filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "setDirectorButton(_:)"
             landmarkType = "7">
             <Locations>
@@ -925,6 +925,21 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "135"
                   endingLineNumber = "135"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "670CE11D-DF7D-4D32-B888-CDE1225415C1 - 1125f75c70599f5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.VideoMasterDocViewController.setDirectorButton(Swift.String) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/VideoMasterDocViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
                   offsetFromSymbolStart = "92">
                </Location>
             </Locations>
@@ -1194,8 +1209,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1238,8 +1253,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1254,8 +1269,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "updatePostDate(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1270,8 +1285,8 @@
             filePath = "DevTeamAppV2/TeamViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -1318,8 +1333,8 @@
             filePath = "DevTeamAppV2/TeamViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -1366,8 +1381,8 @@
             filePath = "DevTeamAppV2/TeamViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1382,8 +1397,8 @@
             filePath = "DevTeamAppV2/TeamViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1414,8 +1429,8 @@
             filePath = "DevTeamAppV2/VideoMasterDocViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -1557,8 +1572,8 @@
             filePath = "DevTeamAppV2/VideoManagerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "displayVideoInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1905,8 +1920,8 @@
             filePath = "DevTeamAppV2/DashboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "finishTask(sender:)"
             landmarkType = "7">
             <Locations>
@@ -1940,6 +1955,21 @@
                   endingLineNumber = "159"
                   offsetFromSymbolStart = "88">
                </Location>
+               <Location
+                  uuid = "94DDD5D3-1108-498F-8D6D-F55D10730805 - 1618e2b1702615cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevTeamAppV2.DashboardViewController.finishTask(sender: __C.UISwitch) -&gt; ()"
+                  moduleName = "DevTeamAppV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewsauerbrei/Documents/DevTeamAppV2/DevTeamAppV2/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "88">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1953,8 +1983,8 @@
             filePath = "DevTeamAppV2/TaskManagerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "closeView()"
             landmarkType = "7">
             <Locations>
@@ -2001,8 +2031,8 @@
             filePath = "DevTeamAppV2/TaskManagerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "closeView()"
             landmarkType = "7">
             <Locations>

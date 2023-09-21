@@ -323,12 +323,7 @@ class TaskManagerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        if let firstVC = presentingViewController as? DashboardViewController {
-            DispatchQueue.main.async {
-                firstVC.collectionViewTasks.reloadData()
-            }
-        }
+        del?.reloadTasksAfterManagerClose()
     }
     
     @IBAction func closeView() {

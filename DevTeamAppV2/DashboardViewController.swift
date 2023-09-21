@@ -8,7 +8,7 @@
 import PostgresClientKit
 import UIKit
 
-class DashboardViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, TaskManagerDelegate {
+class DashboardViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, TaskManagerDelegate, VideoManagerDelegate {
     
     let model = DatabaseManager.shared.connectToDatabase()
     let currentUser = CurrentUser.shared
@@ -98,6 +98,26 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
+    func reloadVideosAfterManagerCloses() {
+        model.getAllVideos() { result in
+            do {
+                self.videoInformation = try result.get()
+                self.postVideoSubset = self.videoInformation.filter {$0.currentstage == "Polish" || $0.currentstage == "Filming"}
+                self.prodVideoSubset = self.videoInformation.filter {$0.currentstage != "Polish" && $0.currentstage != "Filming" && $0.currentstage != "Posted"}
+                
+                self.postVideoSubset = self.postVideoSubset.sorted(by: {$0.filmdate.date(in: TimeZone.current).compare($1.filmdate.date(in: TimeZone.current)) == .orderedAscending})
+                
+                self.prodVideoSubset = self.prodVideoSubset.sorted(by: {$0.filmdate.date(in: TimeZone.current).compare($1.filmdate.date(in: TimeZone.current)) == .orderedAscending})
+                
+                self.collectionViewProd.reloadData()
+                self.collectionViewPost.reloadData()
+                
+            } catch {
+                Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+            }
+        }
+    }
+    
     @IBAction func userButtonPressed() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "createAccountView") as? CreateAccountViewController
         else {
@@ -113,6 +133,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
             print("Button pressed failed")
             return
         }
+        vc.del = self
         present(vc, animated:true)
     }
     

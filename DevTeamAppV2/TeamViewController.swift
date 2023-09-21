@@ -8,7 +8,7 @@
 import PostgresClientKit
 import UIKit
 
-class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, VideoMasterDelegate {
     
     let model = DatabaseManager.shared.connectToDatabase()
     let selectedVideo = SelectedVideo.shared
@@ -54,6 +54,27 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        foundProducers.removeAll()
+        
+        model.getAllVideos() { result in
+            do {
+                self.videoInformation = try result.get()
+                if self.videoInformation.count > 0 {
+                    self.errorView.text = "All Videos"
+                    self.tableVideoView.reloadData()
+                    
+                    self.setCellsView()
+                    self.setMonthView()
+                } else {
+                    self.errorView.text = "No videos found"
+                }
+            } catch {
+                Postgres.logger.severe("Error getting video list: \(String(describing: error))")
+            }
+        }
+    }
+    
+    func reloadVideos() {
         foundProducers.removeAll()
         
         model.getAllVideos() { result in
@@ -248,6 +269,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Button pressed failed")
             return
         }
+        vc.del = self
         present(vc, animated:true)
     }
     

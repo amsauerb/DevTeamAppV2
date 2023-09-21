@@ -12,6 +12,8 @@ class VideoManagerViewController: UIViewController {
     let model = DatabaseManager.shared.connectToDatabase()
     var videoInformation = [Model.Video]()
     
+    var del: VideoManagerDelegate?
+    
     @IBOutlet var startDateField: UIDatePicker!
     @IBOutlet var frameworkDateField: UIDatePicker!
     @IBOutlet var macroDateField: UIDatePicker!
@@ -178,7 +180,17 @@ class VideoManagerViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        del?.reloadVideosAfterManagerCloses()
+    }
+    
     @IBAction func closeButtonPressed() {
+        del?.reloadVideosAfterManagerCloses()
         self.dismiss(animated: true)
     }
+}
+
+protocol VideoManagerDelegate {
+    func reloadVideosAfterManagerCloses()
 }

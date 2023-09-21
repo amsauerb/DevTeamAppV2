@@ -16,6 +16,8 @@ class VideoMasterDocViewController: UIViewController {
     
     var videoInformation = [Model.Video]()
     
+    var del: VideoMasterDelegate?
+    
     @IBOutlet var thumbnailView: UIImageView!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var filmdatePicker: UIDatePicker!
@@ -24,15 +26,15 @@ class VideoMasterDocViewController: UIViewController {
     @IBOutlet var producerMenu: UIButton!
     
     @IBOutlet var frameworkDeadlinePicker: UIDatePicker!
-//    @IBOutlet var frameworkDaysRemaining: UILabel!
+    //    @IBOutlet var frameworkDaysRemaining: UILabel!
     @IBOutlet var frameworkCompletedSwitch: UISwitch!
     
     @IBOutlet var macroDeadlinePicker: UIDatePicker!
-//    @IBOutlet var macroDaysRemaining: UILabel!
+    //    @IBOutlet var macroDaysRemaining: UILabel!
     @IBOutlet var macroCompletedSwitch: UISwitch!
     
     @IBOutlet var microDeadlinePicker: UIDatePicker!
-//    @IBOutlet var microDaysRemaining: UILabel!
+    //    @IBOutlet var microDaysRemaining: UILabel!
     @IBOutlet var microCompletedSwitch: UISwitch!
     
     @IBOutlet var prepreLabel: UITextView!
@@ -95,9 +97,9 @@ class VideoMasterDocViewController: UIViewController {
                     }
                     
                     // Calculate Days Remaining to Each Deadline
-//                    frameworkDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: frameworkDeadlinePicker.date).day ?? 0)
-//                    macroDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: macroDeadlinePicker.date).day ?? 0)
-//                    microDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: microDeadlinePicker.date).day ?? 0)
+                    //                    frameworkDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: frameworkDeadlinePicker.date).day ?? 0)
+                    //                    macroDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: macroDeadlinePicker.date).day ?? 0)
+                    //                    microDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: microDeadlinePicker.date).day ?? 0)
                     
                     // Put document labels
                     setHyperlink(label: prepreLabel, labelText: "Prepre Doc", pathText: self.videoInformation.first?.prepredoc ?? "")
@@ -105,11 +107,11 @@ class VideoMasterDocViewController: UIViewController {
                     setHyperlink(label: productionNotesLabel, labelText: "Production Notes Doc", pathText: self.videoInformation.first?.productionnotesdoc ?? "")
                     setHyperlink(label: shotListLabel, labelText: "Shot List Doc", pathText: self.videoInformation.first?.shotlistdoc ?? "")
                     setHyperlink(label: constructionNotesLabel, labelText: "Construction Notes Doc", pathText: self.videoInformation.first?.constructionnotesdoc ?? "" )
-//                    prepreLabel.text = self.videoInformation.first?.prepredoc
-//                    directorNotesLabel.text = self.videoInformation.first?.directorsnotesdoc
-//                    productionNotesLabel.text = self.videoInformation.first?.productionnotesdoc
-//                    shotListLabel.text = self.videoInformation.first?.shotlistdoc
-//                    constructionNotesLabel.text = self.videoInformation.first?.constructionnotesdoc
+                    //                    prepreLabel.text = self.videoInformation.first?.prepredoc
+                    //                    directorNotesLabel.text = self.videoInformation.first?.directorsnotesdoc
+                    //                    productionNotesLabel.text = self.videoInformation.first?.productionnotesdoc
+                    //                    shotListLabel.text = self.videoInformation.first?.shotlistdoc
+                    //                    constructionNotesLabel.text = self.videoInformation.first?.constructionnotesdoc
                     
                     budgetCompleteSwitch.isOn = self.videoInformation.first?.budgetcomplete ?? false
                     
@@ -247,10 +249,20 @@ class VideoMasterDocViewController: UIViewController {
         model.updateVideoFromMasterDocs(videoId ?? 0, title : title ?? " ", budgetcomplete: budgetcomplete, currentstage: currentStage ?? "Framework", director: director , producer: producer , filmdate: filmdate, postdate: postdate, macrodate: (macroDeadline?.postgresDate(in: TimeZone.current))!, microdate: (microDeadline?.postgresDate(in: TimeZone.current))!, frameworkdate: frameworkDeadline.postgresDate(in: TimeZone.current)) { result in
             do {
                 self.videoInformation = try result.get()
+                self.del?.reloadVideos()
                 self.dismiss(animated: true, completion: nil)
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        del?.reloadVideos()
+    }
+}
+
+protocol VideoMasterDelegate {
+    func reloadVideos()
 }
