@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     let model = DatabaseManager.shared.connectToDatabase()
     
     let currentUser = CurrentUser.shared
+    let deviceManager = DeviceManager.shared
     
     let defaultPassword = "password"
     
@@ -25,25 +26,83 @@ class ViewController: UIViewController {
     
     @IBOutlet var passwordField: UITextField!
     
-    @IBOutlet var errorView: UITextView!
+    @IBOutlet var logoImageView: UIImageView!
+    
+    @IBOutlet var loginButton: UIButton!
+    
+    @IBOutlet var forgotPasswordButton: UIButton!
+    
+    @IBOutlet var line7ImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        usernameField.text = ""
-        passwordField.text = ""
-        errorView.text = ""
-        errorView.isEditable = false
+//        usernameField.text = ""
+//        passwordField.text = ""
         
         AppCenter.start(withAppSecret: "ef64b400-cb63-42db-9065-30f3414d9e65", services:[
             Crashes.self
           ])
+        
+        loadPrettyViews()
+    }
+    
+    func loadPrettyViews() {
+        logoImageView.layer.opacity = 1
+
+
+        usernameField.layer.cornerRadius = 10
+        usernameField.layer.masksToBounds =  true
+        usernameField.layer.borderColor = UIColor.black.cgColor
+        usernameField.layer.borderWidth =  1
+        usernameField.backgroundColor = UIColor.daisy
+        usernameField.layer.opacity = 1
+        usernameField.textColor = UIColor.slate
+        usernameField.font = UIFont.textStyle7
+        usernameField.textAlignment = .left
+        usernameField.borderStyle = .none
+
+        usernameField.placeholder = NSLocalizedString("Username", comment: "")
+
+
+        passwordField.layer.cornerRadius = 10
+        passwordField.layer.masksToBounds =  true
+        passwordField.backgroundColor = UIColor.salt5
+        passwordField.layer.opacity = 1
+        passwordField.textColor = UIColor.slate
+        passwordField.font = UIFont.textStyle7
+        passwordField.textAlignment = .left
+        passwordField.isSecureTextEntry = true
+
+        passwordField.placeholder = NSLocalizedString("password", comment: "")
+
+
+        loginButton.layer.cornerRadius = 5
+        loginButton.layer.masksToBounds =  true
+        loginButton.layer.borderColor = UIColor.cerulean.cgColor
+        loginButton.layer.borderWidth =  1
+        loginButton.backgroundColor = UIColor.sapphire
+        loginButton.layer.opacity = 1
+        loginButton.setTitleColor(UIColor.daisy, for: .normal)
+        loginButton.titleLabel?.font = UIFont.textStyle16
+        loginButton.contentHorizontalAlignment = .leading
+
+        loginButton.setTitle(NSLocalizedString("Login", comment: ""),for: .normal)
+
+
+        forgotPasswordButton.setTitleColor(UIColor.cloud3, for: .normal)
+        forgotPasswordButton.titleLabel?.font = UIFont.textStyle7
+        forgotPasswordButton.contentHorizontalAlignment = .leading
+
+        forgotPasswordButton.setTitle(NSLocalizedString("Forgot my Password", comment: ""),for: .normal)
+
+
+        line7ImageView.layer.opacity = 1
     }
 
     // Called when the "Login" button is tapped.
     @IBAction func loginUser() {
         view.endEditing(true)
-        self.errorView.text = ""
         let username = usernameField.text?.trimmingCharacters(in: [" "]) ?? ""
         let password = passwordField.text?.trimmingCharacters(in: [" "]) ?? ""
         
@@ -57,36 +116,42 @@ class ViewController: UIViewController {
                 self.userInformation = try result.get()
                 Postgres.logger.fine("Length of user list: " + String(self.userInformation.count))
                 if self.userInformation.count < 1 {
-                    self.errorView.text = "That username does not exist."
+                    //
                 }
                 if username == self.userInformation.first?.username && password == self.userInformation.first?.password {
                     Postgres.logger.fine("Login Successful")
-                    self.errorView.text = "Login successful"
                     
                     self.currentUser.setCurrentUserName(name: self.userInformation.first?.name ?? " ")
                     self.currentUser.setCurrentUserRole(role: self.userInformation.first?.role ?? " ")
                     self.currentUser.setCurrentUserID(id: self.userInformation.first?.id ?? 0)
                     
-                    if password == self.defaultPassword {
-                        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController
-                        else {
-                            print("Button pressed failed")
-                            return
-                        }
-                        
-                        self.present(vc, animated: true)
-                    } else {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                    self.model.setUserDevices(username, devices: self.deviceManager.getCurrentDeviceIdentifer()) { result in
+                        do {
+                            self.userInformation = try result.get()
                             
-                        // This is to get the SceneDelegate object from your view controller
-                        // then call the change root view controller function to change to main tab bar
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                            if password == self.defaultPassword {
+                                guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordView") as? ForgotPasswordViewController
+                                else {
+                                    print("Button pressed failed")
+                                    return
+                                }
+                                
+                                self.present(vc, animated: true)
+                            } else {
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let mainTabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                                    
+                                // This is to get the SceneDelegate object from your view controller
+                                // then call the change root view controller function to change to main tab bar
+                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                            }
+                        } catch {
+                            Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                        }
                     }
                     
                 } else {
                     Postgres.logger.fine("Login Failed")
-                    self.errorView.text = "Password is Incorrect"
                 }
             } catch {
                 // Better error handling goes here...

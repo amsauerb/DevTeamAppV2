@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8633C8542A7F1EE600E2652A /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8633C8532A7F1EE600E2652A /* CurrentUser.swift */; };
 		8633C8562A7F249800E2652A /* VideoMasterDocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8633C8552A7F249800E2652A /* VideoMasterDocViewController.swift */; };
+		863947892AD4C28E00786A8C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863947882AD4C28E00786A8C /* Colors.swift */; };
+		8639478B2AD4C29F00786A8C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8639478A2AD4C29F00786A8C /* Fonts.swift */; };
 		8642969F2A71CF560009C217 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8642969E2A71CF560009C217 /* Model.swift */; };
 		864296A12A71CF8B0009C217 /* Environment.json in Resources */ = {isa = PBXBuildFile; fileRef = 864296A02A71CF8B0009C217 /* Environment.json */; };
 		864296A32A71CF9D0009C217 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296A22A71CF9D0009C217 /* Environment.swift */; };
@@ -27,6 +29,10 @@
 		866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */; };
 		867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867953612A96BCCC005EDC1B /* CustomVideoCell.swift */; };
 		86A474C02A98120800DB4402 /* CutomVideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */; };
+		86A7B3702AC5DF4A00F440F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86A7B36F2AC5DF4A00F440F4 /* GoogleService-Info.plist */; };
+		86A7B3732AC5E04A00F440F4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */; };
+		86A7B3752AC5E04A00F440F4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 86A7B3742AC5E04A00F440F4 /* FirebaseMessaging */; };
+		86A7B3772AC644F600F440F4 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7B3762AC644F600F440F4 /* DeviceManager.swift */; };
 		86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */; };
 		86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF22AB3F27D003992D2 /* AppCenterCrashes */; };
 		86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF42AB3F27D003992D2 /* AppCenterDistribute */; };
@@ -45,6 +51,8 @@
 /* Begin PBXFileReference section */
 		8633C8532A7F1EE600E2652A /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		8633C8552A7F249800E2652A /* VideoMasterDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMasterDocViewController.swift; sourceTree = "<group>"; };
+		863947882AD4C28E00786A8C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8639478A2AD4C29F00786A8C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8642969E2A71CF560009C217 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		864296A02A71CF8B0009C217 /* Environment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Environment.json; sourceTree = "<group>"; };
 		864296A22A71CF9D0009C217 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -64,6 +72,8 @@
 		867953612A96BCCC005EDC1B /* CustomVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoCell.swift; sourceTree = "<group>"; };
 		86A419F02AB9F1F900232403 /* DevTeamAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTeamAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomVideoCollectionCell.swift; sourceTree = "<group>"; };
+		86A7B36F2AC5DF4A00F440F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86A7B3762AC644F600F440F4 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +82,7 @@
 		86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManagerViewController.swift; sourceTree = "<group>"; };
 		86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerViewController.swift; sourceTree = "<group>"; };
 		86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTaskCollectionCell.swift; sourceTree = "<group>"; };
+		86B8D91C2AC4AF78000B19BE /* DevTeamAppV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevTeamAppV2.entitlements; sourceTree = "<group>"; };
 		86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkString.swift; sourceTree = "<group>"; };
 		86BBCA572AB8B7B400F7A7CA /* DevTeamAppV2Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevTeamAppV2Release.entitlements; sourceTree = "<group>"; };
 		86E692472A813F780057BE47 /* SelectedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedVideo.swift; sourceTree = "<group>"; };
@@ -82,9 +93,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A7B3752AC5E04A00F440F4 /* FirebaseMessaging in Frameworks */,
 				86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */,
 				86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */,
 				86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */,
+				86A7B3732AC5E04A00F440F4 /* FirebaseAnalytics in Frameworks */,
 				86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		863947872AD4C28100786A8C /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				863947882AD4C28E00786A8C /* Colors.swift */,
+				8639478A2AD4C29F00786A8C /* Fonts.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		86ACED3E2A71CECD001D13FA = {
 			isa = PBXGroup;
 			children = (
@@ -103,9 +125,12 @@
 		86ACED492A71CECD001D13FA /* DevTeamAppV2 */ = {
 			isa = PBXGroup;
 			children = (
+				863947872AD4C28100786A8C /* Styles */,
+				86B8D91C2AC4AF78000B19BE /* DevTeamAppV2.entitlements */,
 				86BBCA572AB8B7B400F7A7CA /* DevTeamAppV2Release.entitlements */,
 				864296A02A71CF8B0009C217 /* Environment.json */,
 				86ACED582A71CECF001D13FA /* Info.plist */,
+				86A7B36F2AC5DF4A00F440F4 /* GoogleService-Info.plist */,
 				864296A22A71CF9D0009C217 /* Environment.swift */,
 				86ACED4A2A71CECD001D13FA /* AppDelegate.swift */,
 				8642969E2A71CF560009C217 /* Model.swift */,
@@ -124,6 +149,7 @@
 				864296AC2A71EA060009C217 /* LaunchScreen.storyboard */,
 				864296AA2A71EA060009C217 /* Main.storyboard */,
 				864296BE2A796B030009C217 /* DatabaseManager.swift */,
+				86A7B3762AC644F600F440F4 /* DeviceManager.swift */,
 				8633C8532A7F1EE600E2652A /* CurrentUser.swift */,
 				86E692472A813F780057BE47 /* SelectedVideo.swift */,
 				867953612A96BCCC005EDC1B /* CustomVideoCell.swift */,
@@ -159,6 +185,8 @@
 				86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */,
 				86A83BF22AB3F27D003992D2 /* AppCenterCrashes */,
 				86A83BF42AB3F27D003992D2 /* AppCenterDistribute */,
+				86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */,
+				86A7B3742AC5E04A00F440F4 /* FirebaseMessaging */,
 			);
 			productName = DevTeamAppV2;
 			productReference = 86A419F02AB9F1F900232403 /* DevTeamAppV2.app */;
@@ -191,6 +219,7 @@
 			packageReferences = (
 				86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
 				86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+				86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 86ACED3E2A71CECD001D13FA;
 			projectDirPath = "";
@@ -208,6 +237,7 @@
 			files = (
 				864296AE2A71EA060009C217 /* Main.storyboard in Resources */,
 				864296AF2A71EA060009C217 /* LaunchScreen.storyboard in Resources */,
+				86A7B3702AC5DF4A00F440F4 /* GoogleService-Info.plist in Resources */,
 				864296A12A71CF8B0009C217 /* Environment.json in Resources */,
 				86ACED542A71CECF001D13FA /* Assets.xcassets in Resources */,
 			);
@@ -220,15 +250,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8639478B2AD4C29F00786A8C /* Fonts.swift in Sources */,
 				86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */,
 				864296B12A756AF00009C217 /* TeamViewController.swift in Sources */,
 				864296BF2A796B030009C217 /* DatabaseManager.swift in Sources */,
 				864296B32A75DCC00009C217 /* UpcomingVideoViewController.swift in Sources */,
 				864296BB2A7731A10009C217 /* CreateAccountViewController.swift in Sources */,
+				86A7B3772AC644F600F440F4 /* DeviceManager.swift in Sources */,
 				866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */,
 				86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */,
 				86B186082AA79AAC002208C0 /* VideoManagerViewController.swift in Sources */,
 				866F3D5A2AB0CB1C00D0F1BB /* CalendarCell.swift in Sources */,
+				863947892AD4C28E00786A8C /* Colors.swift in Sources */,
 				864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */,
 				86B69F162AA183D00049CB5D /* CustomTaskCollectionCell.swift in Sources */,
 				86B9CEBA2AAA49ED00CEDFAC /* HyperlinkString.swift in Sources */,
@@ -391,12 +424,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DevTeamAppV2/DevTeamAppV2.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HBY5456X59;
+				DEVELOPMENT_TEAM = HBY5456X59;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DevTeamAppV2/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow DevApp to access your Photo Library?";
@@ -414,7 +446,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevTeamAppDevelopment;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,11 +459,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DevTeamAppV2/DevTeamAppV2Release.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HBY5456X59;
+				DEVELOPMENT_TEAM = HBY5456X59;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DevTeamAppV2/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow DevApp to access your Photo Library?";
@@ -450,7 +479,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "app-contractor.DevTeamAppV2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = DevTeamAppDevelopment;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -481,6 +509,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
@@ -500,6 +536,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		86A7B3742AC5E04A00F440F4 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;

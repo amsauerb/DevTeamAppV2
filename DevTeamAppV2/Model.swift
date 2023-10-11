@@ -73,6 +73,7 @@ class Model {
         let name: String
         let role: String
         let email: String
+        let devices: [String]
     }
     
     /// Gets the user record for the specified username
@@ -106,13 +107,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -152,13 +155,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -196,13 +201,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -242,13 +249,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -270,7 +279,7 @@ class Model {
                 
                 let connection = try connectionResult.get()
                 
-                let text = "INSERT INTO public.user (username, password, name, email, role, tasklist) VALUES ($1, $2, $3, $4, $5, ARRAY [$6]) RETURNING *;"
+                let text = "INSERT INTO public.user (username, password, name, email, role) VALUES ($1, $2, $3, $4, $5) RETURNING *;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
                 
@@ -287,13 +296,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -331,13 +342,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -375,13 +388,61 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
+                    
+                    userInformation.append(user)
+                }
+                
+                return userInformation
+            }
+            
+            DispatchQueue.main.async { // call the completion handler in the main thread
+                completion(result)
+            }
+        }
+    }
+    
+    func setUserDevices(_ username: String, devices: String, completion: @escaping (Result<[User], Error>) -> Void) {
+        connectionPool.withConnection { connectionResult in
+            
+            let result = Result<[User], Error> {
+                
+                let connection = try connectionResult.get()
+                
+                let text = "UPDATE public.user SET devices = ARRAY [$2] WHERE username = $1 RETURNING *;"
+                let statement = try connection.prepareStatement(text: text)
+                defer { statement.close() }
+                
+                let cursor = try statement.execute(parameterValues: [ username, devices ])
+                defer { cursor.close() }
+                
+                var userInformation = [User]()
+                
+                for row in cursor {
+                    let columns = try row.get().columns
+                    let id = try columns[0].int()
+                    let username = try columns[1].string()
+                    let password = try columns[2].string()
+                    let name = try columns[3].string()
+                    let role = try columns[4].string()
+                    let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
+                    
+                    let user = User(id: id,
+                                          username: username,
+                                          password: password,
+                                          name: name,
+                                          role: role,
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }
@@ -419,13 +480,15 @@ class Model {
                     let name = try columns[3].string()
                     let role = try columns[4].string()
                     let email = try columns[5].string()
+                    let devices = try [columns[6].string()]
                     
                     let user = User(id: id,
                                           username: username,
                                           password: password,
                                           name: name,
                                           role: role,
-                                          email: email)
+                                          email: email,
+                                          devices: devices)
                     
                     userInformation.append(user)
                 }

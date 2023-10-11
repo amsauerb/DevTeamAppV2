@@ -213,6 +213,8 @@ class TaskManagerViewController: UIViewController {
             self.selectedUsers.removeAll()
             self.usersForTask.removeAll()
         }
+        
+        
     }
     
     @IBAction func updateTask() {
@@ -319,6 +321,35 @@ class TaskManagerViewController: UIViewController {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
+    }
+    
+    func sendNotificationToUsers() {
+//        for user in selectedUsers {
+//            let token = user.devices.first
+//            guard let url = URL(string: "https://fcm.googleapis.com/fcm/send") else {
+//                return
+//            }
+//            
+//            let json: [String: Any] = [
+//                "to": token,
+//                "notification": [
+//                    
+//                    "title": "Test",
+//                    "body": "Testing if I can send notifications"
+//                ],
+//                "data": [
+//                    //
+//                ]
+//                
+//            ]
+//            
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted])
+//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.setValue(<#T##value: String?##String?#>, forHTTPHeaderField: <#T##String#>)
+//        }
+//        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
