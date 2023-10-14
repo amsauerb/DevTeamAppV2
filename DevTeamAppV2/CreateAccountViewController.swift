@@ -9,98 +9,145 @@ import PostgresClientKit
 import UIKit
 import MessageUI
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let model = DatabaseManager.shared.connectToDatabase()
+    let currentUser = CurrentUser.shared
     
-    @IBOutlet var emailField: UITextField!
+    var userInformation = [Model.User]()
+    var updateUserName : [String] = []
+    var updateUserEmail : [String] = []
+    var updateUserRole : [String] = []
+    
+    @IBOutlet var welcomeField: UILabel!
+    @IBOutlet var userThumbnail: UIImageView!
+    
     @IBOutlet var nameField: UITextField!
-    @IBOutlet var errorView: UITextView!
     @IBOutlet var roleMenu: UIButton!
-    @IBOutlet var userMenu: UIButton!
-    @IBOutlet var updateButton: UIButton!
+    @IBOutlet var newUserThumbnail: UIImageView!
+    @IBOutlet var emailField: UITextField!
+    
+    @IBOutlet var taskButton: UIButton!
+    @IBOutlet var videoButton: UIButton!
+    @IBOutlet var userButton: UIButton!
+    @IBOutlet var dashboardButton: UIButton!
+    @IBOutlet var addUserButton: UIButton!
+    
+    @IBOutlet var container: UIView!
+    
+    @IBOutlet var userManagementCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         emailField.text = ""
         nameField.text = ""
-        errorView.text = ""
-        errorView.isEditable = false
         
-        setRoleButton(selected: "")
-        setUserButton()
+        userManagementCollection.delegate = self
+        userManagementCollection.dataSource = self
         
-        updateButton.isUserInteractionEnabled = false
+        welcomeField.text = currentUser.getCurrentUserName() + "!"
+        
+        loadPrettyViews()
+        setRoleButton()
+        
+        model.getAllUsers() { result in
+            do {
+                self.userInformation = try result.get()
+                self.userInformation = self.userInformation.filter {$0.name != self.currentUser.getCurrentUserName()}
+                self.updateUserName = [String] (repeating: "", count: self.userInformation.count)
+                self.updateUserEmail = [String] (repeating: "", count: self.userInformation.count)
+                self.updateUserRole = [String] (repeating: "", count: self.userInformation.count)
+                self.userManagementCollection.reloadData()
+            } catch {
+                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+            }
+        }
     }
     
-    func setRoleButton(selected: String) {
+    func loadPrettyViews() {
+        self.view.backgroundColor = UIColor.daisy
+        
+        welcomeField.layer.opacity = 1
+        welcomeField.textColor = UIColor.black
+        welcomeField.numberOfLines = 0
+        welcomeField.font = UIFont.textStyle2
+        welcomeField.textAlignment = .left
+        welcomeField.text = currentUser.getCurrentUserName()
+        
+        taskButton.layer.cornerRadius = 7
+        taskButton.layer.masksToBounds =  true
+        taskButton.backgroundColor = UIColor.salt2
+        taskButton.layer.opacity = 1
+        taskButton.setTitleColor(UIColor.black, for: .normal)
+        taskButton.titleLabel?.font = UIFont.textStyle9
+        taskButton.contentHorizontalAlignment = .leading
+        
+        videoButton.layer.cornerRadius = 7
+        videoButton.layer.masksToBounds =  true
+        videoButton.backgroundColor = UIColor.salt2
+        videoButton.layer.opacity = 1
+        videoButton.setTitleColor(UIColor.black, for: .normal)
+        videoButton.titleLabel?.font = UIFont.textStyle9
+        videoButton.contentHorizontalAlignment = .leading
+        
+        userButton.layer.cornerRadius = 7
+        userButton.layer.masksToBounds =  true
+        userButton.backgroundColor = UIColor.black
+        userButton.layer.opacity = 1
+        userButton.setTitleColor(UIColor.daisy, for: .normal)
+        userButton.titleLabel?.font = UIFont.textStyle9
+        userButton.contentHorizontalAlignment = .leading
+        
+        addUserButton.layer.cornerRadius = 7
+        addUserButton.layer.masksToBounds =  true
+        addUserButton.layer.borderColor = UIColor.sapphire.cgColor
+        addUserButton.layer.borderWidth =  2
+        addUserButton.layer.opacity = 1
+        addUserButton.setTitleColor(UIColor.sapphire, for: .normal)
+        addUserButton.titleLabel?.font = UIFont.textStyle9
+        addUserButton.contentHorizontalAlignment = .leading
+        
+        dashboardButton.layer.cornerRadius = 7
+        dashboardButton.layer.masksToBounds =  true
+        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
+        dashboardButton.layer.borderWidth =  2
+        dashboardButton.layer.opacity = 1
+        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
+        dashboardButton.titleLabel?.font = UIFont.textStyle9
+        dashboardButton.contentHorizontalAlignment = .leading
+        
+        container.layer.cornerRadius = 10
+        container.layer.masksToBounds =  true
+        container.backgroundColor = UIColor.daisy
+        container.layer.opacity = 1
+        
+        container.layer.masksToBounds = false
+        container.layer.shadowColor = UIColor.black.cgColor
+        container.layer.shadowOpacity = 0.2
+        container.layer.shadowOffset = .zero
+        container.layer.shadowRadius = 1
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func setRoleButton() {
         let optionClosure = {(action: UIAction) in
             print(action.title)}
         
-        if selected == "Admin" {
-            roleMenu.menu = UIMenu(children: [
-                UIAction(title: "Admin", state: .on,  handler: optionClosure),
-                UIAction(title : "Developer", handler: optionClosure)])
-        } else {
-            roleMenu.menu = UIMenu(children: [
-                UIAction(title: "Admin", handler: optionClosure),
-                UIAction(title : "Developer", state: .on, handler: optionClosure)])
-        }
-        
+        roleMenu.menu = UIMenu(children: [
+            UIAction(title: "Role", state: .on, handler: optionClosure),
+            UIAction(title: "Admin", handler: optionClosure),
+            UIAction(title : "Developer", handler: optionClosure)])
         
         roleMenu.showsMenuAsPrimaryAction = true
         roleMenu.changesSelectionAsPrimaryAction = true
     }
     
-    func setUserButton() {
-        let optionClosure = {(action: UIAction) in
-            self.displayUserInfo()}
-        
-        model.getAllUsers() { result in
-            do {
-                self.userInformation = try result.get()
-                
-                var children: [UIMenuElement] = []
-                
-                let a = UIAction(title: "Current Users", state: .on, handler: optionClosure)
-                children.append(a)
-                
-                for user in self.userInformation {
-                    let action = UIAction(title: user.name, handler: optionClosure)
-                    children.append(action)
-                }
-                self.userMenu.menu = UIMenu(children: children)
-            } catch {
-                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-            }
-        }
-        
-        userMenu.showsMenuAsPrimaryAction = true
-        userMenu.changesSelectionAsPrimaryAction = true
-    }
-    
-    @IBAction func displayUserInfo() {
-        let name = userMenu.menu?.selectedElements.first?.title ?? ""
-        
-        if name != "" {
-            model.userByName(name) { result in
-                do {
-                    self.userInformation = try result.get()
-                    self.emailField.text = self.userInformation.first?.email
-                    self.nameField.text = self.userInformation.first?.name
-                    self.setRoleButton(selected: self.userInformation.first?.role ?? "")
-                    self.updateButton.isUserInteractionEnabled = true
-                } catch {
-                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-                }
-            }
-        }
-    }
-    
     func showMailComposer() {
         guard MFMailComposeViewController.canSendMail() else {
-            errorView.text = "Email sending is not enabled."
             return
         }
         
@@ -131,15 +178,32 @@ class CreateAccountViewController: UIViewController {
                 self.userInformation = try result.get()
                 Postgres.logger.fine("Length of user list: " + String(self.userInformation.count))
                 if self.userInformation.count < 1 {
-                    self.errorView.text = "The account wasn't created correctly"
+                    //
                 } else if username == self.userInformation.first?.username && email == self.userInformation.first?.email {
-                    self.errorView.text = "The account was created successfully"
                     self.showMailComposer()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.emailField.text = ""
-                        self.nameField.text = ""
-                        self.errorView.text = ""
-                        self.setUserButton()
+                        self.emailField.text = "example@email.com"
+                        self.nameField.text = "Name"
+                        self.setRoleButton()
+                    }
+                    
+                    self.model.getAllUsers() { result in
+                        do {
+                            self.userInformation = try result.get()
+                            self.userInformation = self.userInformation.filter {$0.name != self.currentUser.getCurrentUserName()}
+                            self.userManagementCollection.reloadData()
+                            
+                            self.updateUserName.removeAll()
+                            self.updateUserName = [String] (repeating: "", count: self.userInformation.count)
+                            
+                            self.updateUserEmail.removeAll()
+                            self.updateUserEmail = [String] (repeating: "", count: self.userInformation.count)
+                            
+                            self.updateUserRole.removeAll()
+                            self.updateUserRole = [String] (repeating: "", count: self.userInformation.count)
+                        } catch {
+                            Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                        }
                     }
                 } else {
                     Postgres.logger.fine("Account Creation Failed")
@@ -151,31 +215,122 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
-    @IBAction func updateButtonPressed() {
-        let email = emailField.text?.trimmingCharacters(in: [" "]) ?? ""
-        let name = nameField.text?.trimmingCharacters(in: [" "]) ?? ""
-        let username = self.userInformation.first?.username ?? ""
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userInformation.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserManagementCell", for: indexPath) as! CustomUserManagementCell
         
-        let role = roleMenu.menu?.selectedElements.first?.title ?? "Developer"
+        let user = userInformation[indexPath.row]
         
-        model.updateUserInformation(username, name: name, email: email, role: role) { result in
+        cell.userName.text = user.name
+        cell.userName.tag = indexPath.row
+        cell.userName.addTarget(self, action: #selector(self.userNameUpdate), for: .editingChanged)
+        
+        cell.userEmail.text = user.email
+        cell.userEmail.tag = indexPath.row
+        cell.userEmail.addTarget(self, action: #selector(self.userEmailUpdate), for: .editingChanged)
+        
+        let optionClosure = {(action: UIAction) in
+            print(action.title)}
+        
+//        let a = { [weak self] (action: UIAction) in self.}
+        
+        if user.role == "Admin" {
+            cell.userRole.menu = UIMenu(children: [
+                UIAction(title: "Admin", state: .on,  handler: optionClosure),
+                UIAction(title : "Developer", handler: optionClosure)])
+        } else {
+            cell.userRole.menu = UIMenu(children: [
+                UIAction(title: "Admin", handler: optionClosure),
+                UIAction(title : "Developer", state: .on, handler: optionClosure)])
+        }
+        
+        cell.userRole.showsMenuAsPrimaryAction = true
+        cell.userRole.changesSelectionAsPrimaryAction = true
+        cell.userRole.tag = indexPath.row
+        cell.userRole.addTarget(self, action: #selector(self.userRoleUpdate), for: .touchUpOutside)
+        
+        cell.editButton.tag = indexPath.row
+        cell.editButton.addTarget(self, action: #selector(self.updateUser), for: .touchUpInside)
+        
+        cell.viewContainer.layer.masksToBounds = false
+        cell.viewContainer.layer.shadowColor = UIColor.black.cgColor
+        cell.viewContainer.layer.shadowOpacity = 0.2
+        cell.viewContainer.layer.shadowOffset = .zero
+        cell.viewContainer.layer.shadowRadius = 1
+        
+        return cell
+    }
+    
+    func userRoleUpdateTwo(sender: UIButton) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        updateUserRole[path.row] = sender.menu?.selectedElements.first?.title ?? ""
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    @objc func userNameUpdate(sender: UITextField) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        updateUserName[path.row] = sender.text!
+    }
+    
+    @objc func userEmailUpdate(sender: UITextField) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        updateUserEmail[path.row] = sender.text!
+    }
+    
+    @objc func userRoleUpdate(sender: UIButton) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        updateUserRole[path.row] = sender.menu?.selectedElements.first?.title ?? ""
+    }
+    
+    @objc func updateUser(sender: UIButton) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        let user = userInformation[path.row]
+        
+        var userName = user.name
+        var userEmail = user.email
+        var userRole = user.role
+        
+        if updateUserName[path.row] != "" && updateUserName[path.row] != userName {
+            userName = updateUserName[path.row]
+        }
+        
+        if updateUserEmail[path.row] != "" && updateUserEmail[path.row] != userEmail {
+            userEmail = updateUserEmail[path.row]
+        }
+        
+        if updateUserRole[path.row] != "" && updateUserRole[path.row] != userRole {
+            userRole = updateUserRole[path.row]
+        }
+        
+        model.updateUserInformation(user.username, name: userName, email: userEmail, role: userRole) { result in
             do {
-                self.userInformation = try result.get()
-                let filtered = self.userInformation.filter {$0.username == username}
-                if !filtered.isEmpty {
-                    self.errorView.text = "User information updated successfully."
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.emailField.text = ""
-                        self.nameField.text = ""
-                        self.errorView.text = ""
-                        self.setUserButton()
-                        self.updateButton.isUserInteractionEnabled = false
+                let res = try result.get()
+                if res.count == 1 {
+                    self.model.getAllUsers() { result in
+                        do {
+                            self.userInformation = try result.get()
+                            self.userInformation = self.userInformation.filter {$0.name != self.currentUser.getCurrentUserName()}
+                            self.userManagementCollection.reloadData()
+                            
+                            self.updateUserName.removeAll()
+                            self.updateUserName = [String] (repeating: "", count: self.userInformation.count)
+                            
+                            self.updateUserEmail.removeAll()
+                            self.updateUserEmail = [String] (repeating: "", count: self.userInformation.count)
+                            
+                            self.updateUserRole.removeAll()
+                            self.updateUserRole = [String] (repeating: "", count: self.userInformation.count)
+                        } catch {
+                            Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                        }
                     }
-                } else {
-                    self.errorView.text = "That user does not exist, update unsuccessful"
                 }
-                
-                
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
@@ -192,12 +347,9 @@ class CreateAccountViewController: UIViewController {
             do {
                 self.userInformation = try result.get()
                 if self.userInformation.first?.username == username {
-                    self.errorView.text = "User deletion successful"
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.emailField.text = ""
                         self.nameField.text = ""
-                        self.errorView.text = ""
-                        self.setUserButton()
                     }
                 }
             } catch {
@@ -206,11 +358,9 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButtonPressed() {
+    @IBAction func dashboardButtonPressed() {
         self.dismiss(animated: true)
     }
-    
-    var userInformation = [Model.User]()
 }
 
 extension CreateAccountViewController: MFMailComposeViewControllerDelegate {

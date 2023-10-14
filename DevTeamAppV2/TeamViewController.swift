@@ -12,6 +12,7 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let model = DatabaseManager.shared.connectToDatabase()
     let selectedVideo = SelectedVideo.shared
+    let currentUser = CurrentUser.shared
     
     var foundProducers = [String]()
     
@@ -28,6 +29,10 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet var tableVideoView: UITableView!
     @IBOutlet var errorView: UITextView!
+    
+    @IBOutlet var welcomeField: UILabel!
+    @IBOutlet var userThumbnail: UIImageView!
+    @IBOutlet var calendarToggle: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +77,32 @@ class TeamViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 Postgres.logger.severe("Error getting video list: \(String(describing: error))")
             }
         }
+        
+        loadPrettyViews()
+    }
+    
+    func loadPrettyViews() {
+        welcomeField.layer.opacity = 1
+        welcomeField.textColor = UIColor.black
+        welcomeField.numberOfLines = 0
+        welcomeField.font = UIFont.textStyle2
+        welcomeField.textAlignment = .left
+        welcomeField.text = currentUser.getCurrentUserName()
+        
+        calendarToggle.layer.cornerRadius = 7
+        calendarToggle.layer.masksToBounds =  true
+        calendarToggle.layer.borderColor = UIColor.sapphire.cgColor
+        calendarToggle.layer.borderWidth =  2
+        calendarToggle.layer.opacity = 1
+        calendarToggle.setTitleColor(UIColor.sapphire, for: .normal)
+        calendarToggle.titleLabel?.font = UIFont.textStyle9
+        calendarToggle.contentHorizontalAlignment = .leading
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
+        
+        
     }
     
     func reloadVideos() {

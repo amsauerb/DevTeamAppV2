@@ -130,6 +130,10 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
 //        videosToProduceList.register(UINib(nibName: "CustomVideoDashboardCell", bundle: nil), forCellReuseIdentifier: "CustomVideoDashboardCell")
 //        videosToProduceList.dataSource = self
 //        videosToProduceList.delegate = self
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
 
     }
     

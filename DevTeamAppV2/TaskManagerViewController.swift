@@ -8,8 +8,11 @@
 import PostgresClientKit
 import UIKit
 
-class TaskManagerViewController: UIViewController {
+class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+    
     let model = DatabaseManager.shared.connectToDatabase()
+    let currentUser = CurrentUser.shared
+    
     var taskInformation = [Model.Task]()
     var selectedTask = [Model.Task]()
     
@@ -18,98 +21,122 @@ class TaskManagerViewController: UIViewController {
     
     var usersForTask = [Model.UserTask]()
     
-    @IBOutlet var errorLabel: UILabel!
-    @IBOutlet var taskMenu: UIButton!
+    @IBOutlet var welcomeField: UILabel!
+    @IBOutlet var userThumbnail: UIImageView!
     @IBOutlet var taskNameField: UITextField!
     @IBOutlet var taskDescriptionField: UITextView!
     @IBOutlet var userMenu: UIButton!
-    @IBOutlet var assignedUsersLabel: UILabel!
+    @IBOutlet var assignedUsersCollection: UICollectionView!
     @IBOutlet var createButton: UIButton!
-    @IBOutlet var updateButton: UIButton!
-    @IBOutlet var deleteButton: UIButton!
+    @IBOutlet var userButton: UIButton!
+    @IBOutlet var taskButton: UIButton!
+    @IBOutlet var videoButton: UIButton!
+    @IBOutlet var dashboardButton: UIButton!
     @IBOutlet var taskDeadline: UIDatePicker!
+    @IBOutlet var taskTable: UITableView!
+    @IBOutlet var containerView: UIView!
     
     var del: TaskManagerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        errorLabel.text = ""
-        assignedUsersLabel.text = ""
-        taskDescriptionField.text = ""
+        taskNameField.placeholder = "Task Name"
+        taskDescriptionField.text = "Description"
         
-        setTaskMenu()
-        setUserMenu()
-    }
-    
-    func setTaskMenu() {
-        let optionClosure = {(action: UIAction) in self.displayTaskInfo()}
+        assignedUsersCollection.dataSource = self
+        assignedUsersCollection.delegate = self
+        
+        taskTable.dataSource = self
+        taskTable.delegate = self
         
         model.getAllTasks() { result in
             do {
                 self.taskInformation = try result.get()
-                
-                var children: [UIMenuElement] = []
-                
-                let a = UIAction(title: "Current Tasks", state: .on, handler: optionClosure)
-                children.append(a)
-                
-                for task in self.taskInformation {
-                    let action = UIAction(title: task.title, handler: optionClosure)
-                    children.append(action)
-                }
-                self.taskMenu.menu = UIMenu(children: children)
+                self.taskTable.reloadData()
+            } catch {
+                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+            }
+            self.setUserMenu()
+        }
+        
+        assignedUsersCollection.reloadData()
+        
+        loadPrettyViews()
+    }
+    
+    func loadPrettyViews() {
+        self.view.backgroundColor = UIColor.daisy
+        
+        welcomeField.layer.opacity = 1
+        welcomeField.textColor = UIColor.black
+        welcomeField.numberOfLines = 0
+        welcomeField.font = UIFont.textStyle2
+        welcomeField.textAlignment = .left
+        welcomeField.text = currentUser.getCurrentUserName()
+        
+        videoButton.layer.cornerRadius = 7
+        videoButton.layer.masksToBounds =  true
+        videoButton.backgroundColor = UIColor.salt2
+        videoButton.layer.opacity = 1
+        videoButton.setTitleColor(UIColor.black, for: .normal)
+        videoButton.titleLabel?.font = UIFont.textStyle9
+        videoButton.contentHorizontalAlignment = .leading
+        
+        userButton.layer.cornerRadius = 7
+        userButton.layer.masksToBounds =  true
+        userButton.backgroundColor = UIColor.salt2
+        userButton.layer.opacity = 1
+        userButton.setTitleColor(UIColor.black, for: .normal)
+        userButton.titleLabel?.font = UIFont.textStyle9
+        userButton.contentHorizontalAlignment = .leading
+        
+        taskButton.layer.cornerRadius = 7
+        taskButton.layer.masksToBounds =  true
+        taskButton.backgroundColor = UIColor.black
+        taskButton.layer.opacity = 1
+        taskButton.setTitleColor(UIColor.daisy, for: .normal)
+        taskButton.titleLabel?.font = UIFont.textStyle9
+        taskButton.contentHorizontalAlignment = .leading
+        
+        dashboardButton.layer.cornerRadius = 7
+        dashboardButton.layer.masksToBounds =  true
+        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
+        dashboardButton.layer.borderWidth =  2
+        dashboardButton.layer.opacity = 1
+        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
+        dashboardButton.titleLabel?.font = UIFont.textStyle9
+        dashboardButton.contentHorizontalAlignment = .leading
+        
+        containerView.layer.cornerRadius = 10
+        containerView.layer.masksToBounds =  true
+        containerView.backgroundColor = UIColor.daisy
+        containerView.layer.opacity = 1
+        
+        containerView.layer.masksToBounds = false
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.2
+        containerView.layer.shadowOffset = .zero
+        containerView.layer.shadowRadius = 1
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func loadTaskTable() {
+        model.getAllTasks() { result in
+            do {
+                self.taskInformation = try result.get()
+                self.taskTable.reloadData()
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
-        
-        taskMenu.showsMenuAsPrimaryAction = true
-        taskMenu.changesSelectionAsPrimaryAction = true
     }
     
-    func displayTaskInfo() {
-        selectedTask.removeAll()
-        selectedUsers.removeAll()
-        usersForTask.removeAll()
-        
-        let tid = taskInformation.filter {$0.title == taskMenu.menu?.selectedElements.first?.title}.first?.tid
-        
-        if tid != nil {
-            model.taskInformation(tid!) { result in
-                do {
-                    self.selectedTask = try result.get()
-                    
-                    self.taskNameField.text = self.selectedTask.first?.title
-                    self.taskDeadline.date = (self.selectedTask.first?.deadline.date(in: TimeZone.current))!
-                    self.taskDescriptionField.text = self.selectedTask.first?.description
-                    
-                } catch {
-                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-                }
-            }
-            
-            model.getAllUsersForTID(tid!) { result in
-                do {
-                    self.usersForTask = try result.get()
-                    
-                    for userTask in self.usersForTask {
-                        let uid = userTask.id
-                        self.model.userByID(uid) { result in
-                            do {
-                                let user = try result.get()
-                                self.selectedUsers.append(contentsOf: user)
-                                self.assignedUsersLabel.text = self.assignedUsersLabel.text! + user.first!.name + ","
-                            } catch {
-                                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-                            }
-                        }
-                    }
-                } catch {
-                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-                }
-            }
-        }
+    func reloadAssignedUserCollection() {
+        assignedUsersCollection.reloadData()
     }
     
     func setUserMenu() {
@@ -121,7 +148,7 @@ class TaskManagerViewController: UIViewController {
                 
                 var children: [UIMenuElement] = []
                 
-                let a = UIAction(title: "Current Users", state: .on, handler: optionClosure)
+                let a = UIAction(title: "Assign", state: .on, handler: optionClosure)
                 children.append(a)
                 
                 for user in self.userInformation {
@@ -148,18 +175,127 @@ class TaskManagerViewController: UIViewController {
                     Postgres.logger.fine(user.first?.name ?? "Something went wrong")
                     if self.selectedUsers.contains(where: { $0.name == user.first?.name }) {
                         self.selectedUsers.removeAll {$0.name == user.first?.name}
-                        let assignedUsers = self.assignedUsersLabel.text
-                        self.assignedUsersLabel.text = assignedUsers?.replacingOccurrences(of: user.first!.name + ",", with: "")
-                        
+                        self.reloadAssignedUserCollection()
                     } else {
                         self.selectedUsers.append(contentsOf: user)
-                        self.assignedUsersLabel.text = self.assignedUsersLabel.text! + user.first!.name + ","
+                        self.reloadAssignedUserCollection()
                     }
                     
                     self.setUserMenu()
                 } catch {
                     Postgres.logger.severe("Error during database communication: \(String(describing: error))")
                 }
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let result = (selectedUsers.count != 0) ? selectedUsers.count : 1
+        return result
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "assignedImageCell", for: indexPath) as! CustomAssignedUserCell
+        
+        if selectedUsers.count != 0 {
+            cell.assignedUserImage.image = UIImage(named: "frame3")
+        }
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let result = (taskInformation.count != 0) ? taskInformation.count : 1
+        return result
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = taskTable.dequeueReusableCell(withIdentifier: "taskTableCell", for: indexPath) as! CustomTaskTableCell
+        
+        if taskInformation.count == 0 {
+            cell.taskName.text = "No tasks currently!"
+        } else {
+            let task = taskInformation[indexPath.row]
+            selectedTask.removeAll()
+            selectedUsers.removeAll()
+            usersForTask.removeAll()
+            
+            cell.taskName.text = task.title
+            cell.taskDescription.text = task.description
+            cell.taskDeadline.date = task.deadline.date(in: TimeZone.current)
+            
+            cell.assignedCollection.delegate = self
+            cell.assignedCollection.dataSource = self
+
+            model.getAllUsersForTID(task.tid) { result in
+                do {
+                    self.usersForTask = try result.get()
+
+                    for userTask in self.usersForTask {
+                        let uid = userTask.id
+                        self.model.userByID(uid) { result in
+                            do {
+                                let user = try result.get()
+                                self.selectedUsers.append(contentsOf: user)
+                                cell.assignedCollection.reloadData()
+                            } catch {
+                                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                            }
+                        }
+                    }
+                } catch {
+                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                }
+            }
+            
+            cell.editButton.tag = indexPath.row
+            cell.editButton.addTarget(self, action: #selector(self.editTask), for: .touchUpInside)
+        }
+        
+        cell.container.layer.cornerRadius = 10
+        cell.container.layer.masksToBounds =  true
+        cell.container.backgroundColor = UIColor.daisy
+        cell.container.layer.opacity = 1
+        
+        cell.container.layer.masksToBounds = false
+        cell.container.layer.shadowColor = UIColor.black.cgColor
+        cell.container.layer.shadowOpacity = 0.2
+        cell.container.layer.shadowOffset = .zero
+        cell.container.layer.shadowRadius = 1
+        
+        return cell
+    }
+    
+    @objc func editTask(sender: UIButton) {
+        let path = IndexPath(row: sender.tag, section: 0)
+        let task = self.taskInformation[path.row]
+        selectedTask.removeAll()
+        selectedUsers.removeAll()
+        usersForTask.removeAll()
+        
+        self.taskNameField.text = task.title
+        self.taskDescriptionField.text = task.description
+        self.taskDeadline.date = task.deadline.date(in: TimeZone.current)
+        
+        model.getAllUsersForTID(task.tid) { result in
+            do {
+                self.usersForTask = try result.get()
+                
+                for userTask in self.usersForTask {
+                    let uid = userTask.id
+                    self.model.userByID(uid) { result in
+                        do {
+                            let user = try result.get()
+                            self.selectedUsers.append(contentsOf: user)
+                        } catch {
+                            Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                        }
+                    }
+                }
+                
+                self.assignedUsersCollection.reloadData()
+            } catch {
+                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
     }
@@ -175,7 +311,6 @@ class TaskManagerViewController: UIViewController {
             do {
                 let task = try result.get()
                 if task.first!.title == title {
-                    self.errorLabel.text = "Task Created Successfully, Adding Users Now"
                     tid = task.first!.tid
                     self.createUserTasks(tid: tid)
                 }
@@ -199,19 +334,18 @@ class TaskManagerViewController: UIViewController {
             }
         }
         
-        errorLabel.text = "Users Added Successfully"
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.errorLabel.text = ""
-            self.taskNameField.text = ""
+            self.taskNameField.placeholder = "Task Name"
             self.taskDeadline.date = Date()
-            self.taskDescriptionField.text = ""
-            self.assignedUsersLabel.text = ""
-            self.setTaskMenu()
+            self.taskDescriptionField.text = "Description"
             self.setUserMenu()
             
             self.selectedTask.removeAll()
             self.selectedUsers.removeAll()
             self.usersForTask.removeAll()
+            
+            self.assignedUsersCollection.reloadData()
+            self.loadTaskTable()
         }
         
         
@@ -228,7 +362,7 @@ class TaskManagerViewController: UIViewController {
             do {
                 let task = try result.get()
                 if task.first!.title == title {
-                    self.errorLabel.text = "Task Updated Successfully, Updating Users Now"
+                    //
                 }
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
@@ -248,7 +382,7 @@ class TaskManagerViewController: UIViewController {
                 model.deleteUserTask(tid, id: uid) { result in
                     do {
                         let uT = try result.get()
-                        self.errorLabel.text = "Adjusting for Removed Users."
+                        //
                     } catch {
                         Postgres.logger.severe("Error during database communication: \(String(describing: error))")
                     }
@@ -269,7 +403,7 @@ class TaskManagerViewController: UIViewController {
                 model.addUserTask(tid, id: uid) { result in
                     do {
                         let uT = try result.get()
-                        self.errorLabel.text = "Adding New Users"
+                        //
                     } catch {
                         Postgres.logger.severe("Error during database communication: \(String(describing: error))")
                     }
@@ -277,20 +411,18 @@ class TaskManagerViewController: UIViewController {
             }
         }
         
-        errorLabel.text = "New Users Added, Task Updated Successfully"
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.errorLabel.text = ""
-            self.taskNameField.text = ""
+            self.taskNameField.placeholder = "Task Name"
             self.taskDeadline.date = Date()
-            self.taskDescriptionField.text = ""
-            self.assignedUsersLabel.text = ""
-            self.setTaskMenu()
+            self.taskDescriptionField.text = "Description"
+            self.loadTaskTable()
             self.setUserMenu()
             
             self.selectedTask.removeAll()
             self.selectedUsers.removeAll()
             self.usersForTask.removeAll()
+            
+            self.assignedUsersCollection.reloadData()
         }
     }
     
@@ -301,55 +433,25 @@ class TaskManagerViewController: UIViewController {
             do {
                 let task = try result.get()
                 if task.first!.tid == tid {
-                    self.errorLabel.text = "Task Removed Successfully"
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.errorLabel.text = ""
-                        self.taskNameField.text = ""
+                        self.taskNameField.placeholder = "Task Name"
                         self.taskDeadline.date = Date()
-                        self.taskDescriptionField.text = ""
-                        self.assignedUsersLabel.text = ""
-                        self.setTaskMenu()
+                        self.taskDescriptionField.text = "Description"
+                        self.loadTaskTable()
                         self.setUserMenu()
                         
                         self.selectedTask.removeAll()
                         self.selectedUsers.removeAll()
                         self.usersForTask.removeAll()
+                        
+                        self.assignedUsersCollection.reloadData()
                     }
                 }
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
         }
-    }
-    
-    func sendNotificationToUsers() {
-//        for user in selectedUsers {
-//            let token = user.devices.first
-//            guard let url = URL(string: "https://fcm.googleapis.com/fcm/send") else {
-//                return
-//            }
-//            
-//            let json: [String: Any] = [
-//                "to": token,
-//                "notification": [
-//                    
-//                    "title": "Test",
-//                    "body": "Testing if I can send notifications"
-//                ],
-//                "data": [
-//                    //
-//                ]
-//                
-//            ]
-//            
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted])
-//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//            request.setValue(<#T##value: String?##String?#>, forHTTPHeaderField: <#T##String#>)
-//        }
-//        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

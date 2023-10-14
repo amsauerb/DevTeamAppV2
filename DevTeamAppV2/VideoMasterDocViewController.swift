@@ -13,13 +13,20 @@ class VideoMasterDocViewController: UIViewController {
     
     let model = DatabaseManager.shared.connectToDatabase()
     let selectedVideo = SelectedVideo.shared
+    let currentUser = CurrentUser.shared
     
     var videoInformation = [Model.Video]()
     
     var del: VideoMasterDelegate?
     
+    var budgetComplete = false
+    var frameworkPressed = false
+    var macroPressed = false
+    var microPressed = false
+    var updatedStage = "Framework"
+    
     @IBOutlet var thumbnailView: UIImageView!
-    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var filmdatePicker: UIDatePicker!
     @IBOutlet var postdatePicker: UIDatePicker!
     @IBOutlet var directorMenu: UIButton!
@@ -27,15 +34,15 @@ class VideoMasterDocViewController: UIViewController {
     
     @IBOutlet var frameworkDeadlinePicker: UIDatePicker!
     //    @IBOutlet var frameworkDaysRemaining: UILabel!
-    @IBOutlet var frameworkCompletedSwitch: UISwitch!
+    @IBOutlet var frameworkCompletedButton: UIButton!
     
     @IBOutlet var macroDeadlinePicker: UIDatePicker!
     //    @IBOutlet var macroDaysRemaining: UILabel!
-    @IBOutlet var macroCompletedSwitch: UISwitch!
+    @IBOutlet var macroCompletedButton: UIButton!
     
     @IBOutlet var microDeadlinePicker: UIDatePicker!
     //    @IBOutlet var microDaysRemaining: UILabel!
-    @IBOutlet var microCompletedSwitch: UISwitch!
+    @IBOutlet var microCompletedButton: UIButton!
     
     @IBOutlet var prepreLabel: UITextView!
     @IBOutlet var directorNotesLabel: UITextView!
@@ -43,8 +50,21 @@ class VideoMasterDocViewController: UIViewController {
     @IBOutlet var constructionNotesLabel: UITextView!
     @IBOutlet var shotListLabel: UITextView!
     
-    @IBOutlet var budgetCompleteSwitch: UISwitch!
+    @IBOutlet var budgetCompletedButton: UIButton!
     
+    @IBOutlet var userThumbnail: UIImageView!
+    @IBOutlet var welcomeField: UILabel!
+    @IBOutlet var updateButton: UIButton!
+    
+    @IBOutlet var frameworkContainer: UIView!
+    @IBOutlet var macroContainer: UIView!
+    @IBOutlet var microContainer: UIView!
+    @IBOutlet var budgetContainer: UIView!
+    @IBOutlet var prepreContainer: UIView!
+    @IBOutlet var directorContainer: UIView!
+    @IBOutlet var productionContainer: UIView!
+    @IBOutlet var shotListContainer: UIView!
+    @IBOutlet var constructionContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +84,7 @@ class VideoMasterDocViewController: UIViewController {
                         thumbnailView.image = UIImage(data: thumbnailData)
                     }
                     let titleText = videoInformation.first?.title
-                    titleTextField.text = titleText
+                    titleLabel.text = titleText
                     
                     let currentDay = Date()
                     let filmdate = self.videoInformation.first?.filmdate.date(in: TimeZone.current)
@@ -83,23 +103,38 @@ class VideoMasterDocViewController: UIViewController {
                     microDeadlinePicker.date = (videoInformation.first?.microdate.date(in: TimeZone.current))!
                     frameworkDeadlinePicker.date = (videoInformation.first?.frameworkdate.date(in: TimeZone.current))!
                     
-                    if self.videoInformation.first?.currentstage == "Framework" {
-                        // Do nothing
-                    } else if self.videoInformation.first?.currentstage == "Macro" {
-                        frameworkCompletedSwitch.isOn = true
-                    } else if self.videoInformation.first?.currentstage == "Micro" {
-                        frameworkCompletedSwitch.isOn = true
-                        macroCompletedSwitch.isOn = true
-                    } else {
-                        frameworkCompletedSwitch.isOn = true
-                        macroCompletedSwitch.isOn = true
-                        microCompletedSwitch.isOn = true
-                    }
+                    let origImage = UIImage(named: "frame3")
+                    let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                     
-                    // Calculate Days Remaining to Each Deadline
-                    //                    frameworkDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: frameworkDeadlinePicker.date).day ?? 0)
-                    //                    macroDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: macroDeadlinePicker.date).day ?? 0)
-                    //                    microDaysRemaining.text = String(Calendar.current.dateComponents([.day], from: currentDay, to: microDeadlinePicker.date).day ?? 0)
+                    if self.videoInformation.first?.currentstage == "Framework" {
+                        frameworkCompletedButton.setImage(tintedImage, for: .normal)
+                        frameworkCompletedButton.tintColor = .red
+                        macroCompletedButton.setImage(tintedImage, for: .normal)
+                        macroCompletedButton.tintColor = .red
+                        microCompletedButton.setImage(tintedImage, for: .normal)
+                        microCompletedButton.tintColor = .red
+                    } else if self.videoInformation.first?.currentstage == "Macro" {
+                        self.frameworkPressed = true
+                        frameworkCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                        macroCompletedButton.setImage(tintedImage, for: .normal)
+                        macroCompletedButton.tintColor = .red
+                        microCompletedButton.setImage(tintedImage, for: .normal)
+                        microCompletedButton.tintColor = .red
+                    } else if self.videoInformation.first?.currentstage == "Micro" {
+                        self.frameworkPressed = true
+                        self.macroPressed = true
+                        frameworkCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                        macroCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                        microCompletedButton.setImage(tintedImage, for: .normal)
+                        microCompletedButton.tintColor = .red
+                    } else {
+                        self.frameworkPressed = true
+                        self.macroPressed = true
+                        self.microPressed = true
+                        frameworkCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                        macroCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                        microCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                    }
                     
                     // Put document labels
                     setHyperlink(label: prepreLabel, labelText: "Prepre Doc", pathText: self.videoInformation.first?.prepredoc ?? "")
@@ -113,7 +148,13 @@ class VideoMasterDocViewController: UIViewController {
                     //                    shotListLabel.text = self.videoInformation.first?.shotlistdoc
                     //                    constructionNotesLabel.text = self.videoInformation.first?.constructionnotesdoc
                     
-                    budgetCompleteSwitch.isOn = self.videoInformation.first?.budgetcomplete ?? false
+                    if self.videoInformation.first?.budgetcomplete == true {
+                        budgetComplete = true
+                        self.budgetCompletedButton.setImage(UIImage(named: "frame3"), for: .normal)
+                    } else {
+                        self.budgetCompletedButton.setImage(tintedImage, for: .normal)
+                        self.budgetCompletedButton.tintColor = .red
+                    }
                     
                 } else {
                     Postgres.logger.fine("Didn't select the row")
@@ -123,6 +164,134 @@ class VideoMasterDocViewController: UIViewController {
                 Postgres.logger.severe("Error getting video information: \(String(describing: error))")
             }
         }
+        
+        loadPrettyViews()
+    }
+    
+    func loadPrettyViews() {
+        self.view.backgroundColor = UIColor.daisy
+        
+        welcomeField.layer.opacity = 1
+        welcomeField.textColor = UIColor.black
+        welcomeField.numberOfLines = 0
+        welcomeField.font = UIFont.textStyle2
+        welcomeField.textAlignment = .left
+        welcomeField.text = currentUser.getCurrentUserName()
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
+        
+        updateButton.layer.cornerRadius = 7
+        updateButton.layer.masksToBounds =  true
+        updateButton.layer.borderColor = UIColor.sapphire.cgColor
+        updateButton.layer.borderWidth =  2
+        updateButton.layer.opacity = 1
+        updateButton.setTitleColor(UIColor.sapphire, for: .normal)
+        updateButton.titleLabel?.font = UIFont.textStyle9
+        updateButton.contentHorizontalAlignment = .leading
+        
+        frameworkContainer.layer.cornerRadius = 10
+        frameworkContainer.layer.masksToBounds =  true
+        frameworkContainer.backgroundColor = UIColor.daisy
+        frameworkContainer.layer.opacity = 1
+        
+        frameworkContainer.layer.masksToBounds = false
+        frameworkContainer.layer.shadowColor = UIColor.black.cgColor
+        frameworkContainer.layer.shadowOpacity = 0.2
+        frameworkContainer.layer.shadowOffset = .zero
+        frameworkContainer.layer.shadowRadius = 1
+        
+        macroContainer.layer.cornerRadius = 10
+        macroContainer.layer.masksToBounds =  true
+        macroContainer.backgroundColor = UIColor.daisy
+        macroContainer.layer.opacity = 1
+        
+        macroContainer.layer.masksToBounds = false
+        macroContainer.layer.shadowColor = UIColor.black.cgColor
+        macroContainer.layer.shadowOpacity = 0.2
+        macroContainer.layer.shadowOffset = .zero
+        macroContainer.layer.shadowRadius = 1
+        
+        microContainer.layer.cornerRadius = 10
+        microContainer.layer.masksToBounds =  true
+        microContainer.backgroundColor = UIColor.daisy
+        microContainer.layer.opacity = 1
+        
+        microContainer.layer.masksToBounds = false
+        microContainer.layer.shadowColor = UIColor.black.cgColor
+        microContainer.layer.shadowOpacity = 0.2
+        microContainer.layer.shadowOffset = .zero
+        microContainer.layer.shadowRadius = 1
+        
+        budgetContainer.layer.cornerRadius = 10
+        budgetContainer.layer.masksToBounds =  true
+        budgetContainer.backgroundColor = UIColor.daisy
+        budgetContainer.layer.opacity = 1
+        
+        budgetContainer.layer.masksToBounds = false
+        budgetContainer.layer.shadowColor = UIColor.black.cgColor
+        budgetContainer.layer.shadowOpacity = 0.2
+        budgetContainer.layer.shadowOffset = .zero
+        budgetContainer.layer.shadowRadius = 1
+        
+        prepreContainer.layer.cornerRadius = 10
+        prepreContainer.layer.masksToBounds =  true
+        prepreContainer.backgroundColor = UIColor.daisy
+        prepreContainer.layer.opacity = 1
+        
+        prepreContainer.layer.masksToBounds = false
+        prepreContainer.layer.shadowColor = UIColor.black.cgColor
+        prepreContainer.layer.shadowOpacity = 0.2
+        prepreContainer.layer.shadowOffset = .zero
+        prepreContainer.layer.shadowRadius = 1
+        
+        directorContainer.layer.cornerRadius = 10
+        directorContainer.layer.masksToBounds =  true
+        directorContainer.backgroundColor = UIColor.daisy
+        directorContainer.layer.opacity = 1
+        
+        directorContainer.layer.masksToBounds = false
+        directorContainer.layer.shadowColor = UIColor.black.cgColor
+        directorContainer.layer.shadowOpacity = 0.2
+        directorContainer.layer.shadowOffset = .zero
+        directorContainer.layer.shadowRadius = 1
+        
+        productionContainer.layer.cornerRadius = 10
+        productionContainer.layer.masksToBounds =  true
+        productionContainer.backgroundColor = UIColor.daisy
+        productionContainer.layer.opacity = 1
+        
+        productionContainer.layer.masksToBounds = false
+        productionContainer.layer.shadowColor = UIColor.black.cgColor
+        productionContainer.layer.shadowOpacity = 0.2
+        productionContainer.layer.shadowOffset = .zero
+        productionContainer.layer.shadowRadius = 1
+        
+        shotListContainer.layer.cornerRadius = 10
+        shotListContainer.layer.masksToBounds =  true
+        shotListContainer.backgroundColor = UIColor.daisy
+        shotListContainer.layer.opacity = 1
+        
+        shotListContainer.layer.masksToBounds = false
+        shotListContainer.layer.shadowColor = UIColor.black.cgColor
+        shotListContainer.layer.shadowOpacity = 0.2
+        shotListContainer.layer.shadowOffset = .zero
+        shotListContainer.layer.shadowRadius = 1
+        
+        constructionContainer.layer.cornerRadius = 10
+        constructionContainer.layer.masksToBounds =  true
+        constructionContainer.backgroundColor = UIColor.daisy
+        constructionContainer.layer.opacity = 1
+        
+        constructionContainer.layer.masksToBounds = false
+        constructionContainer.layer.shadowColor = UIColor.black.cgColor
+        constructionContainer.layer.shadowOpacity = 0.2
+        constructionContainer.layer.shadowOffset = .zero
+        constructionContainer.layer.shadowRadius = 1
+        
+        thumbnailView.layer.borderWidth = 0.5
+        thumbnailView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     func setHyperlink(label: UITextView, labelText: String, pathText: String) {
@@ -200,10 +369,66 @@ class VideoMasterDocViewController: UIViewController {
         producerMenu.changesSelectionAsPrimaryAction = true
     }
     
+    @IBAction func budgetButtonPressed() {
+        if budgetComplete {
+            budgetComplete = false
+            let origImage = UIImage(named: "frame3")
+            let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+            budgetCompletedButton.setImage(tintedImage, for: .normal)
+            budgetCompletedButton.tintColor = .red
+        } else {
+            budgetComplete = true
+            budgetCompletedButton.setImage(UIImage(named: "frame3") , for: .normal)
+            budgetCompletedButton.tintColor = .green
+        }
+    }
+    
+    @IBAction func frameworkButtonPressed() {
+        if frameworkPressed {
+            frameworkPressed = false
+            let origImage = UIImage(named: "frame3")
+            let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+            frameworkCompletedButton.setImage(tintedImage, for: .normal)
+            frameworkCompletedButton.tintColor = .red
+        } else {
+            frameworkPressed = true
+            frameworkCompletedButton.setImage(UIImage(named: "frame3") , for: .normal)
+            frameworkCompletedButton.tintColor = .green
+        }
+    }
+    
+    @IBAction func macroButtonPressed() {
+        if macroPressed {
+            macroPressed = false
+            let origImage = UIImage(named: "frame3")
+            let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+            macroCompletedButton.setImage(tintedImage, for: .normal)
+            macroCompletedButton.tintColor = .red
+        } else {
+            macroPressed = true
+            macroCompletedButton.setImage(UIImage(named: "frame3") , for: .normal)
+            macroCompletedButton.tintColor = .green
+        }
+    }
+    
+    @IBAction func microButtonPressed() {
+        if microPressed {
+            microPressed = false
+            let origImage = UIImage(named: "frame3")
+            let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+            microCompletedButton.setImage(tintedImage, for: .normal)
+            microCompletedButton.tintColor = .red
+        } else {
+            microPressed = true
+            microCompletedButton.setImage(UIImage(named: "frame3") , for: .normal)
+            microCompletedButton.tintColor = .green
+        }
+    }
+    
     @IBAction func updateButtonPressed() {
         view.endEditing(true)
         
-        let title = self.titleTextField.text
+        let title = self.titleLabel.text
         
         let producer = producerMenu.menu?.selectedElements.first?.title ?? ""
         let director = directorMenu.menu?.selectedElements.first?.title ?? ""
@@ -224,29 +449,29 @@ class VideoMasterDocViewController: UIViewController {
             frameworkDeadline = Calendar.current.date(byAdding: .day, value: -76, to: filmdatePicker.date)!
         }
         
-        let budgetcomplete = self.budgetCompleteSwitch.isOn
+        let budgetcomplete = self.budgetComplete
         
-        var currentStage = videoInformation.first?.currentstage
+        var currentStage = ""
         
-        if self.frameworkCompletedSwitch.isOn {
+        if frameworkPressed {
             currentStage = "Macro"
         }
         
-        if self.macroCompletedSwitch.isOn {
+        if macroPressed {
             currentStage = "Micro"
         }
         
-        if self.microCompletedSwitch.isOn {
+        if microPressed {
             currentStage = "Filmed"
         }
         
-        if !self.frameworkCompletedSwitch.isOn && !self.macroCompletedSwitch.isOn && !self.microCompletedSwitch.isOn {
+        if !frameworkPressed && !microPressed && !macroPressed {
             currentStage = "Framework"
         }
         
         let videoId = videoInformation.first?.id
         
-        model.updateVideoFromMasterDocs(videoId ?? 0, title : title ?? " ", budgetcomplete: budgetcomplete, currentstage: currentStage ?? "Framework", director: director , producer: producer , filmdate: filmdate, postdate: postdate, macrodate: (macroDeadline?.postgresDate(in: TimeZone.current))!, microdate: (microDeadline?.postgresDate(in: TimeZone.current))!, frameworkdate: frameworkDeadline.postgresDate(in: TimeZone.current)) { result in
+        model.updateVideoFromMasterDocs(videoId ?? 0, title : title ?? " ", budgetcomplete: budgetcomplete, currentstage: currentStage, director: director , producer: producer , filmdate: filmdate, postdate: postdate, macrodate: (macroDeadline?.postgresDate(in: TimeZone.current))!, microdate: (microDeadline?.postgresDate(in: TimeZone.current))!, frameworkdate: frameworkDeadline.postgresDate(in: TimeZone.current)) { result in
             do {
                 self.videoInformation = try result.get()
                 self.del?.reloadVideos()

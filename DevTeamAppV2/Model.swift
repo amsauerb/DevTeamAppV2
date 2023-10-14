@@ -964,7 +964,7 @@ class Model {
         }
     }
     
-    func updateVideoDates(_ title: String, filmdate: PostgresDate, postdate: PostgresDate, frameworkdate: PostgresDate, macrodate: PostgresDate, microdate: PostgresDate, completion: @escaping (Result<[Video], Error>) -> Void) {
+    func updateVideoDates(_ title: String, filmdate: PostgresDate, postdate: PostgresDate, frameworkdate: PostgresDate, macrodate: PostgresDate, microdate: PostgresDate, leaddirector: String, leadproducer: String, completion: @escaping (Result<[Video], Error>) -> Void) {
 
         connectionPool.withConnection { connectionResult in
 
@@ -972,11 +972,11 @@ class Model {
 
                 let connection = try connectionResult.get()
 
-                let text = "UPDATE public.video SET filmdate = $2, postdate = $3, frameworkdate = $4, macrodate = $5, microdate = $6 WHERE title = $1 RETURNING *;"
+                let text = "UPDATE public.video SET filmdate = $2, postdate = $3, frameworkdate = $4, macrodate = $5, microdate = $6, leaddirector = $7, leadproducer = $8 WHERE title = $1 RETURNING *;"
                 let statement = try connection.prepareStatement(text: text)
                 defer { statement.close() }
 
-                let cursor = try statement.execute(parameterValues: [ title, filmdate, postdate, frameworkdate, macrodate, microdate ])
+                let cursor = try statement.execute(parameterValues: [ title, filmdate, postdate, frameworkdate, macrodate, microdate, leaddirector, leadproducer ])
                 defer { cursor.close() }
 
                 var videoInformation = [Video]()

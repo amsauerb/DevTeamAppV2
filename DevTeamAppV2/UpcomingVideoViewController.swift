@@ -14,6 +14,7 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
     
     let model = DatabaseManager.shared.connectToDatabase()
     let selectedVideo = SelectedVideo.shared
+    let currentUser = CurrentUser.shared
     
     var foundProducers = [String]()
     var videosPerSection = [[String]]()
@@ -36,6 +37,10 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet var calendar: UICollectionView!
     @IBOutlet var calendarTable: UITableView!
     
+    @IBOutlet var welcomeField: UILabel!
+    @IBOutlet var userThumbnail: UIImageView!
+    @IBOutlet var calendarToggle: UIButton!
+    
     @IBOutlet var showButton: UIButton!
     
     override func viewDidLoad() {
@@ -57,6 +62,8 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
         
         calendarTable.dataSource = self
         calendarTable.delegate = self
+        
+        welcomeField.text = currentUser.getCurrentUserName()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -135,6 +142,41 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
         }
+        
+        loadPrettyViews()
+    }
+    
+    func loadPrettyViews() {
+        welcomeField.layer.opacity = 1
+        welcomeField.textColor = UIColor.black
+        welcomeField.numberOfLines = 0
+        welcomeField.font = UIFont.textStyle2
+        welcomeField.textAlignment = .left
+        welcomeField.text = currentUser.getCurrentUserName()
+        
+        calendarToggle.layer.cornerRadius = 7
+        calendarToggle.layer.masksToBounds =  true
+        calendarToggle.layer.borderColor = UIColor.sapphire.cgColor
+        calendarToggle.layer.borderWidth =  2
+        calendarToggle.layer.opacity = 1
+        calendarToggle.setTitleColor(UIColor.sapphire, for: .normal)
+        calendarToggle.titleLabel?.font = UIFont.textStyle9
+        calendarToggle.contentHorizontalAlignment = .leading
+        
+        showButton.layer.cornerRadius = 7
+        showButton.layer.masksToBounds =  true
+        showButton.layer.borderColor = UIColor.sapphire.cgColor
+        showButton.layer.borderWidth =  2
+        showButton.layer.opacity = 1
+        showButton.setTitleColor(UIColor.sapphire, for: .normal)
+        showButton.titleLabel?.font = UIFont.textStyle9
+        showButton.contentHorizontalAlignment = .leading
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
+        
+        
     }
     
     func setDirectorButton() {
@@ -355,6 +397,20 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
             
             cell.videoDaysRemainingLabel.text = "Days Until Filming: " + daysUntilFilming
             
+            let numberOfDays = Int(daysUntilFilming)!
+            
+            cell.videoDaysRemainingLabel.text = "Days Until Filming: " + daysUntilFilming
+            
+            if numberOfDays <= 0 {
+                cell.videoDaysRemainingLabel.backgroundColor = .red
+            } else if numberOfDays > 0 && numberOfDays <= 15 {
+                cell.videoDaysRemainingLabel.backgroundColor = UIColor.orange
+            } else if numberOfDays > 15 && numberOfDays <= 30  {
+                cell.videoDaysRemainingLabel.backgroundColor = .yellow
+            } else {
+                cell.videoDaysRemainingLabel.backgroundColor = UIColor.green
+            }
+            
             cell.videoFrameworkLabel.text = "Framework"
             cell.videoMacroLabel.text = "Macro"
             cell.videoMicroLabel.text = "Mirco"
@@ -394,7 +450,19 @@ class UpcomingVideoViewController: UIViewController, UITableViewDataSource, UITa
                     let filmdate = video.filmdate.date(in: TimeZone.current)
                     let daysUntilFilming = String(Calendar.current.dateComponents([.day], from: currentDate, to: filmdate).day ?? 0)
                     
+                    let numberOfDays = Int(daysUntilFilming)!
+                    
                     cell.videoDaysRemainingLabel.text = "Days Until Filming: " + daysUntilFilming
+                    
+                    if numberOfDays <= 0 {
+                        cell.videoDaysRemainingLabel.backgroundColor = .red
+                    } else if numberOfDays > 0 && numberOfDays <= 15 {
+                        cell.videoDaysRemainingLabel.backgroundColor = UIColor.orange
+                    } else if numberOfDays > 15 && numberOfDays <= 30  {
+                        cell.videoDaysRemainingLabel.backgroundColor = .yellow
+                    } else {
+                        cell.videoDaysRemainingLabel.backgroundColor = UIColor.green
+                    }
                     
                     cell.videoFrameworkLabel.text = "Framework"
                     cell.videoMacroLabel.text = "Macro"

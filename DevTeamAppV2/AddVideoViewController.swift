@@ -17,7 +17,7 @@ class AddVideoViewController: UIViewController {
     var budgetComplete = false
     
     @IBOutlet var welcomeField: UILabel!
-    @IBOutlet var userImage: UIImageView!
+    @IBOutlet var userThumbnail: UIImageView!
     
     @IBOutlet var titleField: UITextField!
     @IBOutlet var filmdateField: UIDatePicker!
@@ -77,6 +77,10 @@ class AddVideoViewController: UIViewController {
         welcomeField.font = UIFont.textStyle2
         welcomeField.textAlignment = .left
         welcomeField.text = currentUser.getCurrentUserName()
+        
+        userThumbnail.layer.cornerRadius = 10
+        userThumbnail.layer.borderWidth = 1
+        userThumbnail.layer.borderColor = UIColor.black.cgColor
         
         prepreField.backgroundColor = UIColor.daisy
         prepreField.textColor = UIColor.black

@@ -36,6 +36,9 @@
 		86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF02AB3F27D003992D2 /* AppCenterAnalytics */; };
 		86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF22AB3F27D003992D2 /* AppCenterCrashes */; };
 		86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 86A83BF42AB3F27D003992D2 /* AppCenterDistribute */; };
+		86AA50D22AD7684F006ADD63 /* CustomUserManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA50D12AD7684F006ADD63 /* CustomUserManagementCell.swift */; };
+		86AB3C0F2AD98E4C0097D0A7 /* CustomAssignedUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB3C0E2AD98E4C0097D0A7 /* CustomAssignedUserCell.swift */; };
+		86AB3C112AD993310097D0A7 /* CustomTaskTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB3C102AD993310097D0A7 /* CustomTaskTableCell.swift */; };
 		86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4A2A71CECD001D13FA /* AppDelegate.swift */; };
 		86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */; };
 		86ACED4F2A71CECD001D13FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ACED4E2A71CECD001D13FA /* ViewController.swift */; };
@@ -74,6 +77,9 @@
 		86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomVideoCollectionCell.swift; sourceTree = "<group>"; };
 		86A7B36F2AC5DF4A00F440F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86A7B3762AC644F600F440F4 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		86AA50D12AD7684F006ADD63 /* CustomUserManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserManagementCell.swift; sourceTree = "<group>"; };
+		86AB3C0E2AD98E4C0097D0A7 /* CustomAssignedUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssignedUserCell.swift; sourceTree = "<group>"; };
+		86AB3C102AD993310097D0A7 /* CustomTaskTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTaskTableCell.swift; sourceTree = "<group>"; };
 		86ACED4A2A71CECD001D13FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86ACED4E2A71CECD001D13FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,11 +161,14 @@
 				867953612A96BCCC005EDC1B /* CustomVideoCell.swift */,
 				86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */,
 				86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */,
+				86AA50D12AD7684F006ADD63 /* CustomUserManagementCell.swift */,
 				86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */,
 				86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */,
 				86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */,
 				866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */,
 				866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */,
+				86AB3C0E2AD98E4C0097D0A7 /* CustomAssignedUserCell.swift */,
+				86AB3C102AD993310097D0A7 /* CustomTaskTableCell.swift */,
 			);
 			path = DevTeamAppV2;
 			sourceTree = "<group>";
@@ -261,8 +270,10 @@
 				86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */,
 				86B186082AA79AAC002208C0 /* VideoManagerViewController.swift in Sources */,
 				866F3D5A2AB0CB1C00D0F1BB /* CalendarCell.swift in Sources */,
+				86AB3C0F2AD98E4C0097D0A7 /* CustomAssignedUserCell.swift in Sources */,
 				863947892AD4C28E00786A8C /* Colors.swift in Sources */,
 				864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */,
+				86AB3C112AD993310097D0A7 /* CustomTaskTableCell.swift in Sources */,
 				86B69F162AA183D00049CB5D /* CustomTaskCollectionCell.swift in Sources */,
 				86B9CEBA2AAA49ED00CEDFAC /* HyperlinkString.swift in Sources */,
 				86ACED4D2A71CECD001D13FA /* SceneDelegate.swift in Sources */,
@@ -272,6 +283,7 @@
 				86B1860A2AA79ABB002208C0 /* TaskManagerViewController.swift in Sources */,
 				864296C12A79EB7F0009C217 /* ForgotPasswordViewController.swift in Sources */,
 				864296BD2A7731B50009C217 /* DashboardViewController.swift in Sources */,
+				86AA50D22AD7684F006ADD63 /* CustomUserManagementCell.swift in Sources */,
 				867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */,
 				8633C8542A7F1EE600E2652A /* CurrentUser.swift in Sources */,
 				864296B92A75DCF00009C217 /* VideoLibraryViewController.swift in Sources */,
