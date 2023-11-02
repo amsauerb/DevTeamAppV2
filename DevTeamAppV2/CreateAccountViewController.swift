@@ -108,29 +108,33 @@ class CreateAccountViewController: UIViewController, UICollectionViewDelegate, U
         addUserButton.titleLabel?.font = UIFont.textStyle9
         addUserButton.contentHorizontalAlignment = .leading
         
-        dashboardButton.layer.cornerRadius = 7
-        dashboardButton.layer.masksToBounds =  true
-        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
-        dashboardButton.layer.borderWidth =  2
-        dashboardButton.layer.opacity = 1
-        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
-        dashboardButton.titleLabel?.font = UIFont.textStyle9
-        dashboardButton.contentHorizontalAlignment = .leading
+//        dashboardButton.layer.cornerRadius = 7
+//        dashboardButton.layer.masksToBounds =  true
+//        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
+//        dashboardButton.layer.borderWidth =  2
+//        dashboardButton.layer.opacity = 1
+//        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
+//        dashboardButton.titleLabel?.font = UIFont.textStyle9
+//        dashboardButton.contentHorizontalAlignment = .leading
         
-        container.layer.cornerRadius = 10
-        container.layer.masksToBounds =  true
+//        container.layer.cornerRadius = 10
+//        container.layer.masksToBounds =  true
         container.backgroundColor = UIColor.daisy
         container.layer.opacity = 1
-        
+
         container.layer.masksToBounds = false
         container.layer.shadowColor = UIColor.black.cgColor
-        container.layer.shadowOpacity = 0.2
-        container.layer.shadowOffset = .zero
-        container.layer.shadowRadius = 1
+        container.layer.shadowOpacity = 0.7
+        container.layer.shadowOffset = CGSize(width: 3, height: 3)
+        container.layer.shadowRadius = 3
         
         userThumbnail.layer.cornerRadius = 10
         userThumbnail.layer.borderWidth = 1
         userThumbnail.layer.borderColor = UIColor.black.cgColor
+        
+        newUserThumbnail.layer.cornerRadius = 10
+        newUserThumbnail.layer.borderWidth = 1
+        newUserThumbnail.layer.borderColor = UIColor.black.cgColor
     }
     
     func setRoleButton() {
@@ -257,9 +261,9 @@ class CreateAccountViewController: UIViewController, UICollectionViewDelegate, U
         
         cell.viewContainer.layer.masksToBounds = false
         cell.viewContainer.layer.shadowColor = UIColor.black.cgColor
-        cell.viewContainer.layer.shadowOpacity = 0.2
-        cell.viewContainer.layer.shadowOffset = .zero
-        cell.viewContainer.layer.shadowRadius = 1
+        cell.viewContainer.layer.shadowOpacity = 0.7
+        cell.viewContainer.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cell.viewContainer.layer.shadowRadius = 3
         
         return cell
     }

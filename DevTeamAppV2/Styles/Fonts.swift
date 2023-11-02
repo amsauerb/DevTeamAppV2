@@ -28,10 +28,10 @@ extension UIFont {
     class var textStyle14: UIFont {
         return UIFont(name: "RobotoRoman-Medium", size: 19.0) ?? UIFont.systemFont(ofSize: 19.0)
     }
-//
-//    class var textStyle14: UIFont {
-//        return UIFont(name: "RobotoRoman-Medium", size: 18.0) ?? UIFont.systemFont(ofSize: 18.0)
-//    }
+
+    class var textStyle24: UIFont {
+        return UIFont(name: "RobotoRoman-Bold", size: 19.0) ?? UIFont.systemFont(ofSize: 18.0)
+    }
 
     class var textStyle15: UIFont {
         return UIFont(name: "RobotoRoman-Medium", size: 11.0) ?? UIFont.systemFont(ofSize: 11.0)

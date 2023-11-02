@@ -10,6 +10,7 @@ import UIKit
 class CustomTaskCollectionCell: UICollectionViewCell {
     @IBOutlet var videoTitle: UILabel!
     @IBOutlet var taskInfo: UILabel!
-    @IBOutlet var taskDeadlineDate: UIDatePicker!
     @IBOutlet var taskFinishedButton: UIButton!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var taskContainer: UIView!
 }

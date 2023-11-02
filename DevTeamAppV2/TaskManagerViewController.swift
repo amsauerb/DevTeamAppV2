@@ -7,6 +7,7 @@
 
 import PostgresClientKit
 import UIKit
+import Foundation
 
 class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,8 +19,11 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
     
     var userInformation = [Model.User]()
     var selectedUsers = [Model.User]()
+    var selectedUsersReset = false
     
     var usersForTask = [Model.UserTask]()
+    
+    var format = DateFormatter()
     
     @IBOutlet var welcomeField: UILabel!
     @IBOutlet var userThumbnail: UIImageView!
@@ -35,6 +39,7 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet var taskDeadline: UIDatePicker!
     @IBOutlet var taskTable: UITableView!
     @IBOutlet var containerView: UIView!
+    @IBOutlet var dateLabel: UILabel!
     
     var del: TaskManagerDelegate?
     
@@ -61,6 +66,9 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         
         assignedUsersCollection.reloadData()
+        
+        format.dateFormat = "MMM d, y"
+        taskDeadline.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
         
         loadPrettyViews()
     }
@@ -99,29 +107,43 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
         taskButton.titleLabel?.font = UIFont.textStyle9
         taskButton.contentHorizontalAlignment = .leading
         
-        dashboardButton.layer.cornerRadius = 7
-        dashboardButton.layer.masksToBounds =  true
-        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
-        dashboardButton.layer.borderWidth =  2
-        dashboardButton.layer.opacity = 1
-        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
-        dashboardButton.titleLabel?.font = UIFont.textStyle9
-        dashboardButton.contentHorizontalAlignment = .leading
+//        dashboardButton.layer.cornerRadius = 7
+//        dashboardButton.layer.masksToBounds =  true
+//        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
+//        dashboardButton.layer.borderWidth =  2
+//        dashboardButton.layer.opacity = 1
+//        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
+//        dashboardButton.titleLabel?.font = UIFont.textStyle9
+//        dashboardButton.contentHorizontalAlignment = .leading
         
-        containerView.layer.cornerRadius = 10
-        containerView.layer.masksToBounds =  true
+        createButton.layer.cornerRadius = 7
+        createButton.layer.masksToBounds = true
+        createButton.layer.borderColor = UIColor.sapphire.cgColor
+        createButton.layer.borderWidth = 2
+        createButton.setTitleColor(UIColor.sapphire, for: .normal)
+        
         containerView.backgroundColor = UIColor.daisy
         containerView.layer.opacity = 1
         
         containerView.layer.masksToBounds = false
         containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOpacity = 0.2
-        containerView.layer.shadowOffset = .zero
-        containerView.layer.shadowRadius = 1
+        containerView.layer.shadowOpacity = 0.7
+        containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        containerView.layer.shadowRadius = 3
         
         userThumbnail.layer.cornerRadius = 10
         userThumbnail.layer.borderWidth = 1
         userThumbnail.layer.borderColor = UIColor.black.cgColor
+        
+        taskDeadline.preferredDatePickerStyle = UIDatePickerStyle.compact
+        taskDeadline.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        
+        dateLabel.layer.cornerRadius = 5
+        dateLabel.layer.masksToBounds = true
+    }
+    
+    @objc func updateDateLabel(sender: UIDatePicker) {
+        dateLabel.text = format.string(from: sender.date)
     }
     
     func loadTaskTable() {
@@ -168,6 +190,11 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
     func getUserInfo() {
         let name = userMenu.menu?.selectedElements.first?.title ?? ""
         
+        if !selectedUsersReset {
+            selectedUsers.removeAll()
+            selectedUsersReset = true
+        }
+        
         if name != "" {
             model.userByName(name) { result in
                 do {
@@ -199,6 +226,8 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
         
         if selectedUsers.count != 0 {
             cell.assignedUserImage.image = UIImage(named: "frame3")
+        } else {
+            cell.assignedUserImage.image = UIImage()
         }
 
         return cell
@@ -207,6 +236,99 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let result = (taskInformation.count != 0) ? taskInformation.count : 1
         return result
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {_, _, _ in
+            let tid = self.taskInformation[indexPath.row].tid
+            
+            self.model.deleteTask(tid) { result in
+                do {
+                    let task = try result.get()
+                    if task.first!.tid == tid {
+                        self.taskNameField.placeholder = "Task Name"
+                        self.taskDeadline.date = Date()
+                        self.taskDescriptionField.text = "Description"
+                        
+                        self.taskTable.beginUpdates()
+                        self.model.getAllTasks() { result in
+                            do {
+                                self.taskInformation = try result.get()
+                                self.taskTable.deleteRows(at: [indexPath], with: .fade)
+                                self.taskTable.endUpdates()
+                            } catch {
+                                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                            }
+                        }
+                        
+                        self.setUserMenu()
+                        
+                        self.selectedTask.removeAll()
+                        self.selectedUsers.removeAll()
+                        self.usersForTask.removeAll()
+                        
+                        self.assignedUsersCollection.reloadData()
+                    }
+                } catch {
+                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                }
+            }
+        }
+        
+        delete.image = UIImage(named: "vector7")
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        swipe.performsFirstActionWithFullSwipe = false
+        return swipe
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = UIContextualAction(style: .destructive, title: "Complete") {_, _, _ in
+            let tid = self.taskInformation[indexPath.row].tid
+            
+            self.model.deleteTask(tid) { result in
+                do {
+                    let task = try result.get()
+                    if task.first!.tid == tid {
+                        self.taskNameField.placeholder = "Task Name"
+                        self.taskDeadline.date = Date()
+                        self.taskDescriptionField.text = "Description"
+                        
+                        self.taskTable.beginUpdates()
+                        self.model.getAllTasks() { result in
+                            do {
+                                self.taskInformation = try result.get()
+                                self.taskTable.deleteRows(at: [indexPath], with: .fade)
+                                self.taskTable.endUpdates()
+                            } catch {
+                                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                            }
+                        }
+                        
+                        self.setUserMenu()
+                        
+                        self.selectedTask.removeAll()
+                        self.selectedUsers.removeAll()
+                        self.usersForTask.removeAll()
+                        
+                        self.assignedUsersCollection.reloadData()
+                    }
+                } catch {
+                    Postgres.logger.severe("Error during database communication: \(String(describing: error))")
+                }
+            }
+        }
+        
+        complete.image = UIImage(named: "frame3")
+        complete.backgroundColor = .green
+        
+        let swipe = UISwipeActionsConfiguration(actions: [complete])
+        swipe.performsFirstActionWithFullSwipe = false
+        return swipe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -252,16 +374,14 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.editButton.addTarget(self, action: #selector(self.editTask), for: .touchUpInside)
         }
         
-        cell.container.layer.cornerRadius = 10
-        cell.container.layer.masksToBounds =  true
         cell.container.backgroundColor = UIColor.daisy
         cell.container.layer.opacity = 1
         
         cell.container.layer.masksToBounds = false
         cell.container.layer.shadowColor = UIColor.black.cgColor
-        cell.container.layer.shadowOpacity = 0.2
-        cell.container.layer.shadowOffset = .zero
-        cell.container.layer.shadowRadius = 1
+        cell.container.layer.shadowOpacity = 0.7
+        cell.container.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cell.container.layer.shadowRadius = 3
         
         return cell
     }
@@ -273,9 +393,12 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
         selectedUsers.removeAll()
         usersForTask.removeAll()
         
+        selectedTask.append(task)
+        
         self.taskNameField.text = task.title
         self.taskDescriptionField.text = task.description
         self.taskDeadline.date = task.deadline.date(in: TimeZone.current)
+        self.dateLabel.text = self.format.string(from: self.taskDeadline.date)
         
         model.getAllUsersForTID(task.tid) { result in
             do {
@@ -287,13 +410,12 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
                         do {
                             let user = try result.get()
                             self.selectedUsers.append(contentsOf: user)
+                            self.assignedUsersCollection.reloadData()
                         } catch {
                             Postgres.logger.severe("Error during database communication: \(String(describing: error))")
                         }
                     }
                 }
-                
-                self.assignedUsersCollection.reloadData()
             } catch {
                 Postgres.logger.severe("Error during database communication: \(String(describing: error))")
             }
@@ -336,6 +458,7 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.taskNameField.placeholder = "Task Name"
+            self.taskNameField.text = ""
             self.taskDeadline.date = Date()
             self.taskDescriptionField.text = "Description"
             self.setUserMenu()
@@ -346,6 +469,7 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
             
             self.assignedUsersCollection.reloadData()
             self.loadTaskTable()
+            self.selectedUsersReset = false
         }
         
         
@@ -416,6 +540,7 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
             self.taskDeadline.date = Date()
             self.taskDescriptionField.text = "Description"
             self.loadTaskTable()
+            self.selectedUsersReset = false
             self.setUserMenu()
             
             self.selectedTask.removeAll()
@@ -423,34 +548,6 @@ class TaskManagerViewController: UIViewController, UICollectionViewDelegate, UIC
             self.usersForTask.removeAll()
             
             self.assignedUsersCollection.reloadData()
-        }
-    }
-    
-    @IBAction func deleteTask() {
-        let tid = selectedTask.first!.tid
-        
-        model.deleteTask(tid) { result in
-            do {
-                let task = try result.get()
-                if task.first!.tid == tid {
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.taskNameField.placeholder = "Task Name"
-                        self.taskDeadline.date = Date()
-                        self.taskDescriptionField.text = "Description"
-                        self.loadTaskTable()
-                        self.setUserMenu()
-                        
-                        self.selectedTask.removeAll()
-                        self.selectedUsers.removeAll()
-                        self.usersForTask.removeAll()
-                        
-                        self.assignedUsersCollection.reloadData()
-                    }
-                }
-            } catch {
-                Postgres.logger.severe("Error during database communication: \(String(describing: error))")
-            }
         }
     }
     

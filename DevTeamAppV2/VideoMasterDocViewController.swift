@@ -33,16 +33,16 @@ class VideoMasterDocViewController: UIViewController {
     @IBOutlet var producerMenu: UIButton!
     
     @IBOutlet var frameworkDeadlinePicker: UIDatePicker!
-    //    @IBOutlet var frameworkDaysRemaining: UILabel!
     @IBOutlet var frameworkCompletedButton: UIButton!
+    @IBOutlet var frameworkdateLabel: UILabel!
     
     @IBOutlet var macroDeadlinePicker: UIDatePicker!
-    //    @IBOutlet var macroDaysRemaining: UILabel!
     @IBOutlet var macroCompletedButton: UIButton!
+    @IBOutlet var macrodateLabel: UILabel!
     
     @IBOutlet var microDeadlinePicker: UIDatePicker!
-    //    @IBOutlet var microDaysRemaining: UILabel!
     @IBOutlet var microCompletedButton: UIButton!
+    @IBOutlet var microdateLabel: UILabel!
     
     @IBOutlet var prepreLabel: UITextView!
     @IBOutlet var directorNotesLabel: UITextView!
@@ -66,10 +66,32 @@ class VideoMasterDocViewController: UIViewController {
     @IBOutlet var shotListContainer: UIView!
     @IBOutlet var constructionContainer: UIView!
     
+    @IBOutlet var filmdateLabel: UILabel!
+    @IBOutlet var postdateLabel: UILabel!
+    
+    var format = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedAround()
+        
+        format.dateFormat = "MMM d, y"
+        
+        filmdatePicker.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        filmdatePicker.tag = 1
+        
+        postdatePicker.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        postdatePicker.tag = 2
+        
+        frameworkDeadlinePicker.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        frameworkDeadlinePicker.tag = 3
+        
+        macroDeadlinePicker.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        macroDeadlinePicker.tag = 4
+        
+        microDeadlinePicker.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        microDeadlinePicker.tag = 5
         
         model.videoInformation(selectedVideo.getSelectedVideoTitle()){ [self] result in
             do {
@@ -89,9 +111,11 @@ class VideoMasterDocViewController: UIViewController {
                     let currentDay = Date()
                     let filmdate = self.videoInformation.first?.filmdate.date(in: TimeZone.current)
                     filmdatePicker.date = filmdate ?? currentDay
+                    filmdateLabel.text = format.string(from: filmdatePicker.date)
                     
                     let postdate = self.videoInformation.first?.postdate.date(in: TimeZone.current)
                     postdatePicker.date = postdate ?? currentDay
+                    postdateLabel.text = format.string(from: postdatePicker.date)
                     
                     let director = self.videoInformation.first?.leaddirector
                     let producer = self.videoInformation.first?.leadproducer
@@ -100,8 +124,13 @@ class VideoMasterDocViewController: UIViewController {
                     setProducerButton(producer ?? " ")
                     
                     macroDeadlinePicker.date = (videoInformation.first?.macrodate.date(in: TimeZone.current))!
+                    macrodateLabel.text = format.string(from: macroDeadlinePicker.date)
+                    
                     microDeadlinePicker.date = (videoInformation.first?.microdate.date(in: TimeZone.current))!
+                    microdateLabel.text = format.string(from: microDeadlinePicker.date)
+                    
                     frameworkDeadlinePicker.date = (videoInformation.first?.frameworkdate.date(in: TimeZone.current))!
+                    frameworkdateLabel.text = format.string(from: frameworkDeadlinePicker.date)
                     
                     let origImage = UIImage(named: "frame3")
                     let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
@@ -137,11 +166,11 @@ class VideoMasterDocViewController: UIViewController {
                     }
                     
                     // Put document labels
-                    setHyperlink(label: prepreLabel, labelText: "Prepre Doc", pathText: self.videoInformation.first?.prepredoc ?? "")
-                    setHyperlink(label: directorNotesLabel, labelText: "Director's Notes Doc", pathText: self.videoInformation.first?.directorsnotesdoc ?? "")
-                    setHyperlink(label: productionNotesLabel, labelText: "Production Notes Doc", pathText: self.videoInformation.first?.productionnotesdoc ?? "")
-                    setHyperlink(label: shotListLabel, labelText: "Shot List Doc", pathText: self.videoInformation.first?.shotlistdoc ?? "")
-                    setHyperlink(label: constructionNotesLabel, labelText: "Construction Notes Doc", pathText: self.videoInformation.first?.constructionnotesdoc ?? "" )
+                    setHyperlink(label: prepreLabel, labelText: "Prep Document", pathText: self.videoInformation.first?.prepredoc ?? "")
+                    setHyperlink(label: directorNotesLabel, labelText: "Director's Notes", pathText: self.videoInformation.first?.directorsnotesdoc ?? "")
+                    setHyperlink(label: productionNotesLabel, labelText: "Production Notes", pathText: self.videoInformation.first?.productionnotesdoc ?? "")
+                    setHyperlink(label: shotListLabel, labelText: "Shot List Notes", pathText: self.videoInformation.first?.shotlistdoc ?? "")
+                    setHyperlink(label: constructionNotesLabel, labelText: "Construction Notes", pathText: self.videoInformation.first?.constructionnotesdoc ?? "" )
                     //                    prepreLabel.text = self.videoInformation.first?.prepredoc
                     //                    directorNotesLabel.text = self.videoInformation.first?.directorsnotesdoc
                     //                    productionNotesLabel.text = self.videoInformation.first?.productionnotesdoc
@@ -292,6 +321,35 @@ class VideoMasterDocViewController: UIViewController {
         
         thumbnailView.layer.borderWidth = 0.5
         thumbnailView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        filmdateLabel.layer.cornerRadius = 5
+        filmdateLabel.layer.masksToBounds = true
+        
+        postdateLabel.layer.cornerRadius = 5
+        postdateLabel.layer.masksToBounds = true
+        
+        frameworkdateLabel.layer.cornerRadius = 5
+        frameworkdateLabel.layer.masksToBounds = true
+        
+        macrodateLabel.layer.cornerRadius = 5
+        macrodateLabel.layer.masksToBounds = true
+        
+        microdateLabel.layer.cornerRadius = 5
+        microdateLabel.layer.masksToBounds = true
+    }
+    
+    @objc func updateDateLabel(sender: UIDatePicker) {
+        if sender.tag == 1 {
+            filmdateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 2 {
+            postdateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 3 {
+            frameworkdateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 4 {
+            macrodateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 5 {
+            microdateLabel.text = format.string(from: sender.date)
+        }
     }
     
     func setHyperlink(label: UITextView, labelText: String, pathText: String) {

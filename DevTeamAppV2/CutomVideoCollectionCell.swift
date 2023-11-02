@@ -15,5 +15,5 @@ class CutomVideoCollectionCell: UICollectionViewCell {
     @IBOutlet var videoCellImage: UIImageView!
     @IBOutlet var videoCellTitle: UILabel!
     @IBOutlet var videoCellDate: UIDatePicker!
-    
+    @IBOutlet var videoDateLabel: UILabel!
 }

@@ -38,6 +38,8 @@ class AddVideoViewController: UIViewController {
     @IBOutlet var directorMenu: UIButton!
     @IBOutlet var producerMenu: UIButton!
     
+    @IBOutlet var chooseThumbnailButton: UIButton!
+    
     @IBOutlet var startDateField: UIDatePicker!
     
     override func viewDidLoad() {
@@ -77,6 +79,9 @@ class AddVideoViewController: UIViewController {
         welcomeField.font = UIFont.textStyle2
         welcomeField.textAlignment = .left
         welcomeField.text = currentUser.getCurrentUserName()
+        
+        chooseThumbnailButton.layer.cornerRadius = 5
+        chooseThumbnailButton.layer.masksToBounds = true
         
         userThumbnail.layer.cornerRadius = 10
         userThumbnail.layer.borderWidth = 1
@@ -189,10 +194,14 @@ class AddVideoViewController: UIViewController {
         filmdateField.layer.opacity = 1
 
 
-        budgetRectangle.layer.cornerRadius = 9
-        budgetRectangle.layer.masksToBounds =  true
         budgetRectangle.backgroundColor = UIColor.daisy
         budgetRectangle.layer.opacity = 1
+        
+        budgetRectangle.layer.masksToBounds = false
+        budgetRectangle.layer.shadowColor = UIColor.black.cgColor
+        budgetRectangle.layer.shadowOpacity = 0.7
+        budgetRectangle.layer.shadowOffset = CGSize(width: 3, height: 3)
+        budgetRectangle.layer.shadowRadius = 3
 
 
 //        budgetCompletedLabel.layer.opacity = 1

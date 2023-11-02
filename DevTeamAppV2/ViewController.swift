@@ -7,8 +7,6 @@
 
 import PostgresClientKit
 import UIKit
-import AppCenter
-import AppCenterCrashes
 
 
 class ViewController: UIViewController {
@@ -37,12 +35,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-//        usernameField.text = ""
-//        passwordField.text = ""
-        
-        AppCenter.start(withAppSecret: "ef64b400-cb63-42db-9065-30f3414d9e65", services:[
-            Crashes.self
-          ])
         
         loadPrettyViews()
     }
@@ -59,7 +51,6 @@ class ViewController: UIViewController {
         usernameField.layer.opacity = 1
         usernameField.textColor = UIColor.slate
         usernameField.font = UIFont.textStyle7
-        usernameField.textAlignment = .left
         usernameField.borderStyle = .none
 
         usernameField.placeholder = NSLocalizedString("Username", comment: "")
@@ -71,7 +62,6 @@ class ViewController: UIViewController {
         passwordField.layer.opacity = 1
         passwordField.textColor = UIColor.slate
         passwordField.font = UIFont.textStyle7
-        passwordField.textAlignment = .left
         passwordField.isSecureTextEntry = true
 
         passwordField.placeholder = NSLocalizedString("password", comment: "")

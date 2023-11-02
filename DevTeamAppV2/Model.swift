@@ -518,7 +518,7 @@ class Model {
         let currentstage: String
         let thumbnail: [String]
         let productiontype: String
-        let postdate: PostgresDate
+        var postdate: PostgresDate
         let startdate: PostgresDate
         let frameworkdate: PostgresDate
         let macrodate: PostgresDate

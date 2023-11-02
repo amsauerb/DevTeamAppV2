@@ -7,11 +7,14 @@
 
 import PostgresClientKit
 import UIKit
+import Foundation
 
 class VideoManagerViewController: UIViewController {
     let model = DatabaseManager.shared.connectToDatabase()
     let currentUser = CurrentUser.shared
     var videoInformation = [Model.Video]()
+    
+    let format = DateFormatter()
     
     var del: VideoManagerDelegate?
     
@@ -19,11 +22,23 @@ class VideoManagerViewController: UIViewController {
     @IBOutlet var userThumbnail: UIImageView!
     
     @IBOutlet var startDateField: UIDatePicker!
+    @IBOutlet var startDateLabel: UILabel!
+    
     @IBOutlet var frameworkDateField: UIDatePicker!
+    @IBOutlet var frameworkDateLabel: UILabel!
+    
     @IBOutlet var macroDateField: UIDatePicker!
+    @IBOutlet var macroDateLabel: UILabel!
+    
     @IBOutlet var microDateField: UIDatePicker!
+    @IBOutlet var microDateLabel: UILabel!
+    
     @IBOutlet var filmDateField: UIDatePicker!
+    @IBOutlet var filmDateLabel: UILabel!
+    
     @IBOutlet var postDateField: UIDatePicker!
+    @IBOutlet var postDateLabel: UILabel!
+    
     @IBOutlet var videoThumbnail: UIImageView!
     
     @IBOutlet var taskButton: UIButton!
@@ -39,6 +54,9 @@ class VideoManagerViewController: UIViewController {
     @IBOutlet var postView: UIView!
     
     @IBOutlet var dashboardButton: UIButton!
+    @IBOutlet var updateButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
+    @IBOutlet var deleteButton: UIButton!
     
     @IBOutlet var videoMenu: UIButton!
     
@@ -54,6 +72,8 @@ class VideoManagerViewController: UIViewController {
         
         welcomeField.text = currentUser.getCurrentUserName()
         loadPrettyViews()
+        
+        format.dateFormat = "MMM d, y"
     }
     
     func loadPrettyViews() {
@@ -90,14 +110,16 @@ class VideoManagerViewController: UIViewController {
         videoButton.titleLabel?.font = UIFont.textStyle9
         videoButton.contentHorizontalAlignment = .leading
         
-        dashboardButton.layer.cornerRadius = 7
-        dashboardButton.layer.masksToBounds =  true
-        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
-        dashboardButton.layer.borderWidth =  2
-        dashboardButton.layer.opacity = 1
-        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
-        dashboardButton.titleLabel?.font = UIFont.textStyle9
-        dashboardButton.contentHorizontalAlignment = .leading
+        updateButton.layer.backgroundColor = UIColor.systemGray5.cgColor
+        
+//        dashboardButton.layer.cornerRadius = 7
+//        dashboardButton.layer.masksToBounds =  true
+//        dashboardButton.layer.borderColor = UIColor.sapphire.cgColor
+//        dashboardButton.layer.borderWidth =  2
+//        dashboardButton.layer.opacity = 1
+//        dashboardButton.setTitleColor(UIColor.sapphire, for: .normal)
+//        dashboardButton.titleLabel?.font = UIFont.textStyle9
+//        dashboardButton.contentHorizontalAlignment = .leading
         
         frameworkView.layer.cornerRadius = 10
         frameworkView.layer.masksToBounds =  true
@@ -143,31 +165,62 @@ class VideoManagerViewController: UIViewController {
         postView.layer.borderColor = UIColor.lightGray.cgColor
         postView.layer.borderWidth = 0.5
         
-        videoThumbnail.layer.borderWidth = 0.5
-        videoThumbnail.layer.borderColor = UIColor.lightGray.cgColor
+        producerMenu.layer.cornerRadius = 5
+        producerMenu.layer.masksToBounds = true
+        
+        directorMenu.layer.cornerRadius = 5
+        directorMenu.layer.masksToBounds = true
         
         userThumbnail.layer.cornerRadius = 10
         userThumbnail.layer.borderWidth = 1
         userThumbnail.layer.borderColor = UIColor.black.cgColor
         
-//        startDateField.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .red
-        startDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        startDateField.layer.cornerRadius = 10
+        startDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        startDateField.tag = 1
+        startDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
         
-        filmDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        filmDateField.layer.cornerRadius = 10
+        startDateLabel.layer.cornerRadius = 5
+        startDateLabel.layer.masksToBounds = true
         
-        frameworkDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        frameworkDateField.layer.cornerRadius = 10
+        filmDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        filmDateField.tag = 2
+        filmDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
         
-        macroDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        macroDateField.layer.cornerRadius = 10
+        filmDateLabel.layer.cornerRadius = 5
+        filmDateLabel.layer.masksToBounds = true
         
-        microDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        microDateField.layer.cornerRadius = 10
+        frameworkDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        frameworkDateField.tag = 3
+        frameworkDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
         
-        postDateField.layer.backgroundColor = UIColor.lightGray.cgColor
-        postDateField.layer.cornerRadius = 10
+        frameworkDateLabel.layer.cornerRadius = 5
+        frameworkDateLabel.layer.masksToBounds = true
+        
+        macroDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        macroDateField.tag = 4
+        macroDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        
+        macroDateLabel.layer.cornerRadius = 5
+        macroDateLabel.layer.masksToBounds = true
+        
+        microDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        microDateField.tag = 5
+        microDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        
+        microDateLabel.layer.cornerRadius = 5
+        microDateLabel.layer.masksToBounds = true
+        
+        postDateField.preferredDatePickerStyle = UIDatePickerStyle.compact
+        postDateField.tag = 6
+        postDateField.addTarget(self, action: #selector(updateDateLabel), for: .valueChanged)
+        
+        postDateLabel.layer.cornerRadius = 5
+        postDateLabel.layer.masksToBounds = true
+        
+//        videoThumbnail.layer.cornerRadius = 21
+//        videoThumbnail.layer.masksToBounds =  true
+//        videoThumbnail.backgroundColor = UIColor.salt4
+//        videoThumbnail.layer.opacity = 1
     }
     
     func setDirectorButton(_ director: String) {
@@ -290,11 +343,22 @@ class VideoManagerViewController: UIViewController {
                     self.videoInformation = try result.get()
                     
                     self.filmDateField.date = self.videoInformation.first?.filmdate.date(in: TimeZone.current) ?? Date()
+                    self.filmDateLabel.text = self.format.string(from: self.filmDateField.date)
+                    
                     self.postDateField.date = self.videoInformation.first?.postdate.date(in: TimeZone.current) ?? Date()
+                    self.postDateLabel.text = self.format.string(from: self.postDateField.date)
+                    
                     self.startDateField.date = (self.videoInformation.first?.startdate.date(in: TimeZone.current))!
+                    self.startDateLabel.text = self.format.string(from: self.startDateField.date)
+                    
                     self.frameworkDateField.date = (self.videoInformation.first?.frameworkdate.date(in: TimeZone.current))!
+                    self.frameworkDateLabel.text = self.format.string(from: self.frameworkDateField.date)
+                    
                     self.macroDateField.date = (self.videoInformation.first?.macrodate.date(in: TimeZone.current))!
+                    self.macroDateLabel.text = self.format.string(from: self.macroDateField.date)
+                    
                     self.microDateField.date = (self.videoInformation.first?.microdate.date(in: TimeZone.current))!
+                    self.microDateLabel.text = self.format.string(from: self.microDateField.date)
                     
                     self.setDirectorButton(self.videoInformation.first?.leaddirector ?? " ")
                     self.setProducerButton(self.videoInformation.first?.leadproducer ?? " ")
@@ -310,6 +374,22 @@ class VideoManagerViewController: UIViewController {
                     Postgres.logger.severe("Error during database communication: \(String(describing: error))")
                 }
             }
+        }
+    }
+    
+    @objc func updateDateLabel(sender: UIDatePicker) {
+        if sender.tag == 1 {
+            startDateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 2 {
+            filmDateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 3 {
+            frameworkDateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 4 {
+            macroDateLabel.text = format.string(from: sender.date)
+        } else if sender.tag == 5 {
+            microDateLabel.text = format.string(from: sender.date)
+        } else {
+            postDateLabel.text = format.string(from: sender.date)
         }
     }
     

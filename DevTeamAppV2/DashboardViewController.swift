@@ -8,6 +8,7 @@
 import PostgresClientKit
 import UIKit
 import UserNotifications
+import Foundation
 
 class DashboardViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, TaskManagerDelegate, VideoManagerDelegate {
     
@@ -42,6 +43,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
         
         collectionViewTasks.dataSource = self
         collectionViewTasks.delegate = self
+        Postgres.logger.severe("Task content size: " + collectionViewTasks.contentSize.height.description + " " + collectionViewTasks.contentSize.width.description)
         
         welcomeField.text = currentUser.getCurrentUserName() + "!"
         
@@ -202,7 +204,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
             do {
                 self.videoInformation = try result.get()
                 self.postVideoSubset = self.videoInformation.filter {$0.currentstage == "Polish" || $0.currentstage == "Filming"}
-                self.prodVideoSubset = self.videoInformation.filter {$0.currentstage != "Polish" && $0.currentstage != "Filming" && $0.currentstage != "Posted"}
+                self.prodVideoSubset = self.videoInformation.filter {$0.currentstage != "Polish" && $0.currentstage != "Filming" && $0.currentstage != "Posted" && $0.currentstage != "Filmed"}
                 
                 self.postVideoSubset = self.postVideoSubset.sorted(by: {$0.filmdate.date(in: TimeZone.current).compare($1.filmdate.date(in: TimeZone.current)) == .orderedAscending})
                 
@@ -266,11 +268,13 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
         let postdate = sender.date.postgresDate(in: TimeZone.current)
         let path = IndexPath(row: sender.tag, section: 0)
         let video = postVideoSubset[path.row]
+        postVideoSubset[path.row].postdate = postdate
         model.updatePostDate(video.title, postdate: postdate) { result in
             do {
                 let updateCheck = try result.get()
                 if updateCheck.first?.postdate == video.postdate {
                     Postgres.logger.fine("Post date updated succesfully for: " + (updateCheck.first?.title ?? ""))
+                    self.collectionViewPost.reloadItems(at: [path])
                 }
             } catch {
                 Postgres.logger.severe("Error in database communication: \(String(describing: error))")
@@ -297,7 +301,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                         }
                     }
                     
-                    self.collectionViewTasks.reloadData()
+//                    self.collectionViewTasks.reloadData()
                 }
             } catch {
                 Postgres.logger.severe("Error in database communication: \(String(describing: error))")
@@ -326,12 +330,27 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                 cell.videoCellTitle.numberOfLines = 0
                 cell.videoCellTitle.font = UIFont.textStyle2
                 cell.videoCellTitle.textAlignment = .left
+                cell.videoCellTitle.adjustsFontSizeToFitWidth = true
                 
+                let format = DateFormatter()
+                
+                format.dateFormat = "MMM d, y"
+                
+                cell.videoDateLabel.text = format.string(from: video.postdate.date(in: TimeZone.current))
+                cell.videoDateLabel.layer.cornerRadius = 5
+                cell.videoDateLabel.layer.masksToBounds = true
+                
+                cell.videoCellDate.preferredDatePickerStyle = UIDatePickerStyle.compact
                 cell.videoCellDate.date = video.postdate.date(in: TimeZone.current)
                 cell.videoCellDate.tag = indexPath.row
                 cell.videoCellDate.addTarget(self,
                                              action: #selector(updatePostDate),
                                              for: .valueChanged)
+                if currentUser.getCurrentUserRole() == "Developer" {
+                    cell.videoCellDate.isUserInteractionEnabled = false
+                }
+                
+                cell.videoDateLabel.isHidden = false
                 cell.videoCellDate.isHidden = false
                 cell.videoCellImage.isHidden = false
             } else {
@@ -342,6 +361,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                 cell.videoCellTitle.textAlignment = .left
                 cell.videoCellDate.isHidden = true
                 cell.videoCellImage.isHidden = true
+                cell.videoDateLabel.isHidden = true
             }
             
             return cell
@@ -354,7 +374,19 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                     do {
                         self.taskInformation = try result.get()
                         
-                        cell.taskDeadlineDate.date = self.taskInformation.first!.deadline.date(in: TimeZone.current)
+                        let format = DateFormatter()
+                        
+                        cell.taskContainer.layer.masksToBounds = false
+                        cell.taskContainer.layer.shadowColor = UIColor.black.cgColor
+                        cell.taskContainer.layer.shadowOpacity = 0.7
+                        cell.taskContainer.layer.shadowOffset = CGSize(width: 3, height: 3)
+                        cell.taskContainer.layer.shadowRadius = 3
+                        
+                        format.dateFormat = "MMM d, y"
+                        cell.dateLabel.text = format.string(from: self.taskInformation.first!.deadline.date(in: TimeZone.current))
+                        cell.dateLabel.layer.cornerRadius = 5
+                        cell.dateLabel.layer.masksToBounds = true
+                        
                         cell.taskInfo.text = self.taskInformation.first!.description
                         cell.taskInfo.textColor = UIColor.black
                         cell.taskInfo.numberOfLines = 0
@@ -364,13 +396,14 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                         cell.videoTitle.text = self.taskInformation.first!.title
                         cell.videoTitle.textColor = UIColor.black
                         cell.videoTitle.numberOfLines = 0
-                        cell.videoTitle.font = UIFont.textStyle14
+                        cell.videoTitle.font = UIFont.boldSystemFont(ofSize: 19.0)
                         cell.videoTitle.textAlignment = .left
+                        cell.videoTitle.adjustsFontSizeToFitWidth = true
                         
                         cell.taskFinishedButton.tag = indexPath.row
                         cell.taskFinishedButton.addTarget(self, action: #selector(self.finishTask), for: .touchUpInside)
                         
-                        cell.taskDeadlineDate.isHidden = false
+                        cell.dateLabel.isHidden = false
                         cell.taskInfo.isHidden = false
                         cell.taskFinishedButton.isHidden = false
                     } catch {
@@ -384,7 +417,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                 cell.videoTitle.font = UIFont.textStyle14
                 cell.videoTitle.textAlignment = .left
                 
-                cell.taskDeadlineDate.isHidden = true
+                cell.dateLabel.isHidden = true
                 cell.taskInfo.isHidden = true
                 cell.taskFinishedButton.isHidden = true
             }
@@ -409,18 +442,29 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
                 cell.videoCellTitle.numberOfLines = 0
                 cell.videoCellTitle.font = UIFont.textStyle2
                 cell.videoCellTitle.textAlignment = .left
+                cell.videoCellTitle.adjustsFontSizeToFitWidth = true
                 
+                let format = DateFormatter()
+                
+                format.dateFormat = "MMM d, y"
+                
+                cell.videoDateLabel.text = format.string(from: video.postdate.date(in: TimeZone.current))
+                cell.videoDateLabel.layer.cornerRadius = 5
+                cell.videoDateLabel.layer.masksToBounds = true
+                
+                cell.videoCellDate.preferredDatePickerStyle = UIDatePickerStyle.compact
                 cell.videoCellDate.date = video.filmdate.date(in: TimeZone.current)
                 
                 cell.videoCellDate.isHidden = false
                 cell.videoCellImage.isHidden = false
+                cell.videoDateLabel.isHidden = false
             } else {
                 cell.videoCellTitle.text = "No Videos in Production"
                 cell.videoCellTitle.textColor = UIColor.black
                 cell.videoCellTitle.numberOfLines = 0
                 cell.videoCellTitle.font = UIFont.textStyle2
                 cell.videoCellTitle.textAlignment = .left
-                
+                cell.videoDateLabel.isHidden = true
                 cell.videoCellDate.isHidden = true
                 cell.videoCellImage.isHidden = true
             }
