@@ -220,7 +220,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func userButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "createAccountView") as? CreateAccountViewController
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "userManagerView") as? UserManagerViewController
         else {
             print("Button pressed failed")
             return

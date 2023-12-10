@@ -21,7 +21,7 @@
 		864296B52A75DCD10009C217 /* AddVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B42A75DCD10009C217 /* AddVideoViewController.swift */; };
 		864296B72A75DCDD0009C217 /* VideoReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */; };
 		864296B92A75DCF00009C217 /* VideoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */; };
-		864296BB2A7731A10009C217 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BA2A7731A10009C217 /* CreateAccountViewController.swift */; };
+		864296BB2A7731A10009C217 /* UserManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BA2A7731A10009C217 /* UserManagerViewController.swift */; };
 		864296BD2A7731B50009C217 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BC2A7731B50009C217 /* DashboardViewController.swift */; };
 		864296BF2A796B030009C217 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296BE2A796B030009C217 /* DatabaseManager.swift */; };
 		864296C12A79EB7F0009C217 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */; };
@@ -29,6 +29,9 @@
 		866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */; };
 		867953622A96BCCC005EDC1B /* CustomVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867953612A96BCCC005EDC1B /* CustomVideoCell.swift */; };
 		86A474C02A98120800DB4402 /* CutomVideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */; };
+		86A798C02B1F97EC00CED535 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 86A798BF2B1F97EC00CED535 /* AWSCognitoAuthPlugin */; };
+		86A798C22B1F97EC00CED535 /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 86A798C12B1F97EC00CED535 /* AWSS3StoragePlugin */; };
+		86A798C42B1F97EC00CED535 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 86A798C32B1F97EC00CED535 /* Amplify */; };
 		86A7B3702AC5DF4A00F440F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86A7B36F2AC5DF4A00F440F4 /* GoogleService-Info.plist */; };
 		86A7B3732AC5E04A00F440F4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */; };
 		86A7B3752AC5E04A00F440F4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 86A7B3742AC5E04A00F440F4 /* FirebaseMessaging */; };
@@ -66,7 +69,7 @@
 		864296B42A75DCD10009C217 /* AddVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoViewController.swift; sourceTree = "<group>"; };
 		864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoReviewViewController.swift; sourceTree = "<group>"; };
 		864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryViewController.swift; sourceTree = "<group>"; };
-		864296BA2A7731A10009C217 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		864296BA2A7731A10009C217 /* UserManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerViewController.swift; sourceTree = "<group>"; };
 		864296BC2A7731B50009C217 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		864296BE2A796B030009C217 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -99,12 +102,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A798C42B1F97EC00CED535 /* Amplify in Frameworks */,
 				86A7B3752AC5E04A00F440F4 /* FirebaseMessaging in Frameworks */,
 				86A83BF52AB3F27D003992D2 /* AppCenterDistribute in Frameworks */,
+				86A798C02B1F97EC00CED535 /* AWSCognitoAuthPlugin in Frameworks */,
 				86A83BF12AB3F27D003992D2 /* AppCenterAnalytics in Frameworks */,
 				86A83BF32AB3F27D003992D2 /* AppCenterCrashes in Frameworks */,
 				86A7B3732AC5E04A00F440F4 /* FirebaseAnalytics in Frameworks */,
 				86ACED602A71CF0F001D13FA /* PostgresClientKit in Frameworks */,
+				86A798C22B1F97EC00CED535 /* AWSS3StoragePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +149,6 @@
 				86ACED4C2A71CECD001D13FA /* SceneDelegate.swift */,
 				86ACED4E2A71CECD001D13FA /* ViewController.swift */,
 				864296C02A79EB7F0009C217 /* ForgotPasswordViewController.swift */,
-				864296BA2A7731A10009C217 /* CreateAccountViewController.swift */,
 				864296BC2A7731B50009C217 /* DashboardViewController.swift */,
 				864296B22A75DCC00009C217 /* UpcomingVideoViewController.swift */,
 				864296B02A756AF00009C217 /* TeamViewController.swift */,
@@ -151,6 +156,9 @@
 				864296B62A75DCDD0009C217 /* VideoReviewViewController.swift */,
 				864296B82A75DCF00009C217 /* VideoLibraryViewController.swift */,
 				8633C8552A7F249800E2652A /* VideoMasterDocViewController.swift */,
+				864296BA2A7731A10009C217 /* UserManagerViewController.swift */,
+				86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */,
+				86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */,
 				86ACED532A71CECF001D13FA /* Assets.xcassets */,
 				864296AC2A71EA060009C217 /* LaunchScreen.storyboard */,
 				864296AA2A71EA060009C217 /* Main.storyboard */,
@@ -162,8 +170,6 @@
 				86A474BF2A98120800DB4402 /* CutomVideoCollectionCell.swift */,
 				86B69F152AA183D00049CB5D /* CustomTaskCollectionCell.swift */,
 				86AA50D12AD7684F006ADD63 /* CustomUserManagementCell.swift */,
-				86B186072AA79AAC002208C0 /* VideoManagerViewController.swift */,
-				86B186092AA79ABB002208C0 /* TaskManagerViewController.swift */,
 				86B9CEB92AAA49ED00CEDFAC /* HyperlinkString.swift */,
 				866F3D592AB0CB1C00D0F1BB /* CalendarCell.swift */,
 				866F3D5B2AB0CDEC00D0F1BB /* CalendarHelper.swift */,
@@ -196,6 +202,9 @@
 				86A83BF42AB3F27D003992D2 /* AppCenterDistribute */,
 				86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */,
 				86A7B3742AC5E04A00F440F4 /* FirebaseMessaging */,
+				86A798BF2B1F97EC00CED535 /* AWSCognitoAuthPlugin */,
+				86A798C12B1F97EC00CED535 /* AWSS3StoragePlugin */,
+				86A798C32B1F97EC00CED535 /* Amplify */,
 			);
 			productName = DevTeamAppV2;
 			productReference = 86A419F02AB9F1F900232403 /* DevTeamAppV2.app */;
@@ -229,6 +238,7 @@
 				86ACED5E2A71CF0F001D13FA /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
 				86A83BEF2AB3F27D003992D2 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				86A798BE2B1F97EC00CED535 /* XCRemoteSwiftPackageReference "amplify-ios" */,
 			);
 			productRefGroup = 86ACED3E2A71CECD001D13FA;
 			projectDirPath = "";
@@ -264,7 +274,7 @@
 				864296B12A756AF00009C217 /* TeamViewController.swift in Sources */,
 				864296BF2A796B030009C217 /* DatabaseManager.swift in Sources */,
 				864296B32A75DCC00009C217 /* UpcomingVideoViewController.swift in Sources */,
-				864296BB2A7731A10009C217 /* CreateAccountViewController.swift in Sources */,
+				864296BB2A7731A10009C217 /* UserManagerViewController.swift in Sources */,
 				86A7B3772AC644F600F440F4 /* DeviceManager.swift in Sources */,
 				866F3D5C2AB0CDEC00D0F1BB /* CalendarHelper.swift in Sources */,
 				86ACED4B2A71CECD001D13FA /* AppDelegate.swift in Sources */,
@@ -527,6 +537,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86A798BE2B1F97EC00CED535 /* XCRemoteSwiftPackageReference "amplify-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -554,6 +572,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86A798BF2B1F97EC00CED535 /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A798BE2B1F97EC00CED535 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		86A798C12B1F97EC00CED535 /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A798BE2B1F97EC00CED535 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSS3StoragePlugin;
+		};
+		86A798C32B1F97EC00CED535 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A798BE2B1F97EC00CED535 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = Amplify;
+		};
 		86A7B3722AC5E04A00F440F4 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86A7B3712AC5E04A00F440F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

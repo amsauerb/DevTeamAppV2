@@ -8,6 +8,8 @@
 import PostgresClientKit
 import UIKit
 import Foundation
+import Amplify
+
 
 class AddVideoViewController: UIViewController {
     
@@ -268,6 +270,21 @@ class AddVideoViewController: UIViewController {
         producerMenu.showsMenuAsPrimaryAction = true
         producerMenu.changesSelectionAsPrimaryAction = true
     }
+//
+//    func uploadImage() async {
+//        let image = thumbnailField.image
+//        let imageData = (image?.jpegData(compressionQuality: 1))!
+//        let imageKey = titleField.text! + "-thumbnail"
+//
+//        let uploadTask = Amplify.Storage.uploadData(key: imageKey, data: imageData)
+//        Task {
+//            for await progress in await uploadTask.progress {
+//                print("Progress: \(progress)")
+//            }
+//        }
+//        let value = try await uploadTask.value
+//        print("Completed: \(value)")
+//    }
     
     @IBAction func requiredFieldsFilled() {
         if titleField.text == "" {
@@ -317,6 +334,10 @@ class AddVideoViewController: UIViewController {
         
         let thumbnail = thumbnailField.image?.jpegData(compressionQuality: 1)
         let thumbnailstring = thumbnail?.base64EncodedString() ?? ""
+        
+        
+        
+        
         
 //        let date = Date()
         let diffInDays = Calendar.current.dateComponents([.day], from: filmdateField.date, to: startDateField.date).day ?? 90

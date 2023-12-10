@@ -8,6 +8,10 @@
 import PostgresClientKit
 import UIKit
 
+import Amplify
+import AWSCognitoAuthPlugin
+import AWSS3StoragePlugin
+
 import FirebaseCore
 import FirebaseMessaging
 
@@ -47,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().subscribe(toTopic: "deadlines") { error in
           print("Subscribed to deadlines topic")
+        }
+        
+        do {
+            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSS3StoragePlugin())
+            try Amplify.configure()
+            print("Amplify configured with Auth and Storage plugins")
+        } catch {
+            print("Failed to initialize Amplify with \(error)")
         }
 
         return true
